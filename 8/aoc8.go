@@ -11,8 +11,7 @@ func main() {
 	width := 25
 	height := 6
 	layers := []string{}
-	imageFileHandle, err := os.Open(filename)
-	check(err)
+	imageFileHandle, _ := os.Open(filename)
 	for {
 		layer := make([]byte,width*height)
 
@@ -26,17 +25,22 @@ func main() {
 		}  
 		layers = append(layers, string(layer))
 	}
+	partOne(layers)
+	partTwo(layers, width, height)
+}
+
+func partOne (layers []string){
 	//fmt.Println(layers)
-	mostZeros := math.MaxInt64
+	leastZeros := math.MaxInt64
 	score := 0
 	for _, layer := range layers {
 		uniqueChars := make(map[string]int)
 		for _, char := range layer {
 			uniqueChars[string(char)]++
 		}
-		if uniqueChars["0"] < mostZeros {
+		if uniqueChars["0"] < leastZeros {
 			score = uniqueChars["1"] * uniqueChars["2"]
-			mostZeros = uniqueChars["0"]
+			leastZeros = uniqueChars["0"]
 		}
 	}
 	fmt.Println(score)
@@ -44,14 +48,17 @@ func main() {
 	// 0: black
 	// 1: white
 	// 2: transparent
-	final := make([]byte,width*height)
+}
+
+func partTwo (layers []string, width, height int) {
+	final := make([]rune, width*height)
 	for i := range final {
 		for j := range layers {
 			if layers[j][i] == '0' {
 				final[i] = ' '
 				break
 			} else if layers[j][i] == '1' {
-				final[i] = 'X'
+				final[i] = '█'
 				break
 			}
 		}
@@ -60,12 +67,4 @@ func main() {
 		fmt.Println(string(final[i:i+width]))
 		i = i + width
 	}
-}
-
-
-
-func check(e error) {
-    if e != nil {
-        panic(e)
-    }
 }

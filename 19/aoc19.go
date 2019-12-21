@@ -7,75 +7,97 @@ import (
 	// "bufio"
 	// "os"
 	// tm "github.com/buger/goterm"
-	"time"
 
 )
-
-type coordinates struct {
-	X int
-	Y int
-}
-
 func main() {
-	grid := make(map[[2]int]int)
 	inputBytes, err := ioutil.ReadFile("input.txt")
     if err != nil {
         panic(err)
 	}
-	blockCount := 0
 	inputString := string(inputBytes)
 	inputNumbers := make(map[int]int)
 	for i, asciiNum := range strings.Split(inputString, ",") {
 		number, _ := strconv.Atoi(asciiNum)
 		inputNumbers[i] = number
 	} 
-	ball := coordinates{0,0}
-	bat := coordinates{0,0}
-	input := make(chan int, 1)
-	output := make(chan int)
-	control := make(chan struct{})
-	maxX := 0
-	maxY := 0
-	go computeResult(inputNumbers, input, output, control, 0)
-	for {
-		printGrid(grid,maxX,maxY)
-		X := <-output
-		Y := <-output
-		tileID, ok := <-output
-		grid[[2]int{X,Y}] = tileID
-		if maxX < X {
-			maxX = X
-		}
-		if maxY < Y {
-			maxY = Y
-		}
-		if !ok {
-			break
-		}
-		switch tileID {
-		case 2:
-			blockCount++
-		case 3:
-			bat.X = X
-		case 4:
-			ball.X = X
-			ball.Y = Y
-			if bat.X < ball.X {
-				input <- 1
-			} else if bat.X > ball.X {
-				input <- -1
-			} else if bat.X == ball.X {
-				input <- 0
+	count :=0 
+	// Part 1
+	for Y :=0; Y <50; Y++ {
+		for X := 0; X <50; X++ {
+
+			instructions :=  make(map[int]int)
+			for k, v := range inputNumbers {
+				instructions[k] = v
+			}
+			outval := getResult(X, Y, instructions)
+			fmt.Print(outval)
+			if outval == 1{
+				count++;
 			}
 		}
+		fmt.Println()
 	}
-	fmt.Println("Score: ",grid[[2]int{-1,0}])
-	fmt.Println("Blocks:", blockCount)
+	fmt.Println("Part 1 result: ", count)
+
+	// left edge: X*3 >= Y *2
+	// right edge: 6*X <= 5Y
+	// find the lowest X, Y such that (X*3 >= (Y+100) *2) and (X+100)* 6 <= Y *5
+	// one corner: X >= ((Y +100)*2)/3
+	// other corner: Y = int((X+100) * float646 / 5
+
+	// Brute force. Slow!
+	size := 99
+	lastXstart := size
+	found := false
+	for Y := 0; !found; Y++ {
+		last := 0
+		// Bit of a kludge here, won't work for inputs where Y = X /n where n > 1 on the left boundary
+		// my input has n < 1  
+		for X := lastXstart; X < Y ; X++ {
+			topRight := getResult(X+size, Y, inputNumbers)
+			bottomLeft := getResult(X, Y+size, inputNumbers)
+			topLeft := getResult(X, Y, inputNumbers)
+			if last != topLeft && last == 1 {
+				break
+			} else if last != topLeft && last == 0 {
+				lastXstart = X
+			}
+			if topRight == 1 && bottomLeft == 1 {
+				fmt.Println(X*10000 + Y)
+				found = true
+			}
+			last = topLeft
+
+		}
+	}
+
+
 
 
 }
 
-func computeResult (inputMap map[int]int, input, output chan int, control chan struct{}, id int) {
+func getResult (X, Y int, inputNumbers map[int]int) int {
+
+	instructions :=  make(map[int]int)
+	for k, v := range inputNumbers {
+		instructions[k] = v
+	}
+	input := make(chan int)
+	output := make(chan int)
+	control := make(chan struct{})
+
+
+	go computeResult(instructions, input, output, control)
+
+	input <- X
+	input <- Y
+	outval := <- output
+	return outval
+
+
+}
+
+func computeResult (inputMap map[int]int, input, output chan int, control chan struct{}) {
 	argLength := map[int]int{
 		1: 3,
 		2: 3,
@@ -127,7 +149,7 @@ func computeResult (inputMap map[int]int, input, output chan int, control chan s
 				pos = pos + 4
 
 			case 3:
-				inputMap[inputMap[pos+1] + offset[0]] = <- input
+				inputMap[inputMap[pos+1] + offset[0]] = <-input
 				pos = pos + 2
 
 			case 4:
@@ -172,28 +194,4 @@ func computeResult (inputMap map[int]int, input, output chan int, control chan s
 		}
 	}
 	return 
-}
-
-func printGrid(grid map[[2]int]int, maxX, maxY int) {
-	fmt.Print("\033[H\033[2J")
-	fmt.Println("Score:", grid[ [2]int{-1,0} ])
-	for Y := 0; Y < maxY+1; Y++ {
-		for X := 0; X < maxX+1; X++ {
-			switch grid[ [2]int{X,Y}] {
-			case 0:
-				fmt.Print(" ")
-			case 1:
-				fmt.Print("X")
-			case 2:
-				fmt.Print("0")
-			case 3: 
-				fmt.Print("-")
-			case 4:
-				fmt.Print(".")
-			}
-			// fmt.Print(grid[ [2]int{X,Y} ])
-		}
-		fmt.Println()
-	}
-	time.Sleep(time.Millisecond * 10 )
 }

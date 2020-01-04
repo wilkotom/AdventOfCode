@@ -7,8 +7,27 @@ import (
 	"strconv"
 )
 
+// Computer describes the available channels for communicating with an intcode computer
+type Computer struct {
+	filename string;
+	Input chan int;
+	Output chan int;
+	Control chan struct{};
+}
+
+// StartIntCodeComputer starts an Intcode computer using the supplied filename for its instructions
+func StartIntCodeComputer(filename string) Computer {
+	Input :=  make(chan int,1024)
+	Output := make(chan int,1024)
+	Control := make(chan struct{})
+	computer := Computer{filename, Input, Output, Control}
+	go computer.ComputeResult()
+	return computer
+
+}
+
 func readInstructions (filename string) map[int]int {
-	inputBytes, err := ioutil.ReadFile("input.txt")
+	inputBytes, err := ioutil.ReadFile(filename)
     if err != nil {
         panic(err)
 	}
@@ -23,9 +42,9 @@ func readInstructions (filename string) map[int]int {
 
 // ComputeResult creates an intcode computer running the instructions in the input file
 // input, output and "control" (has it finished) are handled by way of channels
-func ComputeResult (filename string, input, output chan int, control chan struct{}) {
+func (computer *Computer) ComputeResult () {
 
-	inputMap := readInstructions(filename)
+	inputMap := readInstructions(computer.filename)
 	argLength := map[int]int{
 		1: 3,
 		2: 3,
@@ -45,8 +64,8 @@ func ComputeResult (filename string, input, output chan int, control chan struct
 	for !finished {
 		instruction := inputMap[pos] % 100
 		if instruction == 99 {
-			close(control)
-			close(output)
+			close(computer.Control)
+			close(computer.Output)
 			return 
 		}
 		parameters := make(map[int]int)
@@ -77,11 +96,11 @@ func ComputeResult (filename string, input, output chan int, control chan struct
 				pos = pos + 4
 
 			case 3:
-				inputMap[inputMap[pos+1] + offset[0]] = <-input
+				inputMap[inputMap[pos+1] + offset[0]] = <- computer.Input
 				pos = pos + 2
 
 			case 4:
-				output <- parameters[0]
+				computer.Output <- parameters[0]
 				pos = pos + 2
 
 			case 5: 

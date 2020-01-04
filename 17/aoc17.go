@@ -1,10 +1,8 @@
 package main
 import (
-	"strings"
-	"strconv"
+	"github.com/wilkotom/AoC2019/intcode"
 	"fmt"
-	"io/ioutil"
-
+	// "time"
 )
 
 type coordinate struct {
@@ -13,28 +11,19 @@ type coordinate struct {
 }
 
 func main() {
-	inputBytes, err := ioutil.ReadFile("input.txt")
-    if err != nil {
-        panic(err)
-	}
-	inputString := string(inputBytes)
-	inputNumbers := make(map[int]int)
-	for i, asciiNum := range strings.Split(inputString, ",") {
-		number, _ := strconv.Atoi(asciiNum)
-		inputNumbers[i] = number
-	} 
+	sectionA()
+	sectionB()
+}
 
-	input := make(chan int)
-	output := make(chan int)
-	control := make(chan struct{})
+func sectionA() {
+	intComputer := intcode.StartIntCodeComputer("input.txt")
 
-	go computeResult(inputNumbers, input, output, control)
 	var lines []string
 	var neighbourCount [][]int
-	var currentPostion coordinate
+	var currentPosition coordinate
 	scaffoldLine := ""
 	for {
-		result, ok := <- output
+		result, ok := <- intComputer.Output
 
 		if !ok {
 			break
@@ -46,8 +35,8 @@ func main() {
 
 			scaffoldLine = scaffoldLine + string(result)
 			if result != '.' && result != '#' {
-				currentPostion.X = len(scaffoldLine) -1
-				currentPostion.Y = len(lines) -1
+				currentPosition.X = len(scaffoldLine) -1
+				currentPosition.Y = len(lines)
 			}
 		}
 	}
@@ -80,30 +69,185 @@ func main() {
 		}
 		neighbourCount = append(neighbourCount, nbrLine)
 	}
-	for _, line := range neighbourCount {
-		fmt.Println(line)
-	}
-		for _, line := range lines {
-		fmt.Println(line)
-	}
-	fmt.Println(fours, currentPostion.X, currentPostion.Y)
+	// for _, line := range neighbourCount {
+	// 	fmt.Println(line)
+	// }
 
-	var nextSquare coordinate 
-	for {
-		switch lines[currentPostion.Y][currentPostion.X] {
-		case '^':
-			nextSquare = coordinate{currentPostion.X,currentPostion.Y-1}
-		case '>':
-			nextSquare = coordinate{currentPostion.X+1,currentPostion.Y}
-		case 'v':
-			nextSquare = coordinate{currentPostion.X,currentPostion.Y+1}
-		case '<':
-			nextSquare = coordinate{currentPostion.X-1,currentPostion.Y}
+	for _, line := range lines {
+		fmt.Println(line)
+
+	}
+	fmt.Println(fours, currentPosition.X, currentPosition.Y)
+
+	pointing := lines[currentPosition.Y][currentPosition.X]
+	steps := 0
+	route := ""
+	finished := false
+	for !finished{
+		
+		fmt.Print("\033[H\033[2J")
+		for _, line := range lines {
+			fmt.Println(line)
 		}
-		if lines[nextSquare.Y][nextSquare.X] != '#' {
-			
+		fmt.Println(currentPosition)
+		fmt.Println(len(lines), len(lines[0]))
+		fmt.Println(route)
+		fmt.Println(steps)
+		// time.Sleep(time.Millisecond * 50)
+		// fmt.Println(string(pointing))
+		// fmt.Println(lines[currentPosition.Y])
+		switch pointing {
+		case '^':
+			if currentPosition.Y == 0 || lines[currentPosition.Y-1][currentPosition.X] == '.' {
+				if steps > 0 {
+					route = route + fmt.Sprintf("%d,", steps)
+				}
+				steps = 0
+				if currentPosition.X > 0 && 
+						(lines[currentPosition.Y][currentPosition.X-1] == '#' || 
+						 lines[currentPosition.Y][currentPosition.X-1] == '>' ||
+						 lines[currentPosition.Y][currentPosition.X-1] == '<') {
+					pointing = '<'
+					route = route + "L,"
+					currentPosition.X--
+					steps++
+
+				} else if (currentPosition.X+1 == len(lines[0]) -1) || lines[currentPosition.Y][currentPosition.X+1] == '.' {
+					// route = route + fmt.Sprintf("%d,", steps)
+
+					finished = true
+				} else {
+					pointing = '>'
+					currentPosition.X++
+					steps++
+					route = route + "R,"
+				}
+			} else {
+				currentPosition.Y--
+				steps ++
+			}
+		case '>':
+			if currentPosition.X == len(lines[0]) -1 || lines[currentPosition.Y][currentPosition.X+1] == '.' {
+				if steps > 0 {
+					route = route + fmt.Sprintf("%d,", steps)
+				}
+				steps = 0
+				if currentPosition.Y > 0 && 
+						(lines[currentPosition.Y-1][currentPosition.X] == '#' || 
+						lines[currentPosition.Y-1][currentPosition.X] == '<' || 
+						lines[currentPosition.Y-1][currentPosition.X] == '>' ) {
+					pointing = '^'
+					route = route + "L,"
+					currentPosition.Y --
+					steps++
+				} else if (currentPosition.Y+1 < maxY -1) && lines[currentPosition.Y+1][currentPosition.X] == '.' {
+					// route = route + fmt.Sprintf("%d", steps)
+
+					finished = true
+				} else {
+					pointing = 'v'
+					currentPosition.Y ++
+					steps++
+					route = route + "R,"
+				}
+			} else {
+				currentPosition.X++
+				steps ++
+			}
+		case 'v':
+			if currentPosition.Y  == maxY -1 || lines[currentPosition.Y+1][currentPosition.X] == '.'  {
+				if steps > 0 {
+					route = route + fmt.Sprintf("%d,", steps)
+				}
+
+				steps = 0
+				if currentPosition.X < len(lines[currentPosition.Y]) && 
+						(lines[currentPosition.Y][currentPosition.X+1] == '#' ||
+						lines[currentPosition.Y][currentPosition.X+1] == '<' ||
+						lines[currentPosition.Y][currentPosition.X+1] == '>'){
+					pointing = '>'
+					currentPosition.X++
+					steps++
+					route = route + "L,"
+				} else if (currentPosition.X-1 < 0) || lines[currentPosition.Y][currentPosition.X-1] == '.' {
+					// route = route + fmt.Sprintf("%d", steps)
+					finished = true
+				} else {
+					pointing = '<'
+					currentPosition.X--
+					steps++
+					route = route + "R,"
+				}
+			} else {
+
+				currentPosition.Y++
+				steps ++
+			}
+		case '<':
+			if currentPosition.X == 0 || lines[currentPosition.Y][currentPosition.X-1] == '.' {
+				if steps > 0 {
+					route = route + fmt.Sprintf("%d,", steps)
+				}
+				steps = 0
+				if currentPosition.X > 0 &&  
+						(lines[currentPosition.Y+1][currentPosition.X] == '#' || 
+						lines[currentPosition.Y+1][currentPosition.X] == '^' ||
+						lines[currentPosition.Y+1][currentPosition.X] == 'v') {
+					pointing = 'v'
+					route = route + "L,"
+					currentPosition.Y++
+					steps++
+				} else if (currentPosition.Y-1 < 0) || lines[currentPosition.Y-1][currentPosition.X] == '.' {
+					// route = route + fmt.Sprintf("%d", steps)
+					finished = true
+				} else {
+					pointing = '^'
+					currentPosition.Y--
+					steps++
+					route = route + "R,"
+				}
+			} else {
+				currentPosition.X--
+				steps ++
+			}
+		default:
+			panic("Can't understand " + string(pointing))
+		}
+		lines[currentPosition.Y] = replaceAtIndex(lines[currentPosition.Y], fmt.Sprintf("%d", steps)[0], currentPosition.X)
+
+	}
+	fmt.Print("\033[H\033[2J")
+	for _, line := range lines {
+		fmt.Println(line)
+	}
+	fmt.Println(currentPosition)
+	fmt.Println(len(lines), len(lines[0]))
+	fmt.Println(route)
+	fmt.Println(steps)
+}
+
+func sectionB() {
+	fmt.Println("Section B")
+	intComputer := intcode.StartIntCodeComputer("partb.txt")
+	solution := "A,A,B,C,B,C,B,C,A,C\nR,6,L,8,R,8\nR,4,R,6,R,6,R,4,R,4\nL,8,R,6,L,10,L,10\nn\n"
+
+	for _, entry := range solution{
+		intComputer.Input <- int(entry)
+		fmt.Println(rune(entry))
+	}
+
+	for {
+		out, ok := <- intComputer.Output
+		if out > 128 {
+			fmt.Println("Dust:", out)
+		} else {
+			fmt.Print(string(out))
+			if out == 0 || !ok {
+				break
+			}
 		}
 	}
+
 
 }
 
@@ -124,101 +268,16 @@ func getNeighbours(X, Y, maxX, maxY int) []coordinate {
 	return []coordinate{{X-1, Y}, {X+1, Y}, {X, Y-1}, {X, Y+1}}
 }
 
-func computeResult (inputMap map[int]int, input, output chan int, control chan struct{}) {
-	argLength := map[int]int{
-		1: 3,
-		2: 3,
-		3: 1,
-		4: 1,
-		5: 3,
-		6: 3,
-		7: 3,
-		8: 3,
-		9: 1,
-		99: 0,
-	  }
-
-	finished := false
-	pos := 0
-	relativeBase := 0
-	for !finished {
-		instruction := inputMap[pos] % 100
-		if instruction == 99 {
-			close(control)
-			close(output)
-			return 
-		}
-		parameters := make(map[int]int)
-		positionals := inputMap[pos] / 100
-		offset := []int{0,0,0}
-		for argCount := 0; argCount < argLength[instruction]; argCount++ {
-
-			switch positionals % 10 {
-				case 0:
-					parameters[argCount] = inputMap[inputMap[pos+argCount+1]]
-				case 1:
-					parameters[argCount] = inputMap[pos+argCount+1]
-				case 2:
-					parameters[argCount] =  inputMap[relativeBase + inputMap[pos+argCount+1]]
-					offset[argCount] = relativeBase
-				default:
-					panic("wtf")
-			}
-			positionals = positionals / 10
-		}
-		switch instruction {
-			case 1:
-				inputMap[inputMap[pos+3] + offset[2]] = parameters[0]  + parameters[1]
-				pos = pos + 4
-
-			case 2:
-				inputMap[inputMap[pos+3] + offset[2]] = parameters[0] * parameters[1]
-				pos = pos + 4
-
-			case 3:
-				inputMap[inputMap[pos+1] + offset[0]] = <-input
-				pos = pos + 2
-
-			case 4:
-				output <- parameters[0]
-				pos = pos + 2
-
-			case 5: 
-				if parameters[0] != 0 {
-					pos = parameters[1]
-				} else {
-					pos = pos + 3
-				}
-			case 6:
-				if parameters[0] == 0 {
-					pos = parameters[1]
-				} else {
-					pos = pos + 3
-				}
-				
-			case 7:
-				if parameters[0] < parameters[1] {
-					inputMap[inputMap[pos+3] + offset[2]] = 1
-				} else {
-					inputMap[inputMap[pos+3] + offset[2]] = 0
-				}
-				pos = pos + 4
-
-			case 8:
-				if parameters[0] == parameters[1] {
-
-					inputMap[inputMap[pos+3] + offset[2]] = 1
-				} else {
-
-					inputMap[inputMap[pos+3] + offset[2]] = 0
-				}
-				pos = pos + 4
-			case 9:
-				relativeBase = relativeBase + parameters[0]
-				pos = pos + 2
-			default:
-				panic (fmt.Sprintf("Hit unknown instruction: %d", instruction))
-		}
-	}
-	return 
+func replaceAtIndex(in string, r byte, i int) string {
+    out := []byte(in)
+    out[i] = r
+    return string(out)
 }
+
+/*
+A,A,B,C,B,C,B,C,A,C
+
+A:R,6,L,8,R,8 
+B: R,4,R,6,R,6,R,4,R,4
+C: L,8,R,6,L,10,L,10
+*/

@@ -7,10 +7,10 @@ import (
 	"math"
 )
 const (
-	NORTH = 1
-	SOUTH = 2
-	EAST = 3
-	WEST = 4
+	north = 1
+	south = 2
+	east = 3
+	west = 4
 )
 
 type location struct {
@@ -23,10 +23,7 @@ var origin location
 func main() {
 	origin = location{0,0}
 	filename := "input.txt"
-	input := make(chan int, 1)
-	output := make(chan int)
-	control := make(chan struct{})
-	go intcode.ComputeResult(filename, input, output, control)
+	intComputer := intcode.StartIntCodeComputer(filename)
 
 	facing := 1
 	mazeMap := make(map[location]int) 
@@ -37,32 +34,28 @@ func main() {
 	maxSteps := 0
 	for {
 		facing = getNextDirection(mazeMap, currentlocation)
-		input <- facing
-		result := <-output
-		steps++
-		if steps > maxSteps {
-			maxSteps = steps
-		}
+		intComputer.Input <- facing
+		result := <-intComputer.Output
+
 		// fmt.Println(result, facing)
 		if result == 0 {
-			steps --
 			switch facing {
-			case NORTH:
+			case north:
 				mazeMap[location{currentlocation.X, currentlocation.Y-1}] = -1
 				if currentlocation.Y -1 < topLeft.Y {
 					topLeft.Y = currentlocation.Y-1
 				}
-			case EAST:
+			case east:
 				mazeMap[location{currentlocation.X +1 , currentlocation.Y}]= -1
 				if currentlocation.X +1 > bottomRight.X {
 					bottomRight.X = currentlocation.X +1
 				}
-			case SOUTH:
+			case south:
 				mazeMap[location{currentlocation.X, currentlocation.Y +1}] = -1
 				if currentlocation.Y +1 > bottomRight.Y {
 					bottomRight.Y = currentlocation.Y +1
 				}
-			case WEST:
+			case west:
 				mazeMap[location{currentlocation.X-1, currentlocation.Y}] = -1
 				if currentlocation.X - 1 < topLeft.X {
 					topLeft.X = currentlocation.X-1
@@ -70,15 +63,24 @@ func main() {
 			}
 			// fmt.Println(mazeMap)
 
-		} else if result == 1 {
+		} else if result == 1 || result == 2 {
+			steps++
+			if steps > maxSteps {
+				maxSteps = steps
+			}
+			if result == 2 {
+				origin = currentlocation
+				resetStepCounts(mazeMap, currentlocation)
+				maxSteps = 0	
+			}
 			switch facing {
-			case NORTH:
+			case north:
 				currentlocation.Y--
-			case EAST:
+			case east:
 				currentlocation.X++
-			case SOUTH:
+			case south:
 				currentlocation.Y++
-			case WEST:
+			case west:
 				currentlocation.X--
 
 			}
@@ -87,28 +89,9 @@ func main() {
 			} else {
 				steps = mazeMap[currentlocation]
 			}
+
 			// fmt.Println("Steps:", steps, "Location: ", currentlocation)
-		} else {
-			fmt.Println("Steps:", steps)
-			origin = currentlocation
-			resetStepCounts(mazeMap, currentlocation)
-			maxSteps = 0
-			switch facing {
-			case NORTH:
-				currentlocation.Y--
-			case EAST:
-				currentlocation.X++
-			case SOUTH:
-				currentlocation.Y++
-			case WEST:
-				currentlocation.X--
-
-			}
-			printMaze(mazeMap, topLeft, bottomRight, currentlocation, facing, maxSteps)
-			time.Sleep(time.Second * 3)
-			// break
-
-		}
+		} 
 		if currentlocation.X < topLeft.X {
 			topLeft.X = currentlocation.X
 		}
@@ -160,11 +143,11 @@ func getNextDirection(mazeMap map[location]int, current location) int {
 	scores := make(map[int]int)
 	minScore := math.MaxInt16
 	bearing := 0
-	scores[NORTH] = getPathValue(mazeMap, current.X, current.Y-1) // mazeMap[location{current.X, current.Y-1}]
-	scores[SOUTH] = getPathValue(mazeMap, current.X, current.Y+1) // mazeMap[location{current.X, current.Y+1}]
-	scores[EAST]  = getPathValue(mazeMap, current.X+1, current.Y) // mazeMap[location{current.X+1, current.Y}]
-	scores[WEST]  = getPathValue(mazeMap, current.X-1, current.Y) // mazeMap[location{current.X-1, current.Y}]
-	for _, direction := range []int{NORTH, SOUTH, EAST, WEST} {
+	scores[north] = getPathValue(mazeMap, current.X, current.Y-1) // mazeMap[location{current.X, current.Y-1}]
+	scores[south] = getPathValue(mazeMap, current.X, current.Y+1) // mazeMap[location{current.X, current.Y+1}]
+	scores[east]  = getPathValue(mazeMap, current.X+1, current.Y) // mazeMap[location{current.X+1, current.Y}]
+	scores[west]  = getPathValue(mazeMap, current.X-1, current.Y) // mazeMap[location{current.X-1, current.Y}]
+	for _, direction := range []int{north, south, east, west} {
 		if scores[direction] >= 0 && scores[direction] <= minScore {
 			bearing = direction
 			minScore = scores[direction]

@@ -40,28 +40,31 @@ def get_neighbours(grid: list[str], selection: Callable) -> dict[tuple[int,int],
     return result
 
 
-def get_result(grid: list[str], neighbours: dict[tuple[int,int], list[tuple[int, int]]], threshold: int) -> int:
+def get_result(grid: list[list[str]], neighbours: dict[tuple[int,int], list[tuple[int, int]]], threshold: int) -> int:
+    grid_dict = {}
+    for i in range(len(grid)):
+        for j in range(len(grid[0])):
+            if grid[i][j] != '.':
+                grid_dict[(i, j)] = grid[i][j]
     changed = True
-
-    for neighbour in deepcopy(neighbours):
-        if len(neighbours[neighbour]) < threshold:
-            grid[neighbour[0]][neighbour[1]] = '#'
-            del neighbours[neighbour]
     while changed:
         changed = False
-        existing = deepcopy(grid)
+        new_grid = {}
         for square in neighbours:
-            current = existing[square[0]][square[1]]
+            current = grid_dict[square]
             total = 0
             for neighbour in neighbours[square]:
-                total += 1 if existing[neighbour[0]][neighbour[1]] == '#' else 0
+                total += 1 if grid_dict[neighbour] == '#' else 0
             if total == 0 and current != '#':
-                grid[square[0]][square[1]] = '#'
+                new_grid[square] = '#'
                 changed = True
-            elif total >= threshold and grid[square[0]][square[1]] != 'L':
-                grid[square[0]][square[1]] = 'L'
+            elif total >= threshold and grid_dict[square] != 'L':
+                new_grid[square] = 'L'
                 changed = True
-    return sum([row.count('#') for row in grid])
+            else:
+                new_grid[square] = grid_dict[square]
+        grid_dict = new_grid
+    return list(grid_dict.values()).count('#')
 
 
 def main(filename: str) -> None:

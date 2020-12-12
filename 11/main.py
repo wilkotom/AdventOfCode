@@ -8,11 +8,7 @@ def get_adjacent_occupants(grid: list[str], row: int, seat: int) -> int:
     for direction in directions:
         pos = (row + direction[0], seat + direction[1])
         if 0 <= pos[0] < len(grid) and 0 <= pos[1] < len(grid[0]):
-            try:
                 count += 1 if grid[pos[0]][pos[1]] == "#" else 0
-            except IndexError:
-                print(pos)
-                raise
     return count
 
 

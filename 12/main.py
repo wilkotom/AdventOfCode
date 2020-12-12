@@ -29,7 +29,7 @@ class Ferry:
         elif direction in "EW":
             self.waypoint_x += value * (1 if direction == "E" else -1)
         elif direction in "LR":
-            for _ in range((value if direction == "R" else 360 - value) // 90):
+            for _ in range(((value if direction == "R" else 360 - value) // 90) % 360):
                 self.waypoint_x, self.waypoint_y = self.waypoint_y, -self.waypoint_x
 
 

@@ -7,8 +7,6 @@ def split_bit_masks(bitmask: str) -> tuple[int, int, int]:
             exes += 2 ** i
         elif c == '0':
             zeros += 2 ** i
-        elif c == 'X':
-            exes += 2 ** i
     return ones, zeros, exes
 
 

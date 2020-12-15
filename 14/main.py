@@ -27,14 +27,13 @@ def main(filename: str) -> None:
     ones = zeros = exes = 0
     fluctuations = []
     for line in open(filename):
-        instruction, _, value = line.strip().split()
+        instruction, value = line.strip().split(" = ")
         if instruction == 'mask':
             ones, zeros, exes = split_bit_masks(value)
             fluctuations = get_decrements(value[::-1])
         elif instruction[:4] == 'mem[':
             part1_memory[int(instruction[4:-1])] = (int(value) | ones) & ~ zeros
-            addresses = [(int(instruction[4:-1]) | exes) & ~ decrement for decrement in fluctuations]
-            for address in addresses:
+            for address in [(int(instruction[4:-1]) | exes) & ~ decrement for decrement in fluctuations]:
                 part2_memory[address] = int(value)
         else:
             print(f"Didn't understand {instruction}")

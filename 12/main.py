@@ -22,8 +22,7 @@ class Ferry:
         direction = instruction[0]
         value = int(instruction[1:])
         if direction == "F":
-            self.x += value * self.waypoint_x
-            self.y += value * self.waypoint_y
+            self.x, self.y = self.x + value * self.waypoint_x, self.y + value * self.waypoint_y
         elif direction in "NS":
             self.waypoint_y += value * (1 if direction == "N" else -1)
         elif direction in "EW":
@@ -37,13 +36,11 @@ def main(filename: str) -> None:
     instructions = [line.strip() for line in open(filename)]
 
     ferry = Ferry()
-    for instruction in instructions:
-        ferry.move_part_1(instruction)
-    print(f"Part 2 Answer: {abs(ferry.x) + abs(ferry.y)}")
+    [ferry.move_part_1(i) for i in instructions]
+    print(f"Part 1 Answer: {abs(ferry.x) + abs(ferry.y)}")
 
     ferry = Ferry()
-    for instruction in instructions:
-        ferry.move_part_2(instruction)
+    [ferry.move_part_2(i) for i in instructions]
     print(f"Part 2 Answer: {abs(ferry.x) + abs(ferry.y)}")
 
 

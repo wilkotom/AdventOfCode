@@ -28,7 +28,8 @@ def main(filename: str) -> None:
             pairs.append((int(bus_id), count))
         count += 1
     moduli_product = reduce(lambda x, y: x * y, [p[0] for p in pairs])
-    print(f"Part 2 answer: {chinese_remainder_gaussian([p[0] - p[1] for p in pairs], moduli_product, [p[0] for p in pairs])}")
+    print(f"""Part 2 answer: {chinese_remainder_gaussian([p[0] - p[1] for p in pairs], 
+                moduli_product, [p[0] for p in pairs])}""")
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 from copy import deepcopy
 from typing import Callable
+from collections import defaultdict
 
 
 def get_adjacent_occupants(grid: list[str], row: int, seat: int) -> int:
@@ -66,7 +67,6 @@ def part2(grid: list[list[int]]) -> tuple[bool, list[str]]:
 
 def main(filename: str) -> None:
     original_grid = open(filename).read().split('\n')
-
     next_stage = (True, deepcopy(original_grid))
     while next_stage[0]:
         next_stage = part1(next_stage[1])

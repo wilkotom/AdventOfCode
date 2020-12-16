@@ -20,15 +20,12 @@ def evaluate_part1_rules(ticket: list[str], rules: dict[str, Callable]) -> list[
 
 
 def evaluate_part2_rules(tickets: list[list[int]], rules: dict[str, Callable]) -> list[str]:
-    field_names = [None] * len(tickets[0])
     ticket_values = list(zip(*tickets))
     possible_rules = {}
     for i in range(len(tickets[0])):
         possible_rules[i] = set(rules.keys())
 
     for i in range(len(ticket_values)):
-        if field_names[i] is not None:
-            break
         for rule in rules:
             possible_rule = False not in [rules[rule](x) for x in ticket_values[i]]
             if not possible_rule:

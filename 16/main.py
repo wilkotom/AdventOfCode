@@ -6,8 +6,7 @@ def build_rules(unparsed_rules: str) -> dict[str, Callable]:
     rules = {}
     for rule in unparsed_rules.split('\n'):
         rule_name, rule = rule.split(': ')
-        rule = rule.replace('-', ' <= x <= ')
-        rules[rule_name] = eval(f"lambda x: {rule}")
+        rules[rule_name] = eval(f"lambda x: {rule.replace('-', ' <= x <= ')}")
     return rules
 
 

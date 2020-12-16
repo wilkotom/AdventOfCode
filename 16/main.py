@@ -47,7 +47,7 @@ def main(filename: str) -> None:
     my_ticket = [int(n) for n in data[1].split('\n')[1].split(',')]
     all_tickets = [my_ticket] + [[int(n) for n in x.split(',')] for x in data[2].split('\n')[1:]]
     scanning_error_rate = 0
-    valid_tickets = [my_ticket]
+    valid_tickets = []
     for ticket in all_tickets:
         errors = evaluate_part1_rules(ticket, rules)
         if len(errors) == 0:

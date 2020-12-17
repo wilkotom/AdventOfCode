@@ -5,7 +5,7 @@ def read_grid(filename: str, dimensions: int) -> set[tuple]:
     starting_state = set()
     grid = open(filename).read().split('\n')
     for y in range(len(grid)):
-        for x in range(len(grid)):
+        for x in range(len(grid[0])):
             if grid[y][x] == '#':
                 starting_state.add(tuple([x, y] + [0] * (dimensions - 2)))
     return starting_state
@@ -35,10 +35,7 @@ def n_dimensional_conway(filename: str, dimensions: int, generations: int) -> in
     for i in range(generations):
         possible_cubes = get_potential_cubes(grid, neighbours)
         for cube in possible_cubes:
-            active_neighbours = 0
-            for neighbour in cube_neighbours(cube, neighbours):
-                if neighbour in grid:
-                    active_neighbours += 1
+            active_neighbours = sum((int(neighbour in grid) for neighbour in cube_neighbours(cube, neighbours)))
             if active_neighbours == 3 or (active_neighbours == 2 and cube in grid):
                 new_grid.add(cube)
         grid = new_grid

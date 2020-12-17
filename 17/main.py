@@ -18,7 +18,7 @@ def get_bounds(grid: set[tuple[int, ...], bool]) -> list[tuple[int, ...]]:
 
 def get_neighbours(dimensions: int) -> list[tuple[int, ...]]:
     neighbours = list(product(*([[-1, 0, 1]] * dimensions)))
-    neighbours.remove(tuple([0] * dimensions)
+    neighbours.remove(tuple([0] * dimensions))
     return neighbours
 
 

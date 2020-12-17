@@ -8,22 +8,17 @@ def read_grid(filename: str, dimensions: int) -> set[tuple]:
     for y in range(len(grid)):
         for x in range(len(grid)):
             if grid[y][x] == '#':
-                starting_state.add(tuple([x, y] + [0] * (dimensions -2)))
+                starting_state.add(tuple([x, y] + [0] * (dimensions - 2)))
     return starting_state
 
 
 def get_bounds(grid: set[tuple[int, ...], bool]) -> list[tuple[int, ...]]:
-    result = []
-    dimension_values = list(zip(*grid))
-    for i in range(len(dimension_values)):
-        result.append((min(dimension_values[i]), max(dimension_values[i])))
-    return result
+    return [(min(d), max(d)) for d in list(zip(*grid))]
 
 
 def get_neighbours(dimensions: int) -> list[tuple[int, ...]]:
     neighbours = list(product(*([[-1, 0, 1]] * dimensions)))
-    home = tuple([0] * dimensions)
-    neighbours.remove(home)
+    neighbours.remove(tuple([0] * dimensions)
     return neighbours
 
 
@@ -32,10 +27,7 @@ def get_cubes(boundaries: list[tuple[int, ...]]) -> Iterator[tuple[int, ...]]:
 
 
 def cube_neighbours(cube: tuple[int, ...], neighbours: list[tuple[int, ...]]) -> list[tuple[int, ...]]:
-    result = []
-    for neighbour in neighbours:
-        result.append(tuple(sum(x) for x in zip(cube, neighbour)))
-    return result
+    return [tuple(sum(x) for x in zip(cube, neighbour)) for neighbour in neighbours]
 
 
 def n_dimensional_conway(filename: str, dimensions: int, generations: int) -> int:

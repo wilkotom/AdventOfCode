@@ -1,5 +1,4 @@
 from itertools import product
-from typing import Iterator
 
 
 def read_grid(filename: str, dimensions: int) -> set[tuple]:
@@ -12,21 +11,20 @@ def read_grid(filename: str, dimensions: int) -> set[tuple]:
     return starting_state
 
 
-def get_bounds(grid: set[tuple[int, ...], bool]) -> list[tuple[int, ...]]:
-    return [(min(d), max(d)) for d in list(zip(*grid))]
-
-
-def get_neighbours(dimensions: int) -> list[tuple[int, ...]]:
-    neighbours = list(product(*([[-1, 0, 1]] * dimensions)))
+def get_neighbours(dimensions: int) -> set[tuple[int, ...]]:
+    neighbours = set(product(*([[-1, 0, 1]] * dimensions)))
     neighbours.remove(tuple([0] * dimensions))
     return neighbours
 
 
-def get_cubes(boundaries: list[tuple[int, ...]]) -> Iterator[tuple[int, ...]]:
-    return product(*[range(x[0]-1, x[1]+2) for x in boundaries])
+def get_potential_cubes(grid: set[tuple], neighbours: set[tuple[int, ...]]) -> set[tuple[int, ...]]:
+    results = set()
+    for cube in grid:
+        [results.add(n) for n in cube_neighbours(cube, neighbours)]
+    return set(results)
 
 
-def cube_neighbours(cube: tuple[int, ...], neighbours: list[tuple[int, ...]]) -> list[tuple[int, ...]]:
+def cube_neighbours(cube: tuple[int, ...], neighbours: set[tuple[int, ...]]) -> list[tuple[int, ...]]:
     return [tuple(sum(x) for x in zip(cube, neighbour)) for neighbour in neighbours]
 
 
@@ -35,11 +33,10 @@ def n_dimensional_conway(filename: str, dimensions: int, generations: int) -> in
     neighbours = get_neighbours(dimensions)
     new_grid = set()
     for i in range(generations):
-        boundaries = get_bounds(grid)
-        possible_cubes = get_cubes(boundaries)
+        possible_cubes = get_potential_cubes(grid, neighbours)
         for cube in possible_cubes:
             active_neighbours = 0
-            for neighbour in cube_neighbours(cube,neighbours):
+            for neighbour in cube_neighbours(cube, neighbours):
                 if neighbour in grid:
                     active_neighbours += 1
             if active_neighbours == 3 or (active_neighbours == 2 and cube in grid):

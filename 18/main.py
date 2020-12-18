@@ -3,8 +3,10 @@ from typing import Union, Callable
 
 
 def eval_part_1(expression: list[Union[int, str]]) -> int:
+    if len(expression) == 1:
+        return expression[0]
     expression[2] = expression[0] + expression[2] if expression[1] == "+" else expression[0] * expression[2]
-    return evaluate_expression(expression[2:], eval_part_1)
+    return eval_part_1(expression[2:])
 
 
 def eval_part_2(expression: list[Union[int, str]]) -> int:

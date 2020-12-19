@@ -11,7 +11,7 @@ def parse_rules(rule_id) -> str:
     sub_rules = rules[rule_id].split(' ')
     if rule_id in sub_rules:
         if len(sub_rules) == 4:
-            return "" + parse_rules(sub_rules[0]) + "+"
+            return parse_rules(sub_rules[0]) + "+"
         elif len(sub_rules) == 6:
             return f"(?P<eleven>{parse_rules(sub_rules[0])}(?&eleven)?{parse_rules(sub_rules[1])})"
     new_rules = ''.join([parse_rules(x) for x in sub_rules])

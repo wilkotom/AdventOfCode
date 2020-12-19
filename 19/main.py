@@ -1,4 +1,4 @@
-import re
+import regex as re
 from functools import cache
 
 rules = {}
@@ -13,10 +13,7 @@ def parse_rules(rule_id) -> str:
         if len(sub_rules) == 4:
             return "" + parse_rules(sub_rules[0]) + "+"
         elif len(sub_rules) == 6:
-            generated_rules = []
-            for i in range(1, 5):  # Handling only 5 depths of recursion for speed - dataset only goes this deep
-                generated_rules.append(f"({parse_rules(sub_rules[0])}{{{i}}}{parse_rules(sub_rules[1])}{{{i}}})")
-            return "(" + '|'.join(generated_rules) + ")"
+            return f"(?P<eleven>{parse_rules(sub_rules[0])}(?&eleven)?{parse_rules(sub_rules[1])})"
     new_rules = ''.join([parse_rules(x) for x in sub_rules])
     return new_rules if len(new_rules) == 1 or "|" not in new_rules else \
         "(" + ''.join([parse_rules(x) for x in sub_rules]) + ")"
@@ -31,8 +28,9 @@ def rules_to_dict(raw_rules: str) -> None:
 def main(filename: str) -> None:
     raw_rules, messages = open(filename).read().split('\n\n')
     rules_to_dict(raw_rules)
-    all_rules = re.compile("^" + parse_rules("0") + "$")
-    total = sum((int(all_rules.match(m) is not None) for m in messages.split("\n")))
+    print(parse_rules("0"))
+    all_rules = re.compile(parse_rules("0"))
+    total = sum((int(all_rules.fullmatch(m) is not None) for m in messages.split("\n")))
     print(f"Total matches: {total}")
 
 

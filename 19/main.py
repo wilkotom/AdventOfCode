@@ -16,7 +16,7 @@ def parse_rules(rule_id) -> str:
         if len(sub_rules) == 6:
             generated_rules = []
             for i in range(1, 5):  # Handling only 5 depths of recursion for speed - dataset only goes this deep
-                generated_rules.append("(" + parse_rules(sub_rules[0]) * i + parse_rules(sub_rules[1]) * i + ")")
+                generated_rules.append(f"({parse_rules(sub_rules[0])}{{{i}}}{parse_rules(sub_rules[1])}{{{i}}})")
             return "(" + '|'.join(generated_rules) + ")"
     new_rules = ''.join([parse_rules(x) for x in sub_rules])
     return new_rules if len(new_rules) == 1 or "|" not in new_rules else \

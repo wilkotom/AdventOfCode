@@ -6,7 +6,6 @@ rules = {}
 
 @cache
 def parse_rules(rule_id) -> str:
-    print(rule_id)
     if rule_id in "ab|":
         return rule_id
     sub_rules = rules[rule_id].split(' ')
@@ -32,11 +31,9 @@ def rules_to_dict(raw_rules: str) -> None:
 def main(filename: str) -> None:
     raw_rules, messages = open(filename).read().split('\n\n')
     rules_to_dict(raw_rules)
-    print("^" + parse_rules("0") + "$")
     all_rules = re.compile("^" + parse_rules("0") + "$")
     total = 0
     for message in messages.split("\n"):
-        print(message, all_rules.match(message))
         if all_rules.match(message):
             total += 1
     print(f"Part 1 total: {total}")

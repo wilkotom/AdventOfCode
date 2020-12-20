@@ -17,7 +17,8 @@ class ImageFragment:
         self.right = self.left = self.up = self.down = ''
 
     def __repr__(self) -> str:
-        return f' Grid ID: {self.id}\n' + '\n'.join([''.join(c) for c in self.grid]) + f'\n Right: {self.right}, Down: {self.down}, Left: {self.left}, Up: {self.up}\n\n'
+        return f' Grid ID: {self.id}\n' + '\n'.join([''.join(c) for c in self.grid]) + \
+               f'\n Right: {self.right}, Down: {self.down}, Left: {self.left}, Up: {self.up}\n\n'
 
     def rotate(self) -> None:
         self.grid = list(zip(*self.grid))[::-1]
@@ -39,18 +40,6 @@ class ImageFragment:
     @property
     def right_edge(self) -> list[str]:
         return [line[-1] for line in self.grid]
-
-    @property
-    def disconnected(self) -> bool:
-        return self.right == self.left == self.up == self.down == ''
-
-    @property
-    def fully_connected(self) -> bool:
-        return '' not in [self.up,  self.right, self.down, self.left]
-
-    @property
-    def inner_node(self) -> bool:
-        return self.right != '' and self.left != '' and self.up != '' and self.down != ''
 
     @property
     def is_corner(self) -> bool:

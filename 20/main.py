@@ -5,11 +5,6 @@ grids = {}
 
 class ImageFragment:
 
-    right = ''
-    down = ''
-    left = ''
-    up = ''
-
     def __init__(self, id: str, grid: list[str]) -> None:
         self.id = id
         self.grid = [list(x) for x in grid]
@@ -91,8 +86,8 @@ def find_sea_monsters(grid: list[list[str]]) -> int:
         for x in range(len(grid[0]) - 19):
             if '.' not in (grid[y][x], grid[y + 1][x + 1], grid[y + 1][x + 4], grid[y][x + 5], grid[y][x + 6],
                            grid[y + 1][x + 7], grid[y + 1][x + 10], grid[y][x + 11], grid[y][x + 12],
-                           grid[y + 1][x + 13], grid[y + 1][x + 16],grid[y][x + 17], grid[y - 1][x + 18],
-                           grid[y][x + 18],grid[y][x + 19]):
+                           grid[y + 1][x + 13], grid[y + 1][x + 16], grid[y][x + 17], grid[y - 1][x + 18],
+                           grid[y][x + 18], grid[y][x + 19]):
                 grid[y][x] = grid[y + 1][x + 1] = grid[y + 1][x + 4] = grid[y][x + 5] = grid[y][x + 6] = \
                 grid[y + 1][x + 7] = grid[y + 1][x + 10] = grid[y][x + 11] = grid[y][x + 12] = \
                 grid[y + 1][x + 13] = grid[y + 1][x + 16] = grid[y][x + 17] = grid[y - 1][x + 18] = \
@@ -193,7 +188,7 @@ def main(filename: str) -> None:
                 break
             new_grid = [list(x) for x in zip(*new_grid)][::-1]
     print(f"Found {monster_count} monsters")
-    totals = Counter( [square for line in new_grid for square in line])
+    totals = Counter([square for line in new_grid for square in line])
     print(f"Water roughness: {totals['#']}")
 
 

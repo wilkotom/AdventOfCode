@@ -8,7 +8,7 @@ def load_decks(filename: str) -> tuple[deque, deque] :
     return deck1, deck2
 
 
-def play_combat(deck1: deque, deck2: deque) -> deque:
+def play_combat(deck1: deque, deck2: deque) -> int:
     while len(deck1) > 0 and len(deck2) > 0:
         card1, card2 = deck1.popleft(), deck2.popleft()
         if card1 > card2:

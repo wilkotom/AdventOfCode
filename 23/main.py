@@ -1,11 +1,11 @@
-def part1(labels: str) -> None:
-    cups = [int(l) for l in labels]
+def part1(labels: str) -> str:
+    cups = [int(label) for label in labels]
     for i in range(0, 10):
         current_cup = cups[i % len(cups)]
         pick_up = [cups[(i+1) % len(cups)], cups[(i+2) % len(cups)], cups[(i+3) % len(cups)]]
         for c in pick_up:
             del cups[cups.index(c)]
-        seek = current_cup -1
+        seek = current_cup - 1
         while seek not in cups:
             seek -= 1
             if seek < 1:
@@ -27,15 +27,15 @@ class Cup:
         return f"Cup number: {self.label}"
 
 
-def part2(labels: str, number_cups: int, number_steps: int) -> None:
+def part2(labels: str, number_cups: int, number_steps: int) -> int:
 
-    labels = [int(l) for l in labels]
+    labels = [int(label) for label in labels]
     # Need a way of finding the place of a cup given its label - hence dict[int, Cup]
     # Create a million cups with no next cup
-    lookup_table = {i: Cup(i) for i in range(1, number_cups +1)}
+    lookup_table = {i: Cup(i) for i in range(1, number_cups + 1)}
 
     # Set each cup to have the numerically next cup as its successor
-    for i in range(1,number_cups):
+    for i in range(1, number_cups):
         lookup_table[i].next = lookup_table[i+1]
 
     # Point the last cup in the list to the first in the specified order
@@ -52,7 +52,7 @@ def part2(labels: str, number_cups: int, number_steps: int) -> None:
     # Start with the
     current_cup = lookup_table[labels[0]]
 
-    for i in range(number_steps):
+    for _ in range(number_steps):
         # Remove the selection of 3 from the linked list
         selection = current_cup.next
         current_cup.next = current_cup.next.next.next.next

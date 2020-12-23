@@ -19,12 +19,12 @@ def part1(labels: str) -> None:
 
 
 class Cup:
-    def __init__(self, value: int) -> None:
-        self.value = value
+    def __init__(self, label: int) -> None:
+        self.label = label
         self.next = None
 
     def __repr__(self):
-        return f"Cup number: {self.value}"
+        return f"Cup number: {self.label}"
 
 
 def part2(labels: str, number_cups: int, number_steps: int) -> None:
@@ -34,10 +34,11 @@ def part2(labels: str, number_cups: int, number_steps: int) -> None:
     # Create a million cups with no next cup
     lookup_table = {i: Cup(i) for i in range(1, number_cups +1)}
 
+    # Set each cup to have the numerically next cup as its successor
     for i in range(1,number_cups):
         lookup_table[i].next = lookup_table[i+1]
 
-    # Set each cup to have the numerically next cup as its successor
+    # Point the last cup in the list to the first in the specified order
     lookup_table[number_cups].next = lookup_table[labels[0]]
 
     # Arrange the first 9 cups according to the specified order
@@ -48,15 +49,15 @@ def part2(labels: str, number_cups: int, number_steps: int) -> None:
     if number_cups > len(labels):
         lookup_table[labels[-1]].next = lookup_table[len(labels) + 1]
 
-    # finally, set the last cup in the set to point to the first in the given order
+    # Start with the
     current_cup = lookup_table[labels[0]]
 
     for i in range(number_steps):
         # Remove the selection of 3 from the linked list
         selection = current_cup.next
         current_cup.next = current_cup.next.next.next.next
-        seek = current_cup.value -1 if current_cup.value > 1 else number_cups
-        while seek in [current_cup.value, selection.value, selection.next.value, selection.next.next.value]:
+        seek = current_cup.label - 1 if current_cup.label > 1 else number_cups
+        while seek in [current_cup.label, selection.label, selection.next.label, selection.next.next.label]:
             seek -= 1
             if seek < 1:
                 seek = number_cups
@@ -66,7 +67,7 @@ def part2(labels: str, number_cups: int, number_steps: int) -> None:
         next_cup.next = selection
         current_cup = current_cup.next
 
-    return lookup_table[1].next.value * lookup_table[1].next.next.value
+    return lookup_table[1].next.label * lookup_table[1].next.next.label
 
 
 if __name__ == "__main__":

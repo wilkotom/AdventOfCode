@@ -49,7 +49,7 @@ def part2(labels: str, number_cups: int, number_steps: int) -> int:
     if number_cups > len(labels):
         lookup_table[labels[-1]].next = lookup_table[len(labels) + 1]
 
-    # Start with the
+    # Start with the first cup in the specifed order
     current_cup = lookup_table[labels[0]]
 
     for _ in range(number_steps):

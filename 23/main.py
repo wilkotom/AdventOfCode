@@ -1,0 +1,74 @@
+def part1(labels: str) -> None:
+    cups = [int(l) for l in labels]
+    for i in range(0, 10):
+        current_cup = cups[i % len(cups)]
+        pick_up = [cups[(i+1) % len(cups)], cups[(i+2) % len(cups)], cups[(i+3) % len(cups)]]
+        for c in pick_up:
+            del cups[cups.index(c)]
+        seek = current_cup -1
+        while seek not in cups:
+            seek -= 1
+            if seek < 1:
+                seek = 9
+        dest = cups.index(seek)
+        cups = cups[:dest+1] + pick_up + cups[dest+1:]
+        while cups[i % len(cups)] != current_cup:
+            cups = cups[1:] + [cups[0]]
+    split = cups.index(1)
+    return ''.join([str(x) for x in cups[split+1:] + cups[:split]])
+
+
+class Cup:
+    def __init__(self, value: int) -> None:
+        self.value = value
+        self.next = None
+
+    def __repr__(self):
+        return f"Cup number: {self.value}"
+
+
+def part2(labels: str, number_cups: int, number_steps: int) -> None:
+
+    labels = [int(l) for l in labels]
+    # Need a way of finding the place of a cup given its label - hence dict[int, Cup]
+    # Create a million cups with no next cup
+    lookup_table = {i: Cup(i) for i in range(1, number_cups +1)}
+
+    for i in range(1,number_cups):
+        lookup_table[i].next = lookup_table[i+1]
+
+    # Set each cup to have the numerically next cup as its successor
+    lookup_table[number_cups].next = lookup_table[labels[0]]
+
+    # Arrange the first 9 cups according to the specified order
+    for i in range(len(labels)):
+        lookup_table[labels[i]].next = lookup_table[labels[(i+1) % len(labels)]]
+
+    # repoint the last cup in the specified list to the correct place (currently points back to the first cup)
+    if number_cups > len(labels):
+        lookup_table[labels[-1]].next = lookup_table[len(labels) + 1]
+
+    # finally, set the last cup in the set to point to the first in the given order
+    current_cup = lookup_table[labels[0]]
+
+    for i in range(number_steps):
+        # Remove the selection of 3 from the linked list
+        selection = current_cup.next
+        current_cup.next = current_cup.next.next.next.next
+        seek = current_cup.value -1 if current_cup.value > 1 else number_cups
+        while seek in [current_cup.value, selection.value, selection.next.value, selection.next.next.value]:
+            seek -= 1
+            if seek < 1:
+                seek = number_cups
+
+        next_cup = lookup_table[seek]
+        selection.next.next.next = next_cup.next
+        next_cup.next = selection
+        current_cup = current_cup.next
+
+    return lookup_table[1].next.value * lookup_table[1].next.next.value
+
+
+if __name__ == "__main__":
+    print(part1("389125467"))
+    print(part2("389125467", 1000000, 10000000))

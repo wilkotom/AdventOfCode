@@ -41,8 +41,6 @@ def part2(black_tiles: set[tuple[int, int]], generations: int):
     adjoining = [(1,1), (2,0), (1,-1), (-1,-1), (-2,0), (-1,1)]
     state = {tile: True for tile in black_tiles}
     for i in range(generations):
-        print(f"Day {i}: {len(state)}")
-        # state is a list of all the tiles which might change
         new_state = {}
         for tile in list(state.keys()):
             for neighbour in [(n[0] + tile[0], n[1] + tile[1]) for n in adjoining]:
@@ -57,7 +55,6 @@ def part2(black_tiles: set[tuple[int, int]], generations: int):
                     neighbour_count += 1
             if neighbour_count == 2 or (neighbour_count == 1 and state[tile]):
                 new_state[tile] = True
-                # print(new_state)
 
         state = new_state
     return len(state)
@@ -66,9 +63,7 @@ def part2(black_tiles: set[tuple[int, int]], generations: int):
 def main(filename: str) -> None:
     grid = part1(filename)
     print(f"Part 1 answer: {len(grid)}")
-    print(grid)
-
-    print(part2(grid ,100))
+    print(f"Part 2 answer: {part2(grid ,100)}")
 
 
 if __name__ == "__main__":

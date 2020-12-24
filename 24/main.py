@@ -1,0 +1,75 @@
+from collections import deque, Counter
+
+
+def part1(filename: str) -> set[tuple[int, int]]:
+    instructions = deque(open(filename).read())
+    x = y = 0
+    black_tiles = set()
+    while len(instructions) > 0 :
+        instruction = instructions.popleft()
+        if instruction == '\n':
+            if (x, y) in black_tiles:
+                black_tiles.remove((x, y))
+            else:
+                black_tiles.add((x, y))
+            x = y = 0
+        elif instruction in 'ns':
+            if instruction == 'n':
+                y +=1
+            else:
+                y -=1
+            instruction = instructions.popleft()
+            if instruction == 'e':
+                x +=1
+            else:
+                x -=1
+        else:
+            if instruction == 'e':
+                x +=2
+            else:
+                x -=2
+
+    if (x, y) in black_tiles:
+        black_tiles.remove((x, y))
+    else:
+        black_tiles.add((x, y))
+
+    return black_tiles
+
+
+def part2(black_tiles: set[tuple[int, int]], generations: int):
+    adjoining = [(1,1), (2,0), (1,-1), (-1,-1), (-2,0), (-1,1)]
+    state = {tile: True for tile in black_tiles}
+    for i in range(generations):
+        print(f"Day {i}: {len(state)}")
+        # state is a list of all the tiles which might change
+        new_state = {}
+        for tile in list(state.keys()):
+            for neighbour in [(n[0] + tile[0], n[1] + tile[1]) for n in adjoining]:
+                if neighbour not in state:
+                    state[neighbour] = False
+
+        for tile in state:
+            neighbour_count = 0
+            neighbours = [(n[0] + tile[0], n[1] + tile[1]) for n in adjoining]
+            for neighbour in neighbours:
+                if state.get(neighbour, False):
+                    neighbour_count += 1
+            if neighbour_count == 2 or (neighbour_count == 1 and state[tile]):
+                new_state[tile] = True
+                # print(new_state)
+
+        state = new_state
+    return len(state)
+
+
+def main(filename: str) -> None:
+    grid = part1(filename)
+    print(f"Part 1 answer: {len(grid)}")
+    print(grid)
+
+    print(part2(grid ,100))
+
+
+if __name__ == "__main__":
+    main("input.txt")

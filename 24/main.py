@@ -37,8 +37,8 @@ def part1(filename: str) -> set[tuple[int, int]]:
     return black_tiles
 
 
-def part2(black_tiles: set[tuple[int, int]], generations: int):
-    adjoining = [(1,1), (2,0), (1,-1), (-1,-1), (-2,0), (-1,1)]
+def part2(black_tiles: set[tuple[int, int]], generations: int) -> int:
+    adjoining = [(1, 1), (2, 0), (1, -1), (-1, -1), (-2, 0), (-1, 1)]
     state = {tile: True for tile in black_tiles}
     for i in range(generations):
         new_state = {}
@@ -46,12 +46,10 @@ def part2(black_tiles: set[tuple[int, int]], generations: int):
             for neighbour in [(n[0] + tile[0], n[1] + tile[1]) for n in adjoining]:
                 if neighbour not in state:
                     state[neighbour] = False
-
         for tile in state:
             neighbour_count = Counter([state.get((n[0] + tile[0], n[1] + tile[1]), False) for n in adjoining])[True]
             if neighbour_count == 2 or (neighbour_count == 1 and state[tile]):
                 new_state[tile] = True
-
         state = new_state
     return len(state)
 

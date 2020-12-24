@@ -48,11 +48,7 @@ def part2(black_tiles: set[tuple[int, int]], generations: int):
                     state[neighbour] = False
 
         for tile in state:
-            neighbour_count = 0
-            neighbours = [(n[0] + tile[0], n[1] + tile[1]) for n in adjoining]
-            for neighbour in neighbours:
-                if state.get(neighbour, False):
-                    neighbour_count += 1
+            neighbour_count = Counter([state.get((n[0] + tile[0], n[1] + tile[1]), False) for n in adjoining])[True]
             if neighbour_count == 2 or (neighbour_count == 1 and state[tile]):
                 new_state[tile] = True
 

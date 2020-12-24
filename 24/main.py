@@ -14,20 +14,11 @@ def part1(filename: str) -> set[tuple[int, int]]:
                 black_tiles.add((x, y))
             x = y = 0
         elif instruction in 'ns':
-            if instruction == 'n':
-                y +=1
-            else:
-                y -=1
+            y = y + 1 if instruction == 'n' else y - 1
             instruction = instructions.popleft()
-            if instruction == 'e':
-                x +=1
-            else:
-                x -=1
+            x = x + 1 if instruction == 'e' else x -1
         else:
-            if instruction == 'e':
-                x +=2
-            else:
-                x -=2
+            x = x+ 2 if instruction == 'e' else x - 2
 
     if (x, y) in black_tiles:
         black_tiles.remove((x, y))

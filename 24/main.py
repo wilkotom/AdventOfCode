@@ -18,7 +18,7 @@ def part1(filename: str) -> set[tuple[int, int]]:
             instruction = instructions.popleft()
             x = x + 1 if instruction == 'e' else x -1
         else:
-            x = x+ 2 if instruction == 'e' else x - 2
+            x = x + 2 if instruction == 'e' else x - 2
 
     if (x, y) in black_tiles:
         black_tiles.remove((x, y))

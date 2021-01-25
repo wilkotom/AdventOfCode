@@ -1,6 +1,7 @@
 package main
 
 import (
+	"container/heap"
 	"container/list"
 	"fmt"
 	"io/ioutil"
@@ -18,12 +19,51 @@ type distance struct {
 	distance int
 }
 
+type unvisitedNode struct {
+	tentativeDistance int
+	name              string
+	index             int
+}
+
+type priorityQueue []*unvisitedNode
+
+func (q priorityQueue) Len() int {
+	return len(q)
+}
+
+func (q priorityQueue) Less(i int, j int) bool {
+	return q[i].tentativeDistance < q[j].tentativeDistance
+}
+
+func (q priorityQueue) Swap(i int, j int) {
+	q[i], q[j] = q[j], q[i]
+	q[i].index = i
+	q[j].index = j
+}
+
+func (q *priorityQueue) Push(x interface{}) {
+	n := len(*q)
+	node := x.(*unvisitedNode)
+	node.index = n
+	*q = append(*q, node)
+}
+
+func (q *priorityQueue) Pop() interface{} {
+	old := *q
+	currentLen := len(old)
+	val := old[currentLen-1]
+	old[currentLen-1] = nil
+	val.index = -1
+	*q = old[:currentLen-1]
+	return val
+
+}
+
 func main() {
 	mazeMap, locations := readMaze("input.txt")
 	distanceMap := getDistances(mazeMap, locations)
 	fmt.Println("Part 1 Distance: ", getShortestDistancePart1(distanceMap, "AAO", "ZZO"))
 	fmt.Println("Part 2 Distance: ", getShortestDistancePart2(distanceMap, "AAO", "ZZO"))
-
 }
 
 func getShortestDistancePart2(distanceMap map[string]map[string]int, startPoint string, endPoint string) int {
@@ -31,104 +71,91 @@ func getShortestDistancePart2(distanceMap map[string]map[string]int, startPoint 
 	endPoint = endPoint + "0"
 
 	tentativeDistance := make(map[string]int)
-	unvisited := make(map[string]bool)
+	visited := make(map[string]bool)
 
 	// Same approach as before, except that we append the current depth level to the node name
 	for node := range distanceMap {
 		nodeName := fmt.Sprintf("%s0", node)
 		tentativeDistance[nodeName] = 9999999999999
-		unvisited[nodeName] = true
 
 	}
+
 	tentativeDistance[startPoint] = 0
-	nextNodes := list.New()
-	nextNodes.PushBack(startPoint)
 	descended := make(map[int]bool)
 	descended[0] = true
+	var nextNodes priorityQueue
+	heap.Init(&nextNodes)
+	heap.Push(&nextNodes, &unvisitedNode{tentativeDistance: 0, name: startPoint})
 
-	for nextNodes.Len() > 0 {
-		node := nextNodes.Front() // Should really replace this with a priority queue...
-		currentNodeName := node.Value.(string)
+	for nextNodes.Len() > 0 && !visited[endPoint] {
+		currentNode := heap.Pop(&nextNodes).(*unvisitedNode)
+		currentNodeName := currentNode.name
 		currentLevel, _ := strconv.Atoi(currentNodeName[3:])
-		nextNodes.Remove(node)
-		if unvisited[currentNodeName] {
+		if !visited[currentNodeName] {
 			for nextNode, nextDist := range distanceMap[currentNodeName[:3]] {
-
 				nextNode = nextNode[:3] + fmt.Sprintf("%d", currentLevel)
 
 				// Moving between levels, increment or decrement the level identifier
+				nextLevel := currentLevel
 				if currentNodeName[:2] == nextNode[:2] {
 					if currentNodeName[2] == 'I' {
-						nextNode = nextNode[:3] + fmt.Sprintf("%d", currentLevel+1)
+						nextLevel++
 					} else {
-						nextNode = nextNode[:3] + fmt.Sprintf("%d", currentLevel-1)
+						nextLevel--
 					}
-
+					nextNode = nextNode[:3] + fmt.Sprintf("%d", nextLevel)
 				}
-
-				_, present := unvisited[nextNode]
-				nextLevel, _ := strconv.Atoi(nextNode[3:])
-
 				// if we've not been to a level before, add tentative distances for all the nodes in it.
 				// We can't visit levels below 0.
-				if !present && nextLevel > 0 && !descended[nextLevel] {
-
+				if nextLevel > 0 && !descended[nextLevel] {
 					for node := range distanceMap {
 						nodeName := node + nextNode[3:]
 						tentativeDistance[nodeName] = 9999999999999
-						unvisited[nodeName] = true
 					}
 					descended[nextLevel] = true
 				}
-
-				if unvisited[nextNode] {
-
+				if nextLevel >= 0 {
 					if nextDist+tentativeDistance[currentNodeName] < tentativeDistance[nextNode] {
 						tentativeDistance[nextNode] = nextDist + tentativeDistance[currentNodeName]
 					}
+					heap.Push(&nextNodes, &unvisitedNode{tentativeDistance: tentativeDistance[nextNode], name: nextNode})
+					visited[currentNodeName] = true
 
-					// if distance to the next node is lower than the known minimum distance to the finish, check that node's neighbours
-					if tentativeDistance[nextNode] < tentativeDistance[endPoint] {
-						nextNodes.PushBack(nextNode)
-					}
 				}
+
 			}
-			delete(unvisited, currentNodeName)
 		}
+		visited[currentNodeName] = true
 	}
 	return tentativeDistance[endPoint]
 }
 
 func getShortestDistancePart1(distanceMap map[string]map[string]int, startPoint string, endPoint string) int {
-	// (almost) Djikstra's algorithm. Uses a regular queue instead of a priority one.
+	// Djikstra's algorithm.
 
 	tentativeDistance := make(map[string]int)
-	unvisited := make(map[string]bool)
+	visited := make(map[string]bool)
 	for node := range distanceMap {
 		tentativeDistance[node] = 9999999999999
-		unvisited[node] = true
-
 	}
 
 	tentativeDistance[startPoint] = 0
-	nextNodes := list.New()
-	nextNodes.PushBack(startPoint)
-	for nextNodes.Len() > 0 {
-		node := nextNodes.Front()
-		currentNodeName := node.Value.(string)
-		nextNodes.Remove(node)
+	var nextNodes priorityQueue
+	heap.Init(&nextNodes)
+	heap.Push(&nextNodes, &unvisitedNode{tentativeDistance: 0, name: startPoint})
+	for nextNodes.Len() > 0 && !visited[endPoint] {
+		currentNode := heap.Pop(&nextNodes).(*unvisitedNode)
+		currentNodeName := currentNode.name
 		for nextNode, nextDist := range distanceMap[currentNodeName] {
-			if unvisited[nextNode] {
+			if !visited[nextNode] {
 				if tentativeDistance[nextNode] > nextDist+tentativeDistance[currentNodeName] {
 					tentativeDistance[nextNode] = nextDist + tentativeDistance[currentNodeName]
 				}
-				if nextNode != endPoint {
-					nextNodes.PushBack(nextNode)
-				}
+				heap.Push(&nextNodes, &unvisitedNode{tentativeDistance: tentativeDistance[nextNode], name: nextNode})
+
 			}
 		}
-		delete(unvisited, currentNodeName)
-		// fmt.Println(tentativeDistance)
+		visited[currentNodeName] = true
 	}
 
 	return tentativeDistance[endPoint]

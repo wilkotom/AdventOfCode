@@ -27,7 +27,6 @@ func main() {
 					y, _ := <-computers[i].Output
 
 					if dest == 255 {
-
 						natX = x
 						natY = y
 					} else {
@@ -42,7 +41,8 @@ func main() {
 			}
 
 		}
-		// wait for all computers to complete operations before checking input / output before checking their input / output buffers. Nasty hack.
+
+		// wait for all computers to complete operations before checking their input / output buffers. Nasty hack.
 		time.Sleep(time.Microsecond * 100)
 		totalQueueLen := 0
 		for i := 0; i < 50; i++ {

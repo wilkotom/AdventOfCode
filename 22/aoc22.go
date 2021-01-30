@@ -88,7 +88,10 @@ func collapsePart2Rules(filename string, deckSizeBigInt big.Int) (big.Int, big.I
 	/*
 		Each rule can be reduced to a transformation:
 		x => (ax +b) % deckSize
+
+		Hence by combining the rules, the whole set can also be reduced to a single transformation
 	*/
+
 	var a, b, ad, bd int64
 	a = 1
 	b = 0
@@ -107,8 +110,10 @@ func collapsePart2Rules(filename string, deckSizeBigInt big.Int) (big.Int, big.I
 			ad = -1
 			bd = -1
 		}
-		// we add deckSize on to guaratee that a and b remain positive
-		// Go's modulo operator returns negative modulo where a is negative.
+		/*
+			we add deckSize on to guaratee that a and b remain positive
+			Go's modulo operator returns negative modulo where a is negative.
+		*/
 		a = (ad*a + deckSize) % deckSize
 		b = (ad*b + bd + deckSize) % deckSize
 	}
@@ -121,10 +126,7 @@ func part2(filename string, deckSize big.Int, position int64) {
 		x => (ax +b) % deckSize
 	*/
 
-	var a big.Int
-	var b big.Int
-
-	a, b = collapsePart2Rules(filename, deckSize)
+	a, b := collapsePart2Rules(filename, deckSize)
 
 	/*
 		Need to apply the shuffle 101741582076661 times
@@ -141,7 +143,6 @@ func part2(filename string, deckSize big.Int, position int64) {
 	/*
 		After all passes, b = (b * (finalA - 1) * Exp(a , deck size -2, deck size)) mod deck size.
 		Use of big numbers means big number libraries. Which makes for unreadable code.
-
 	*/
 
 	finalB := new(big.Int).Mod(

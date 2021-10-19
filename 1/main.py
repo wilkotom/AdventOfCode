@@ -7,7 +7,7 @@ for number in [int(x) for x in open("input.txt")]:
 
 nums = sorted(list(numbers))
 
-for i, n in enumerate(nums[:-2]):
+for i, _ in enumerate(nums[:-2]):
     left = i + 1
     right = len(nums) - 1
     while left < right:

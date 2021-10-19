@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, Union, Any
 from functools import reduce
 
 
@@ -10,7 +10,7 @@ def build_rules(unparsed_rules: str) -> dict[str, Callable]:
     return rules
 
 
-def evaluate_part1_rules(ticket: list[str], rules: dict[str, Callable]) -> list[int]:
+def evaluate_part1_rules(ticket: list[int], rules: dict[str, Callable]) -> list[int]:
     invalid = []
     for value in ticket:
         if True not in (rules[rule](value) for rule in rules):
@@ -18,9 +18,9 @@ def evaluate_part1_rules(ticket: list[str], rules: dict[str, Callable]) -> list[
     return invalid
 
 
-def evaluate_part2_rules(tickets: list[list[int]], rules: dict[str, Callable]) -> list[str]:
+def evaluate_part2_rules(tickets: list[list[int]], rules: dict[str, Callable]) -> list[Union[int, None]]:
     ticket_values = list(zip(*tickets))
-    possible_rules = {}
+    possible_rules: dict[int, set[Any]] = {}
     for i in range(len(tickets[0])):
         possible_rules[i] = set(rules.keys())
 
@@ -30,7 +30,7 @@ def evaluate_part2_rules(tickets: list[list[int]], rules: dict[str, Callable]) -
             if not possible_rule:
                 possible_rules[i].remove(rule)
 
-    fields = [None] * len(tickets[0])
+    fields: list[Union[int, None]] = [None] * len(tickets[0])
     while None in fields:
         for i in possible_rules:
             if len(possible_rules[i]) == 1:
@@ -59,5 +59,5 @@ def main(filename: str) -> None:
                                                       if 'departure' in heading]))
 
 
-if __name__== "__main__":
+if __name__ == "__main__":
     main("input.txt")

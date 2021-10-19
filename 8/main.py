@@ -37,6 +37,7 @@ def main(filename: str) -> None:
         result, accumulator = run_program(new_program)
         if result is True:
             print(f"Part 2: {accumulator}")
+            break
 
 
 if __name__ == "__main__":

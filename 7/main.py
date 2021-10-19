@@ -19,7 +19,6 @@ def contains_count(colour: str) -> bool:
     total = 0
     for bag in rules[colour]:
         total += rules[colour][bag] * (contains_count(bag) +1)
-    print(total)
     return total
 
 

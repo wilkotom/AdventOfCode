@@ -1,7 +1,7 @@
 from collections import deque
 
 
-def load_decks(filename: str) -> tuple[deque, deque] :
+def load_decks(filename: str) -> tuple[deque, deque]:
     infile = open(filename).read().split('\n\n')
     deck1 = deque([int(x) for x in infile[0].split('\n')[1:]])
     deck2 = deque([int(x) for x in infile[1].split('\n')[1:]])

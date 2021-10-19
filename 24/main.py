@@ -16,7 +16,7 @@ def part1(filename: str) -> set[tuple[int, int]]:
         elif instruction in 'ns':
             y = y + 1 if instruction == 'n' else y - 1
             instruction = instructions.popleft()
-            x = x + 1 if instruction == 'e' else x -1
+            x = x + 1 if instruction == 'e' else x - 1
         else:
             x = x + 2 if instruction == 'e' else x - 2
 

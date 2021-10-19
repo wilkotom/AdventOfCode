@@ -11,9 +11,9 @@ def main(filename: str) -> None:
             else:
                 allergen_mapping[allergen] = allergen_mapping[allergen].intersection(set(ingredients.split()))
 
-    for possible in (possible for allergen in allergen_mapping for possible in allergen_mapping[allergen]):
-        if possible in safe_count:
-            del safe_count[possible]
+    for unsafe in (ingredient for allergen in allergen_mapping
+                   for ingredient in allergen_mapping[allergen] if ingredient in safe_count):
+        del safe_count[unsafe]
 
     print(f"Part 1: {sum(safe_count.values())}")
 

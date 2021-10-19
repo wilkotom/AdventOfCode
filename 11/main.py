@@ -1,6 +1,5 @@
 from copy import deepcopy
 from typing import Callable
-from collections import defaultdict
 
 
 def get_adjacent_occupants(grid: list[str], row: int, seat: int) -> int:
@@ -57,11 +56,11 @@ def get_next_grid(grid: list[str], selection: Callable[[list[str], int, int], in
     return changed, next_grid
 
 
-def part1(grid: list[list[int]]) -> tuple[bool, list[str]]:
+def part1(grid: list[str]) -> tuple[bool, list[str]]:
     return get_next_grid(grid, get_adjacent_occupants, 4)
 
 
-def part2(grid: list[list[int]]) -> tuple[bool, list[str]]:
+def part2(grid: list[str]) -> tuple[bool, list[str]]:
     return get_next_grid(grid, get_visible_occupants, 5)
 
 

@@ -7,7 +7,6 @@ fn main() -> Result<(), Error> {
     let mut jolts = read_nums(File::open("./input.txt")?)?;
     jolts.sort();
     println!("Part 1: {:?}", part1(&jolts));
-    part2(&jolts);
     println!("Part 2: {}", part2(&jolts));
     Ok(())  
 }

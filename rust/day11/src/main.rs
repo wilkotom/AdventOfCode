@@ -29,8 +29,8 @@ struct Coordinate {
 
 fn main() -> Result<(), Error> {
     let seatmap = read_seatplan("./input.txt".to_string()).unwrap();
-    println!("{}", run_sim(seatmap.clone(), part_1_neighbour_map, 4));
-    println!("{:?}", run_sim(seatmap.clone(), part_2_neighbour_map, 5));
+    println!("Part 1: {}", run_sim(seatmap.clone(), part_1_neighbour_map, 4));
+    println!("Part 2: {}", run_sim(seatmap.clone(), part_2_neighbour_map, 5));
     Ok(())
 }
 

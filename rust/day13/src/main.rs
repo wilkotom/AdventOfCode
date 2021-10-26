@@ -11,13 +11,13 @@ fn main() {
 fn part1(departure_time: &i128, timetable: &Vec<(i128,i128)>) -> i128 {
     let mut first_bus_time = i128::MAX;
     let mut first_bus_number = 0;
-    for (_, bus_no) in timetable {
+    for &(_, bus_no) in timetable {
 
         let next_bus_time = ((departure_time+ bus_no) / bus_no) * bus_no;
 
         if next_bus_time < first_bus_time { 
             first_bus_time = next_bus_time;
-            first_bus_number = *bus_no;
+            first_bus_number = bus_no;
         }
         
     }

@@ -49,4 +49,4 @@ def main(filename: str) -> None:
 
 
 if __name__ == "__main__":
-    main("otherinput.txt")
+    main("input.txt")

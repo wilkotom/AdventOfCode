@@ -3,7 +3,9 @@ from typing import Union, Callable
 
 
 def eval_part_1(expression: list[Union[int, str]]) -> int:
+    print(expression)
     while len(expression) > 1:
+        print(expression)
         expression = [eval(''.join(expression[:3]))] + expression[3:]
     return expression[0]
 
@@ -50,4 +52,4 @@ def main(filename: str) -> None:
 
 
 if __name__ == "__main__":
-    main("input.txt")
+    main("test.txt")

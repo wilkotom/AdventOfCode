@@ -79,6 +79,7 @@ fn parse_part_2(expressions: &Vec<Vec<char>>) -> Vec<Vec<ExpressionEntry>> {
         rpn.extend(oper_stack);
         parsed_expressions.push(rpn);
     }
+    println!("{:?}", parsed_expressions);
     parsed_expressions
 }
 

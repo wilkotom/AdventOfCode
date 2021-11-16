@@ -63,9 +63,7 @@ fn play_recursive_combat(mut player1: VecDeque<usize>, mut player2: VecDeque<usi
                 } else {
                     player2.push_back(p2);
                     player2.push_back(p1);
-    
                 }
-
             } else if p1 > p2 {
                 player1.push_back(p1);
                 player1.push_back(p2);

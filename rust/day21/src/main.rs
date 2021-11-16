@@ -26,7 +26,7 @@ fn main() {
             }
         }
         for ingredient in ingredients.iter() {
-            ingredient_count.insert(ingredient.clone(), *ingredient_count.get(ingredient).unwrap_or(&mut 0) + 1);  
+            ingredient_count.insert(ingredient.clone(), *ingredient_count.get(ingredient).unwrap_or(&0) + 1);  
         }
     }
     let mut allergens = allergen_mappings.keys().cloned().collect::<Vec<_>>();

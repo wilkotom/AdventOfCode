@@ -289,6 +289,7 @@ fn monster_hunt(fragments: HashMap<i32, Box<PhotoFragment>> ) -> usize {
                     for (y,x) in monster_shape.iter() {
                         if !*fragment.matrix.get((row as isize+y) as usize).unwrap_or(&Vec::new()).get(col+x).unwrap_or(&false) {
                             monster = false;
+                            break;
                         }
                     }
                     if monster {

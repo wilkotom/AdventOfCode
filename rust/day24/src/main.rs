@@ -18,23 +18,14 @@ fn main() {
         let mut x: i64 = 0;
         let mut y: i64 = 0;
         while steps.len() > 0 {
-            let next = steps.pop().unwrap();
-            if next == 'e' {
-                x += 2
-            } else if next == 'w' {
-                x -= 2;
-            } else {
-                if next == 'n' {
-                    y +=1;
-                } else {
-                    y -= 1;
-                }
-                let next = steps.pop().unwrap();
-                if next == 'e' {
-                    x+=1;
-                } else {
-                    x -=1;
-                }
+            match steps.pop() {
+                Some('e') => { x += 2;},
+                Some('w') => { x -= 2;},
+                Some('n') => { y += 1;
+                               x += if steps.pop() == Some('e') {1} else {-1};},
+                Some('s') => { y -= 1;
+                               x += if steps.pop() == Some('e') {1} else {-1};},
+                _ => {}
             }
         }
         if !floor.contains_key(&Coordinate{x,y}) {

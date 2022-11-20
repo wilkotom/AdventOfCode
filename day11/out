@@ -1,0 +1,1183 @@
+[[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")], []]
+Start
+Floor 0, can move [Chip("hydrogen"), Chip("lithium")]
+Move 0
+Current state: [[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")], []]
+Considering moving Chip("hydrogen")
+Validating state: [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")], []] - OK
+Validating state: [[], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [Generator("lithium")], []] - INVALID
+Considering moving Chip("lithium")
+Validating state: [[Chip("hydrogen")], [Generator("hydrogen"), Chip("lithium")], [Generator("lithium")], []] - INVALID
+Seen state [[], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [Generator("lithium")], []] before
+Possible move: (1, [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")], []], 1)
+[(1, [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")], []], 1)]
+Floor 1, can move [Generator("hydrogen"), Chip("hydrogen")]
+Move 1
+Current state: [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")], []]
+Considering moving Generator("hydrogen")
+Validating state: [[Generator("hydrogen"), Chip("lithium")], [Chip("hydrogen")], [Generator("lithium")], []] - INVALID
+Validating state: [[Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [], [Generator("lithium")], []] - INVALID
+Validating state: [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []] - OK
+Validating state: [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []] - OK
+Considering moving Chip("hydrogen")
+Seen state [[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")], []] before
+Seen state [[Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [], [Generator("lithium")], []] before
+Validating state: [[Chip("lithium")], [Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen")], []] - INVALID
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []] before
+Possible move: (2, [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []], 2)
+Possible move: (2, [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []], 2)
+[(2, [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []], 2), (2, [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []], 2)]
+Floor 2, can move [Generator("hydrogen"), Generator("lithium")]
+Move 2
+
+Current state: [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []]
+Considering moving Generator("hydrogen")
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")], []] before
+Validating state: [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], []] - OK
+Validating state: [[Chip("lithium")], [Chip("hydrogen")], [Generator("lithium")], [Generator("hydrogen")]] - OK
+Validating state: [[Chip("lithium")], [Chip("hydrogen")], [], [Generator("hydrogen"), Generator("lithium")]] - OK
+Considering moving Generator("lithium")
+Validating state: [[Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen")], []] - INVALID
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], []] before
+Validating state: [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium")]] - OK
+Seen state [[Chip("lithium")], [Chip("hydrogen")], [], [Generator("hydrogen"), Generator("lithium")]] before
+Possible move: (1, [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], []], 3)
+Possible move: (3, [[Chip("lithium")], [Chip("hydrogen")], [Generator("lithium")], [Generator("hydrogen")]], 3)
+Possible move: (3, [[Chip("lithium")], [Chip("hydrogen")], [], [Generator("hydrogen"), Generator("lithium")]], 3)
+Possible move: (3, [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium")]], 3)
+[(1, [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], []], 3), (3, [[Chip("lithium")], [Chip("hydrogen")], [Generator("lithium")], [Generator("hydrogen")]], 3), (3, [[Chip("lithium")], [Chip("hydrogen")], [], [Generator("hydrogen"), Generator("lithium")]], 3), (3, [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium")]], 3)]
+Floor 2, can move [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")]
+Move 2
+
+Current state: [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []]
+Considering moving Generator("hydrogen")
+Validating state: [[Chip("lithium")], [Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen")], []] - INVALID
+Validating state: [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []] - OK
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")], []] before
+Validating state: [[Chip("lithium")], [], [Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen")]] - INVALID
+Validating state: [[Chip("lithium")], [], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")]] - OK
+Validating state: [[Chip("lithium")], [], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")]] - OK
+Considering moving Generator("lithium")
+Validating state: [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] - OK
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []] before
+Seen state [[Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen")], []] before
+Validating state: [[Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")]] - OK
+Seen state [[Chip("lithium")], [], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")]] before
+Validating state: [[Chip("lithium")], [], [Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen")]] - INVALID
+Considering moving Chip("hydrogen")
+Validating state: [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []] - OK
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")], []] before
+Seen state [[Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen")], []] before
+Validating state: [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")]] - OK
+Seen state [[Chip("lithium")], [], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")]] before
+Seen state [[Chip("lithium")], [], [Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen")]] before
+Possible move: (1, [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []], 3)
+Possible move: (3, [[Chip("lithium")], [], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")]], 3)
+Possible move: (3, [[Chip("lithium")], [], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")]], 3)
+Possible move: (1, [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []], 3)
+Possible move: (3, [[Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")]], 3)
+Possible move: (1, [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []], 3)
+Possible move: (3, [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")]], 3)
+[(1, [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []], 3), (3, [[Chip("lithium")], [], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")]], 3), (3, [[Chip("lithium")], [], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")]], 3), (1, [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []], 3), (3, [[Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")]], 3), (1, [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []], 3), (3, [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")]], 3)]
+Floor 1, can move [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")]
+Move 3
+
+
+Current state: [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], []]
+Considering moving Generator("hydrogen")
+Validating state: [[Generator("hydrogen"), Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], [], []] - INVALID
+Validating state: [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [], []] - OK
+Validating state: [[Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [Generator("lithium")], [], []] - INVALID
+Validating state: [[Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen")], []] - INVALID
+Seen state [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []] before
+Validating state: [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] - OK
+Considering moving Generator("lithium")
+Validating state: [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], []] - OK
+Seen state [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [], []] before
+Validating state: [[Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [], []] - INVALID
+Validating state: [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")], []] - OK
+Seen state [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []] before
+Seen state [[Chip("lithium")], [Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen")], []] before
+Considering moving Chip("hydrogen")
+Validating state: [[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], []] - OK
+Seen state [[Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [Generator("lithium")], [], []] before
+Seen state [[Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [], []] before
+Validating state: [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []] - OK
+Seen state [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] before
+Seen state [[Chip("lithium")], [Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen")], []] before
+Possible move: (0, [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [], []], 4)
+Possible move: (2, [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []], 4)
+Possible move: (0, [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], []], 4)
+Possible move: (2, [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")], []], 4)
+Possible move: (0, [[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], []], 4)
+Possible move: (2, [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []], 4)
+[(0, [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [], []], 4), (2, [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []], 4), (0, [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], []], 4), (2, [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")], []], 4), (0, [[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], []], 4), (2, [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []], 4)]
+Floor 3, can move [Generator("hydrogen")]
+Move 3
+Current state: [[Chip("lithium")], [Chip("hydrogen")], [Generator("lithium")], [Generator("hydrogen")]]
+Considering moving Generator("hydrogen")
+Seen state [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []] before
+[]
+Floor 3, can move [Generator("hydrogen"), Generator("lithium")]
+Move 3
+Current state: [[Chip("lithium")], [Chip("hydrogen")], [], [Generator("hydrogen"), Generator("lithium")]]
+Considering moving Generator("hydrogen")
+Validating state: [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium")]] - OK
+Seen state [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []] before
+Considering moving Generator("lithium")
+Validating state: [[Chip("lithium")], [Chip("hydrogen")], [Generator("lithium")], [Generator("hydrogen")]] - OK
+Seen state [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []] before
+Possible move: (2, [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium")]], 4)
+Possible move: (2, [[Chip("lithium")], [Chip("hydrogen")], [Generator("lithium")], [Generator("hydrogen")]], 4)
+[(2, [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium")]], 4), (2, [[Chip("lithium")], [Chip("hydrogen")], [Generator("lithium")], [Generator("hydrogen")]], 4)]
+Floor 3, can move [Generator("lithium")]
+Move 3
+Current state: [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium")]]
+Considering moving Generator("lithium")
+Seen state [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []] before
+[]
+Floor 1, can move [Generator("hydrogen"), Generator("lithium")]
+Move 3
+Current state: [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []]
+Considering moving Generator("hydrogen")
+Validating state: [[Generator("hydrogen"), Chip("lithium")], [Generator("lithium")], [Chip("hydrogen")], []] - INVALID
+Validating state: [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")], []] - OK
+Seen state [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] before
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []] before
+Considering moving Generator("lithium")
+Validating state: [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], []] - OK
+Seen state [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")], []] before
+Seen state [[Chip("lithium")], [Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen")], []] before
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []] before
+Possible move: (0, [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")], []], 4)
+Possible move: (0, [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], []], 4)
+[(0, [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")], []], 4), (0, [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], []], 4)]
+Floor 3, can move [Generator("hydrogen"), Generator("lithium")]
+Move 3
+Current state: [[Chip("lithium")], [], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")]]
+Considering moving Generator("hydrogen")
+Validating state: [[Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")]] - OK
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []] before
+Considering moving Generator("lithium")
+Validating state: [[Chip("lithium")], [], [Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen")]] - INVALID
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []] before
+Possible move: (2, [[Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")]], 4)
+[(2, [[Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")]], 4)]
+Floor 3, can move [Generator("hydrogen"), Chip("hydrogen")]
+Move 3
+Current state: [[Chip("lithium")], [], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")]]
+Considering moving Generator("hydrogen")
+Validating state: [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")]] - OK
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []] before
+Considering moving Chip("hydrogen")
+Seen state [[Chip("lithium")], [], [Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen")]] before
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []] before
+Possible move: (2, [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")]], 4)
+[(2, [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")]], 4)]
+Floor 1, can move [Generator("lithium")]
+Move 3
+Current state: [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []]
+Considering moving Generator("lithium")
+Validating state: [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], []] - OK
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []] before
+Possible move: (0, [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], []], 4)
+[(0, [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], []], 4)]
+Floor 3, can move [Generator("lithium")]
+Move 3
+Current state: [[Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")]]
+Considering moving Generator("lithium")
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []] before
+[]
+Floor 1, can move [Chip("hydrogen")]
+Move 3
+Current state: [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []]
+Considering moving Chip("hydrogen")
+Validating state: [[Chip("hydrogen"), Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], []] - OK
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []] before
+Possible move: (0, [[Chip("hydrogen"), Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], []], 4)
+[(0, [[Chip("hydrogen"), Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], []], 4)]
+Floor 3, can move [Chip("hydrogen")]
+Move 3
+Current state: [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")]]
+Considering moving Chip("hydrogen")
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []] before
+[]
+Floor 0, can move [Generator("hydrogen"), Generator("lithium"), Chip("lithium")]
+Move 4
+Current state: [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [], []]
+Considering moving Generator("hydrogen")
+Validating state: [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], []] - OK
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], []] before
+Validating state: [[Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [], []] - INVALID
+Considering moving Generator("lithium")
+Validating state: [[Generator("hydrogen"), Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], [], []] - INVALID
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], []] before
+Validating state: [[Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] - INVALID
+Considering moving Chip("lithium")
+Validating state: [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], [], []] - OK
+Seen state [[Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Seen state [[Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Possible move: (1, [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], []], 5)
+Possible move: (1, [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], [], []], 5)
+[(1, [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], []], 5), (1, [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], [], []], 5)]
+Floor 2, can move [Generator("hydrogen"), Chip("hydrogen")]
+Move 4
+Current state: [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []]
+Considering moving Generator("hydrogen")
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []] before
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], []] before
+Validating state: [[Chip("lithium")], [Generator("lithium")], [Chip("hydrogen")], [Generator("hydrogen")]] - OK
+Validating state: [[Chip("lithium")], [Generator("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")]] - OK
+Considering moving Chip("hydrogen")
+Seen state [[Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen")], []] before
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], []] before
+Validating state: [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]] - OK
+Seen state [[Chip("lithium")], [Generator("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")]] before
+Possible move: (3, [[Chip("lithium")], [Generator("lithium")], [Chip("hydrogen")], [Generator("hydrogen")]], 5)
+Possible move: (3, [[Chip("lithium")], [Generator("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")]], 5)
+Possible move: (3, [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]], 5)
+[(3, [[Chip("lithium")], [Generator("lithium")], [Chip("hydrogen")], [Generator("hydrogen")]], 5), (3, [[Chip("lithium")], [Generator("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")]], 5), (3, [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]], 5)]
+Floor 0, can move [Generator("lithium"), Chip("lithium")]
+Move 4
+Current state: [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], []]
+Considering moving Generator("lithium")
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], []] before
+Validating state: [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] - OK
+Considering moving Chip("lithium")
+Seen state [[Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Possible move: (1, [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []], 5)
+[(1, [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []], 5)]
+Floor 2, can move [Generator("lithium")]
+Move 4
+Current state: [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")], []]
+Considering moving Generator("lithium")
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], []] before
+Validating state: [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], [Generator("lithium")]] - OK
+Possible move: (3, [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], [Generator("lithium")]], 5)
+[(3, [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], [Generator("lithium")]], 5)]
+Floor 0, can move [Chip("hydrogen"), Chip("lithium")]
+Move 4
+Current state: [[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], []]
+Considering moving Chip("hydrogen")
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Considering moving Chip("lithium")
+Validating state: [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], []] - OK
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Possible move: (1, [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], []], 5)
+[(1, [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], []], 5)]
+Floor 2, can move [Chip("hydrogen")]
+Move 4
+Current state: [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []]
+Considering moving Chip("hydrogen")
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], []] before
+Validating state: [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen")]] - OK
+Possible move: (3, [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen")]], 5)
+[(3, [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen")]], 5)]
+Floor 2, can move [Generator("hydrogen")]
+Move 4
+Current state: [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium")]]
+Considering moving Generator("hydrogen")
+Validating state: [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], [Generator("lithium")]] - OK
+Seen state [[Chip("lithium")], [Chip("hydrogen")], [], [Generator("hydrogen"), Generator("lithium")]] before
+Possible move: (1, [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], [Generator("lithium")]], 5)
+[(1, [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], [Generator("lithium")]], 5)]
+Floor 2, can move [Generator("lithium")]
+Move 4
+Current state: [[Chip("lithium")], [Chip("hydrogen")], [Generator("lithium")], [Generator("hydrogen")]]
+Considering moving Generator("lithium")
+Validating state: [[Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], [], [Generator("hydrogen")]] - INVALID
+Seen state [[Chip("lithium")], [Chip("hydrogen")], [], [Generator("hydrogen"), Generator("lithium")]] before
+[]
+Floor 0, can move [Generator("hydrogen"), Generator("lithium"), Chip("lithium")]
+Move 4
+Current state: [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")], []]
+Considering moving Generator("hydrogen")
+Validating state: [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], []] - OK
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []] before
+Validating state: [[Generator("lithium")], [Generator("hydrogen"), Chip("lithium")], [Chip("hydrogen")], []] - INVALID
+Considering moving Generator("lithium")
+Validating state: [[Generator("hydrogen"), Chip("lithium")], [Generator("lithium")], [Chip("hydrogen")], []] - INVALID
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []] before
+Validating state: [[Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []] - OK
+Considering moving Chip("lithium")
+Validating state: [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")], []] - OK
+Seen state [[Generator("lithium")], [Generator("hydrogen"), Chip("lithium")], [Chip("hydrogen")], []] before
+Seen state [[Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []] before
+Possible move: (1, [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], []], 5)
+Possible move: (1, [[Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []], 5)
+Possible move: (1, [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")], []], 5)
+[(1, [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], []], 5), (1, [[Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []], 5), (1, [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")], []], 5)]
+Floor 0, can move [Generator("lithium"), Chip("lithium")]
+Move 4
+Current state: [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], []]
+Considering moving Generator("lithium")
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []] before
+Validating state: [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []] - OK
+Considering moving Chip("lithium")
+Seen state [[Generator("lithium")], [Generator("hydrogen"), Chip("lithium")], [Chip("hydrogen")], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []] before
+Possible move: (1, [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []], 5)
+[(1, [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []], 5)]
+Floor 2, can move [Generator("hydrogen"), Chip("hydrogen")]
+Move 4
+Current state: [[Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")]]
+Considering moving Generator("hydrogen")
+Validating state: [[Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], [Generator("lithium")]] - OK
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], [Generator("lithium")]] before
+Seen state [[Chip("lithium")], [], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")]] before
+Validating state: [[Chip("lithium")], [], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")]] - OK
+Considering moving Chip("hydrogen")
+Validating state: [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium")]] - OK
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], [Generator("lithium")]] before
+Seen state [[Chip("lithium")], [], [Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen")]] before
+Seen state [[Chip("lithium")], [], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")]] before
+Possible move: (1, [[Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], [Generator("lithium")]], 5)
+Possible move: (3, [[Chip("lithium")], [], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")]], 5)
+Possible move: (1, [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium")]], 5)
+[(1, [[Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], [Generator("lithium")]], 5), (3, [[Chip("lithium")], [], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")]], 5), (1, [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium")]], 5)]
+Floor 2, can move [Generator("hydrogen"), Generator("lithium")]
+Move 4
+Current state: [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")]]
+Considering moving Generator("hydrogen")
+Validating state: [[Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")], [Chip("hydrogen")]] - OK
+Validating state: [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen")]] - OK
+Seen state [[Chip("lithium")], [], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")]] before
+Seen state [[Chip("lithium")], [], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")]] before
+Considering moving Generator("lithium")
+Validating state: [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]] - OK
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen")]] before
+Seen state [[Chip("lithium")], [], [Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen")]] before
+Seen state [[Chip("lithium")], [], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")]] before
+Possible move: (1, [[Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")], [Chip("hydrogen")]], 5)
+Possible move: (1, [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen")]], 5)
+Possible move: (1, [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]], 5)
+[(1, [[Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")], [Chip("hydrogen")]], 5), (1, [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen")]], 5), (1, [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]], 5)]
+Floor 0, can move [Generator("lithium"), Chip("lithium")]
+Move 4
+Current state: [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], []]
+Considering moving Generator("lithium")
+Seen state [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] before
+Validating state: [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] - OK
+Considering moving Chip("lithium")
+Validating state: [[Generator("lithium")], [Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] - OK
+Seen state [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] before
+Possible move: (1, [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []], 5)
+Possible move: (1, [[Generator("lithium")], [Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []], 5)
+[(1, [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []], 5), (1, [[Generator("lithium")], [Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []], 5)]
+Floor 0, can move [Chip("hydrogen"), Chip("lithium")]
+Move 4
+Current state: [[Chip("hydrogen"), Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], []]
+Considering moving Chip("hydrogen")
+Seen state [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []] before
+Validating state: [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []] - OK
+Considering moving Chip("lithium")
+Validating state: [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []] - OK
+Seen state [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []] before
+Possible move: (1, [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []], 5)
+Possible move: (1, [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []], 5)
+[(1, [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []], 5), (1, [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []], 5)]
+Floor 1, can move [Generator("hydrogen"), Chip("hydrogen")]
+Move 5
+Current state: [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], []]
+Considering moving Generator("hydrogen")
+Seen state [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [], []] before
+Validating state: [[Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], [], []] - OK
+Validating state: [[Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], []] - OK
+Validating state: [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], []] - OK
+Considering moving Chip("hydrogen")
+Seen state [[Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [], []] before
+Seen state [[Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], [], []] before
+Validating state: [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], []] - OK
+Seen state [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], []] before
+Possible move: (0, [[Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], [], []], 6)
+Possible move: (2, [[Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], []], 6)
+Possible move: (2, [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], []], 6)
+Possible move: (2, [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], []], 6)
+[(0, [[Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], [], []], 6), (2, [[Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], []], 6), (2, [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], []], 6), (2, [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], []], 6)]
+Floor 1, can move [Chip("hydrogen"), Chip("lithium")]
+Move 5
+Current state: [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], [], []]
+Considering moving Chip("hydrogen")
+Validating state: [[Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], [], []] - OK
+Seen state [[Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], [], []] before
+Validating state: [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")], []] - OK
+Validating state: [[Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen"), Chip("lithium")], []] - OK
+Considering moving Chip("lithium")
+Seen state [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [], []] before
+Seen state [[Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], [], []] before
+Validating state: [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], [Chip("lithium")], []] - OK
+Seen state [[Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen"), Chip("lithium")], []] before
+Possible move: (0, [[Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], [], []], 6)
+Possible move: (2, [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")], []], 6)
+Possible move: (2, [[Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen"), Chip("lithium")], []], 6)
+Possible move: (2, [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], [Chip("lithium")], []], 6)
+[(0, [[Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], [], []], 6), (2, [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")], []], 6), (2, [[Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen"), Chip("lithium")], []], 6), (2, [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], [Chip("lithium")], []], 6)]
+Floor 3, can move [Generator("hydrogen")]
+Move 5
+Current state: [[Chip("lithium")], [Generator("lithium")], [Chip("hydrogen")], [Generator("hydrogen")]]
+Considering moving Generator("hydrogen")
+Seen state [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] before
+[]
+Floor 3, can move [Generator("hydrogen"), Chip("hydrogen")]
+Move 5
+Current state: [[Chip("lithium")], [Generator("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")]]
+Considering moving Generator("hydrogen")
+Validating state: [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]] - OK
+Seen state [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] before
+Considering moving Chip("hydrogen")
+Validating state: [[Chip("lithium")], [Generator("lithium")], [Chip("hydrogen")], [Generator("hydrogen")]] - OK
+Seen state [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] before
+Possible move: (2, [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]], 6)
+Possible move: (2, [[Chip("lithium")], [Generator("lithium")], [Chip("hydrogen")], [Generator("hydrogen")]], 6)
+[(2, [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]], 6), (2, [[Chip("lithium")], [Generator("lithium")], [Chip("hydrogen")], [Generator("hydrogen")]], 6)]
+Floor 3, can move [Chip("hydrogen")]
+Move 5
+Current state: [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]]
+Considering moving Chip("hydrogen")
+Seen state [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] before
+[]
+Floor 1, can move [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")]
+Move 5
+Current state: [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []]
+Considering moving Generator("hydrogen")
+Validating state: [[Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] - INVALID
+Validating state: [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], [], []] - OK
+Validating state: [[Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [], []] - OK
+Seen state [[Generator("hydrogen"), Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], [], []] before
+Validating state: [[], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], []] - INVALID
+Validating state: [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []] - OK
+Validating state: [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] - OK
+Validating state: [[], [Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen"), Chip("lithium")], []] - INVALID
+Considering moving Generator("lithium")
+Validating state: [[Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [], []] - INVALID
+Seen state [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], [], []] before
+Validating state: [[Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen"), Chip("lithium")], [], []] - INVALID
+Seen state [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], []] before
+Validating state: [[], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [Generator("lithium")], []] - INVALID
+Seen state [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []] before
+Validating state: [[], [Generator("hydrogen"), Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], []] - INVALID
+Validating state: [[], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], []] - OK
+Considering moving Chip("hydrogen")
+Validating state: [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], []] - OK
+Seen state [[Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [], []] before
+Seen state [[Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen"), Chip("lithium")], [], []] before
+Seen state [[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], []] before
+Validating state: [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []] - OK
+Seen state [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] before
+Seen state [[], [Generator("hydrogen"), Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], []] before
+Validating state: [[], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], []] - OK
+Considering moving Chip("lithium")
+Validating state: [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], []] - OK
+Seen state [[Generator("hydrogen"), Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], [], []] before
+Seen state [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], []] before
+Seen state [[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], []] before
+Validating state: [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], []] - OK
+Seen state [[], [Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen"), Chip("lithium")], []] before
+Seen state [[], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], []] before
+Possible move: (0, [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], [], []], 6)
+Possible move: (0, [[Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [], []], 6)
+Possible move: (2, [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []], 6)
+Possible move: (2, [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []], 6)
+Possible move: (2, [[], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], []], 6)
+Possible move: (0, [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], []], 6)
+Possible move: (2, [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []], 6)
+Possible move: (2, [[], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], []], 6)
+Possible move: (0, [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], []], 6)
+Possible move: (2, [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], []], 6)
+[(0, [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], [], []], 6), (0, [[Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [], []], 6), (2, [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []], 6), (2, [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []], 6), (2, [[], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], []], 6), (0, [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], []], 6), (2, [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []], 6), (2, [[], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], []], 6), (0, [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], []], 6), (2, [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], []], 6)]
+Floor 3, can move [Generator("lithium")]
+Move 5
+Current state: [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], [Generator("lithium")]]
+Considering moving Generator("lithium")
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")], []] before
+[]
+Floor 1, can move [Generator("hydrogen"), Generator("lithium"), Chip("lithium")]
+Move 5
+Current state: [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], []]
+Considering moving Generator("hydrogen")
+Seen state [[Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [], []] before
+Seen state [[Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], [], []] before
+Seen state [[Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [Generator("lithium")], [], []] before
+Validating state: [[Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], []] - OK
+Validating state: [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []] - OK
+Validating state: [[Chip("hydrogen")], [Generator("lithium")], [Generator("hydrogen"), Chip("lithium")], []] - INVALID
+Considering moving Generator("lithium")
+Seen state [[Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen"), Chip("lithium")], [], []] before
+Seen state [[Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], [], []] before
+Seen state [[Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [], []] before
+Validating state: [[Chip("hydrogen")], [Generator("hydrogen"), Chip("lithium")], [Generator("lithium")], []] - INVALID
+Seen state [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []] before
+Validating state: [[Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], []] - OK
+Considering moving Chip("lithium")
+Seen state [[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], []] before
+Seen state [[Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [Generator("lithium")], [], []] before
+Seen state [[Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [], []] before
+Validating state: [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], []] - OK
+Seen state [[Chip("hydrogen")], [Generator("lithium")], [Generator("hydrogen"), Chip("lithium")], []] before
+Seen state [[Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], []] before
+Possible move: (2, [[Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], []], 6)
+Possible move: (2, [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []], 6)
+Possible move: (2, [[Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], []], 6)
+Possible move: (2, [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], []], 6)
+[(2, [[Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], []], 6), (2, [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []], 6), (2, [[Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], []], 6), (2, [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], []], 6)]
+Floor 3, can move [Chip("hydrogen")]
+Move 5
+Current state: [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen")]]
+Considering moving Chip("hydrogen")
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []] before
+[]
+Floor 1, can move [Generator("hydrogen"), Chip("hydrogen")]
+Move 5
+Current state: [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], [Generator("lithium")]]
+Considering moving Generator("hydrogen")
+Validating state: [[Generator("hydrogen"), Chip("lithium")], [Chip("hydrogen")], [], [Generator("lithium")]] - INVALID
+Validating state: [[Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [], [], [Generator("lithium")]] - INVALID
+Seen state [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium")]] before
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")]] before
+Considering moving Chip("hydrogen")
+Validating state: [[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [], [Generator("lithium")]] - OK
+Seen state [[Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [], [], [Generator("lithium")]] before
+Validating state: [[Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], [Generator("lithium")]] - OK
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")]] before
+Possible move: (0, [[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [], [Generator("lithium")]], 6)
+Possible move: (2, [[Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], [Generator("lithium")]], 6)
+[(0, [[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [], [Generator("lithium")]], 6), (2, [[Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], [Generator("lithium")]], 6)]
+Floor 1, can move [Generator("hydrogen")]
+Move 5
+Current state: [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], []]
+Considering moving Generator("hydrogen")
+Seen state [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")], []] before
+Seen state [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], []] before
+[]
+Floor 1, can move [Generator("lithium"), Chip("lithium")]
+Move 5
+Current state: [[Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []]
+Considering moving Generator("lithium")
+Validating state: [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")], []] - OK
+Seen state [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")], []] before
+Validating state: [[Generator("hydrogen")], [Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], []] - INVALID
+Validating state: [[Generator("hydrogen")], [], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], []] - INVALID
+Considering moving Chip("lithium")
+Seen state [[Generator("hydrogen"), Chip("lithium")], [Generator("lithium")], [Chip("hydrogen")], []] before
+Seen state [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")], []] before
+Validating state: [[Generator("hydrogen")], [Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], []] - OK
+Seen state [[Generator("hydrogen")], [], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], []] before
+Possible move: (0, [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")], []], 6)
+Possible move: (2, [[Generator("hydrogen")], [Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], []], 6)
+[(0, [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")], []], 6), (2, [[Generator("hydrogen")], [Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], []], 6)]
+Floor 1, can move [Chip("lithium")]
+Move 5
+Current state: [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")], []]
+Considering moving Chip("lithium")
+Seen state [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")], []] before
+Seen state [[Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen"), Chip("lithium")], []] before
+[]
+Floor 1, can move [Generator("hydrogen"), Generator("lithium"), Chip("lithium")]
+Move 5
+Current state: [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []]
+Considering moving Generator("hydrogen")
+Validating state: [[Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []] - OK
+Seen state [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")], []] before
+Seen state [[Generator("hydrogen"), Chip("lithium")], [Generator("lithium")], [Chip("hydrogen")], []] before
+Seen state [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] before
+Validating state: [[], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []] - OK
+Validating state: [[], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], []] - INVALID
+Considering moving Generator("lithium")
+Validating state: [[Generator("lithium")], [Generator("hydrogen"), Chip("lithium")], [Chip("hydrogen")], []] - INVALID
+Seen state [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")], []] before
+Seen state [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], []] before
+Seen state [[], [Generator("hydrogen"), Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], []] before
+Seen state [[], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []] before
+Validating state: [[], [Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], []] - INVALID
+Considering moving Chip("lithium")
+Validating state: [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []] - OK
+Seen state [[Generator("hydrogen"), Chip("lithium")], [Generator("lithium")], [Chip("hydrogen")], []] before
+Seen state [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], []] before
+Seen state [[], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], []] before
+Seen state [[], [Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], []] before
+Possible move: (0, [[Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []], 6)
+Possible move: (2, [[], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []], 6)
+Possible move: (0, [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []], 6)
+[(0, [[Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []], 6), (2, [[], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []], 6), (0, [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []], 6)]
+Floor 1, can move [Generator("hydrogen")]
+Move 5
+Current state: [[Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], [Generator("lithium")]]
+Considering moving Generator("hydrogen")
+Validating state: [[Generator("hydrogen"), Chip("lithium")], [], [Chip("hydrogen")], [Generator("lithium")]] - INVALID
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")]] before
+[]
+Floor 3, can move [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")]
+Move 5
+Current state: [[Chip("lithium")], [], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")]]
+Considering moving Generator("hydrogen")
+Validating state: [[Chip("lithium")], [], [Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen")]] - INVALID
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")]] before
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")]] before
+Considering moving Generator("lithium")
+Validating state: [[Chip("lithium")], [], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")]] - OK
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")]] before
+Seen state [[Chip("lithium")], [], [Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen")]] before
+Considering moving Chip("hydrogen")
+Validating state: [[Chip("lithium")], [], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")]] - OK
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")]] before
+Seen state [[Chip("lithium")], [], [Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen")]] before
+Possible move: (2, [[Chip("lithium")], [], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")]], 6)
+Possible move: (2, [[Chip("lithium")], [], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")]], 6)
+[(2, [[Chip("lithium")], [], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")]], 6), (2, [[Chip("lithium")], [], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")]], 6)]
+Floor 1, can move [Chip("hydrogen")]
+Move 5
+Current state: [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium")]]
+Considering moving Chip("hydrogen")
+Validating state: [[Chip("hydrogen"), Chip("lithium")], [], [Generator("hydrogen")], [Generator("lithium")]] - OK
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")]] before
+Possible move: (0, [[Chip("hydrogen"), Chip("lithium")], [], [Generator("hydrogen")], [Generator("lithium")]], 6)
+[(0, [[Chip("hydrogen"), Chip("lithium")], [], [Generator("hydrogen")], [Generator("lithium")]], 6)]
+Floor 1, can move [Generator("hydrogen")]
+Move 5
+Current state: [[Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")], [Chip("hydrogen")]]
+Considering moving Generator("hydrogen")
+Validating state: [[Generator("hydrogen"), Chip("lithium")], [], [Generator("lithium")], [Chip("hydrogen")]] - INVALID
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")]] before
+[]
+Floor 1, can move [Generator("hydrogen"), Generator("lithium")]
+Move 5
+Current state: [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen")]]
+Considering moving Generator("hydrogen")
+Validating state: [[Generator("hydrogen"), Chip("lithium")], [Generator("lithium")], [], [Chip("hydrogen")]] - INVALID
+Validating state: [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [], [Chip("hydrogen")]] - OK
+Seen state [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]] before
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")]] before
+Considering moving Generator("lithium")
+Validating state: [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [], [Chip("hydrogen")]] - OK
+Seen state [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [], [Chip("hydrogen")]] before
+Validating state: [[Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")], [Chip("hydrogen")]] - OK
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")]] before
+Possible move: (0, [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [], [Chip("hydrogen")]], 6)
+Possible move: (0, [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [], [Chip("hydrogen")]], 6)
+Possible move: (2, [[Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")], [Chip("hydrogen")]], 6)
+[(0, [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [], [Chip("hydrogen")]], 6), (0, [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [], [Chip("hydrogen")]], 6), (2, [[Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")], [Chip("hydrogen")]], 6)]
+Floor 1, can move [Generator("lithium")]
+Move 5
+Current state: [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]]
+Considering moving Generator("lithium")
+Validating state: [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen")], [Chip("hydrogen")]] - OK
+Seen state [[Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")]] before
+Possible move: (0, [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen")], [Chip("hydrogen")]], 6)
+[(0, [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen")], [Chip("hydrogen")]], 6)]
+Floor 1, can move [Generator("lithium"), Chip("lithium")]
+Move 5
+Current state: [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []]
+Considering moving Generator("lithium")
+Validating state: [[Generator("lithium")], [Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] - OK
+Seen state [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], []] before
+Seen state [[], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []] before
+Validating state: [[], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], []] - OK
+Considering moving Chip("lithium")
+Validating state: [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] - OK
+Seen state [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], []] before
+Seen state [[], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], []] before
+Seen state [[], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], []] before
+Possible move: (0, [[Generator("lithium")], [Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []], 6)
+Possible move: (2, [[], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], []], 6)
+Possible move: (0, [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []], 6)
+[(0, [[Generator("lithium")], [Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []], 6), (2, [[], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], []], 6), (0, [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []], 6)]
+Floor 1, can move [Chip("lithium")]
+Move 5
+Current state: [[Generator("lithium")], [Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []]
+Considering moving Chip("lithium")
+Seen state [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], []] before
+Validating state: [[Generator("lithium")], [], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], []] - INVALID
+[]
+Floor 1, can move [Chip("hydrogen"), Chip("lithium")]
+Move 5
+Current state: [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []]
+Considering moving Chip("hydrogen")
+Validating state: [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []] - OK
+Seen state [[Chip("hydrogen"), Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], []] before
+Seen state [[], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []] before
+Seen state [[], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], []] before
+Considering moving Chip("lithium")
+Validating state: [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []] - OK
+Seen state [[Chip("hydrogen"), Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], []] before
+Validating state: [[], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], []] - OK
+Seen state [[], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], []] before
+Possible move: (0, [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []], 6)
+Possible move: (0, [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []], 6)
+Possible move: (2, [[], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], []], 6)
+[(0, [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []], 6), (0, [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], []], 6), (2, [[], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], []], 6)]
+Floor 1, can move [Chip("lithium")]
+Move 5
+Current state: [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []]
+Considering moving Chip("lithium")
+Seen state [[Chip("hydrogen"), Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")], []] before
+Validating state: [[Chip("hydrogen")], [], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], []] - OK
+Possible move: (2, [[Chip("hydrogen")], [], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], []], 6)
+[(2, [[Chip("hydrogen")], [], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], []], 6)]
+Floor 0, can move [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")]
+Move 6
+Current state: [[Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], [], []]
+Considering moving Generator("hydrogen")
+Validating state: [[Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [], []] - INVALID
+Validating state: [[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], []] - OK
+Seen state [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], []] before
+Validating state: [[Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen"), Chip("lithium")], [], []] - INVALID
+Considering moving Generator("lithium")
+Validating state: [[Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [Generator("lithium")], [], []] - INVALID
+Seen state [[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], []] before
+Seen state [[Generator("hydrogen"), Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], [], []] before
+Validating state: [[Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [], []] - OK
+Considering moving Chip("hydrogen")
+Validating state: [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [], []] - OK
+Seen state [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], []] before
+Seen state [[Generator("hydrogen"), Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], [], []] before
+Seen state [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], [], []] before
+Considering moving Chip("lithium")
+Validating state: [[Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], [], []] - OK
+Seen state [[Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen"), Chip("lithium")], [], []] before
+Seen state [[Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [], []] before
+Seen state [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], [], []] before
+Possible move: (1, [[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], []], 7)
+Possible move: (1, [[Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [], []], 7)
+Possible move: (1, [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [], []], 7)
+Possible move: (1, [[Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], [], []], 7)
+[(1, [[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], []], 7), (1, [[Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [], []], 7), (1, [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [], []], 7), (1, [[Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], [], []], 7)]
+Floor 2, can move [Generator("hydrogen")]
+Move 6
+Current state: [[Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], []]
+Considering moving Generator("hydrogen")
+Seen state [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], []] before
+Validating state: [[Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [], [Generator("hydrogen")]] - OK
+Possible move: (3, [[Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [], [Generator("hydrogen")]], 7)
+[(3, [[Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [], [Generator("hydrogen")]], 7)]
+Floor 2, can move [Generator("hydrogen"), Chip("hydrogen")]
+Move 6
+Current state: [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")], []]
+Considering moving Generator("hydrogen")
+Seen state [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], []] before
+Seen state [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], []] before
+Validating state: [[Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")], [Generator("hydrogen")]] - OK
+Validating state: [[Generator("lithium"), Chip("lithium")], [], [], [Generator("hydrogen"), Chip("hydrogen")]] - OK
+Considering moving Chip("hydrogen")
+Validating state: [[Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], []] - OK
+Seen state [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], []] before
+Validating state: [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen")], [Chip("hydrogen")]] - OK
+Seen state [[Generator("lithium"), Chip("lithium")], [], [], [Generator("hydrogen"), Chip("hydrogen")]] before
+Possible move: (3, [[Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")], [Generator("hydrogen")]], 7)
+Possible move: (3, [[Generator("lithium"), Chip("lithium")], [], [], [Generator("hydrogen"), Chip("hydrogen")]], 7)
+Possible move: (1, [[Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], []], 7)
+Possible move: (3, [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen")], [Chip("hydrogen")]], 7)
+[(3, [[Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")], [Generator("hydrogen")]], 7), (3, [[Generator("lithium"), Chip("lithium")], [], [], [Generator("hydrogen"), Chip("hydrogen")]], 7), (1, [[Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], []], 7), (3, [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen")], [Chip("hydrogen")]], 7)]
+Floor 2, can move [Chip("hydrogen")]
+Move 6
+Current state: [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], []]
+Considering moving Chip("hydrogen")
+Seen state [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], []] before
+Validating state: [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [], [Chip("hydrogen")]] - OK
+Possible move: (3, [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [], [Chip("hydrogen")]], 7)
+[(3, [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [], [Chip("hydrogen")]], 7)]
+Floor 0, can move [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")]
+Move 6
+Current state: [[Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], [], []]
+Considering moving Generator("hydrogen")
+Seen state [[Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen"), Chip("lithium")], [], []] before
+Seen state [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], []] before
+Seen state [[Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Considering moving Generator("lithium")
+Seen state [[Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [], []] before
+Seen state [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], []] before
+Seen state [[Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Considering moving Chip("hydrogen")
+Seen state [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], [], []] before
+Seen state [[Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Seen state [[Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+[]
+Floor 2, can move [Chip("hydrogen")]
+Move 6
+Current state: [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")], []]
+Considering moving Chip("hydrogen")
+Seen state [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], [], []] before
+Validating state: [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [], [Chip("hydrogen")]] - OK
+Possible move: (3, [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [], [Chip("hydrogen")]], 7)
+[(3, [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [], [Chip("hydrogen")]], 7)]
+Floor 2, can move [Chip("hydrogen"), Chip("lithium")]
+Move 6
+Current state: [[Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen"), Chip("lithium")], []]
+Considering moving Chip("hydrogen")
+Validating state: [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], [Chip("lithium")], []] - OK
+Seen state [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], [], []] before
+Validating state: [[Generator("hydrogen"), Generator("lithium")], [], [Chip("lithium")], [Chip("hydrogen")]] - OK
+Validating state: [[Generator("hydrogen"), Generator("lithium")], [], [], [Chip("hydrogen"), Chip("lithium")]] - OK
+Considering moving Chip("lithium")
+Seen state [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")], []] before
+Seen state [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], [], []] before
+Validating state: [[Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen")], [Chip("lithium")]] - OK
+Seen state [[Generator("hydrogen"), Generator("lithium")], [], [], [Chip("hydrogen"), Chip("lithium")]] before
+Possible move: (1, [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], [Chip("lithium")], []], 7)
+Possible move: (3, [[Generator("hydrogen"), Generator("lithium")], [], [Chip("lithium")], [Chip("hydrogen")]], 7)
+Possible move: (3, [[Generator("hydrogen"), Generator("lithium")], [], [], [Chip("hydrogen"), Chip("lithium")]], 7)
+Possible move: (3, [[Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen")], [Chip("lithium")]], 7)
+[(1, [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], [Chip("lithium")], []], 7), (3, [[Generator("hydrogen"), Generator("lithium")], [], [Chip("lithium")], [Chip("hydrogen")]], 7), (3, [[Generator("hydrogen"), Generator("lithium")], [], [], [Chip("hydrogen"), Chip("lithium")]], 7), (3, [[Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen")], [Chip("lithium")]], 7)]
+Floor 2, can move [Chip("lithium")]
+Move 6
+Current state: [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], [Chip("lithium")], []]
+Considering moving Chip("lithium")
+Seen state [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], [], []] before
+Validating state: [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], [], [Chip("lithium")]] - OK
+Possible move: (3, [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], [], [Chip("lithium")]], 7)
+[(3, [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], [], [Chip("lithium")]], 7)]
+Floor 2, can move [Generator("hydrogen")]
+Move 6
+Current state: [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]]
+Considering moving Generator("hydrogen")
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen")]] before
+Seen state [[Chip("lithium")], [Generator("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")]] before
+[]
+Floor 2, can move [Chip("hydrogen")]
+Move 6
+Current state: [[Chip("lithium")], [Generator("lithium")], [Chip("hydrogen")], [Generator("hydrogen")]]
+Considering moving Chip("hydrogen")
+Seen state [[Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], [], [Generator("hydrogen")]] before
+Seen state [[Chip("lithium")], [Generator("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")]] before
+[]
+Floor 0, can move [Generator("hydrogen"), Generator("lithium")]
+Move 6
+Current state: [[Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], [], []]
+Considering moving Generator("hydrogen")
+Seen state [[Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Considering moving Generator("lithium")
+Seen state [[Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+[]
+Floor 0, can move [Generator("hydrogen"), Chip("hydrogen")]
+Move 6
+Current state: [[Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [], []]
+Considering moving Generator("hydrogen")
+Seen state [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Considering moving Chip("hydrogen")
+Seen state [[Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+[]
+Floor 2, can move [Generator("hydrogen"), Generator("lithium")]
+Move 6
+Current state: [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []]
+Considering moving Generator("hydrogen")
+Seen state [[], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [Generator("lithium")], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Validating state: [[], [Chip("hydrogen"), Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")]] - OK
+Validating state: [[], [Chip("hydrogen"), Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")]] - OK
+Considering moving Generator("lithium")
+Validating state: [[], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], []] - INVALID
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Validating state: [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")]] - OK
+Seen state [[], [Chip("hydrogen"), Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")]] before
+Possible move: (3, [[], [Chip("hydrogen"), Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")]], 7)
+Possible move: (3, [[], [Chip("hydrogen"), Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")]], 7)
+Possible move: (3, [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")]], 7)
+[(3, [[], [Chip("hydrogen"), Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")]], 7), (3, [[], [Chip("hydrogen"), Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")]], 7), (3, [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")]], 7)]
+Floor 2, can move [Generator("hydrogen"), Chip("hydrogen")]
+Move 6
+Current state: [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []]
+Considering moving Generator("hydrogen")
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Validating state: [[], [Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")]] - OK
+Validating state: [[], [Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")]] - OK
+Considering moving Chip("hydrogen")
+Seen state [[], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Validating state: [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]] - OK
+Seen state [[], [Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")]] before
+Possible move: (3, [[], [Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")]], 7)
+Possible move: (3, [[], [Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")]], 7)
+Possible move: (3, [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]], 7)
+[(3, [[], [Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")]], 7), (3, [[], [Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")]], 7), (3, [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]], 7)]
+Floor 2, can move [Generator("lithium"), Chip("lithium")]
+Move 6
+Current state: [[], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], []]
+Considering moving Generator("lithium")
+Validating state: [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], []] - OK
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Validating state: [[], [Generator("hydrogen"), Chip("hydrogen")], [Chip("lithium")], [Generator("lithium")]] - OK
+Validating state: [[], [Generator("hydrogen"), Chip("hydrogen")], [], [Generator("lithium"), Chip("lithium")]] - OK
+Considering moving Chip("lithium")
+Seen state [[], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [Generator("lithium")], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Validating state: [[], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")], [Chip("lithium")]] - OK
+Seen state [[], [Generator("hydrogen"), Chip("hydrogen")], [], [Generator("lithium"), Chip("lithium")]] before
+Possible move: (1, [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], []], 7)
+Possible move: (3, [[], [Generator("hydrogen"), Chip("hydrogen")], [Chip("lithium")], [Generator("lithium")]], 7)
+Possible move: (3, [[], [Generator("hydrogen"), Chip("hydrogen")], [], [Generator("lithium"), Chip("lithium")]], 7)
+Possible move: (3, [[], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")], [Chip("lithium")]], 7)
+[(1, [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], []], 7), (3, [[], [Generator("hydrogen"), Chip("hydrogen")], [Chip("lithium")], [Generator("lithium")]], 7), (3, [[], [Generator("hydrogen"), Chip("hydrogen")], [], [Generator("lithium"), Chip("lithium")]], 7), (3, [[], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")], [Chip("lithium")]], 7)]
+Floor 0, can move [Chip("hydrogen")]
+Move 6
+Current state: [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], []]
+Considering moving Chip("hydrogen")
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+[]
+Floor 2, can move [Chip("hydrogen")]
+Move 6
+Current state: [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []]
+Considering moving Chip("hydrogen")
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Validating state: [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")]] - OK
+Possible move: (3, [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")]], 7)
+[(3, [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")]], 7)]
+Floor 2, can move [Chip("hydrogen"), Chip("lithium")]
+Move 6
+Current state: [[], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], []]
+Considering moving Chip("hydrogen")
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Validating state: [[], [Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")]] - OK
+Validating state: [[], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen"), Chip("lithium")]] - OK
+Considering moving Chip("lithium")
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Validating state: [[], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], [Chip("lithium")]] - OK
+Seen state [[], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen"), Chip("lithium")]] before
+Possible move: (3, [[], [Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")]], 7)
+Possible move: (3, [[], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen"), Chip("lithium")]], 7)
+Possible move: (3, [[], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], [Chip("lithium")]], 7)
+[(3, [[], [Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")]], 7), (3, [[], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen"), Chip("lithium")]], 7), (3, [[], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], [Chip("lithium")]], 7)]
+Floor 0, can move [Chip("lithium")]
+Move 6
+Current state: [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], []]
+Considering moving Chip("lithium")
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+[]
+Floor 2, can move [Chip("lithium")]
+Move 6
+Current state: [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], []]
+Considering moving Chip("lithium")
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Validating state: [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], [Chip("lithium")]] - OK
+Possible move: (3, [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], [Chip("lithium")]], 7)
+[(3, [[], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], [], [Chip("lithium")]], 7)]
+Floor 2, can move [Generator("hydrogen")]
+Move 6
+Current state: [[Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], []]
+Considering moving Generator("hydrogen")
+Seen state [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], []] before
+Validating state: [[Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen")]] - OK
+Possible move: (3, [[Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen")]], 7)
+[(3, [[Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen")]], 7)]
+Floor 2, can move [Generator("hydrogen"), Generator("lithium")]
+Move 6
+Current state: [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []]
+Considering moving Generator("hydrogen")
+Seen state [[Chip("hydrogen")], [Generator("hydrogen"), Chip("lithium")], [Generator("lithium")], []] before
+Seen state [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], []] before
+Validating state: [[Chip("hydrogen")], [Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")]] - OK
+Validating state: [[Chip("hydrogen")], [Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")]] - OK
+Considering moving Generator("lithium")
+Validating state: [[Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], []] - OK
+Seen state [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], []] before
+Validating state: [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")]] - OK
+Seen state [[Chip("hydrogen")], [Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")]] before
+Possible move: (3, [[Chip("hydrogen")], [Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")]], 7)
+Possible move: (3, [[Chip("hydrogen")], [Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")]], 7)
+Possible move: (1, [[Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], []], 7)
+Possible move: (3, [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")]], 7)
+[(3, [[Chip("hydrogen")], [Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")]], 7), (3, [[Chip("hydrogen")], [Chip("lithium")], [], [Generator("hydrogen"), Generator("lithium")]], 7), (1, [[Chip("hydrogen")], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], []], 7), (3, [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")]], 7)]
+Floor 2, can move [Generator("lithium"), Chip("lithium")]
+Move 6
+Current state: [[Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], []]
+Considering moving Generator("lithium")
+Validating state: [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], []] - OK
+Seen state [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], []] before
+Validating state: [[Chip("hydrogen")], [Generator("hydrogen")], [Chip("lithium")], [Generator("lithium")]] - OK
+Validating state: [[Chip("hydrogen")], [Generator("hydrogen")], [], [Generator("lithium"), Chip("lithium")]] - OK
+Considering moving Chip("lithium")
+Seen state [[Chip("hydrogen")], [Generator("hydrogen"), Chip("lithium")], [Generator("lithium")], []] before
+Seen state [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], []] before
+Validating state: [[Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium")], [Chip("lithium")]] - OK
+Seen state [[Chip("hydrogen")], [Generator("hydrogen")], [], [Generator("lithium"), Chip("lithium")]] before
+Possible move: (1, [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], []], 7)
+Possible move: (3, [[Chip("hydrogen")], [Generator("hydrogen")], [Chip("lithium")], [Generator("lithium")]], 7)
+Possible move: (3, [[Chip("hydrogen")], [Generator("hydrogen")], [], [Generator("lithium"), Chip("lithium")]], 7)
+Possible move: (3, [[Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium")], [Chip("lithium")]], 7)
+[(1, [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], []], 7), (3, [[Chip("hydrogen")], [Generator("hydrogen")], [Chip("lithium")], [Generator("lithium")]], 7), (3, [[Chip("hydrogen")], [Generator("hydrogen")], [], [Generator("lithium"), Chip("lithium")]], 7), (3, [[Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium")], [Chip("lithium")]], 7)]
+Floor 2, can move [Chip("lithium")]
+Move 6
+Current state: [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], []]
+Considering moving Chip("lithium")
+Seen state [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], []] before
+Validating state: [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], [], [Chip("lithium")]] - OK
+Possible move: (3, [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], [], [Chip("lithium")]], 7)
+[(3, [[Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")], [], [Chip("lithium")]], 7)]
+Floor 0, can move [Chip("hydrogen"), Chip("lithium")]
+Move 6
+Current state: [[Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [], [Generator("lithium")]]
+Considering moving Chip("hydrogen")
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], [Generator("lithium")]] before
+Validating state: [[], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [], [Generator("lithium")]] - INVALID
+Considering moving Chip("lithium")
+Validating state: [[Chip("hydrogen")], [Generator("hydrogen"), Chip("lithium")], [], [Generator("lithium")]] - INVALID
+Seen state [[], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [], [Generator("lithium")]] before
+[]
+Floor 2, can move [Chip("hydrogen")]
+Move 6
+Current state: [[Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")], [Generator("lithium")]]
+Considering moving Chip("hydrogen")
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [], [Generator("lithium")]] before
+Validating state: [[Chip("lithium")], [Generator("hydrogen")], [], [Generator("lithium"), Chip("hydrogen")]] - INVALID
+[]
+Floor 0, can move [Generator("hydrogen"), Generator("lithium")]
+Move 6
+Current state: [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")], []]
+Considering moving Generator("hydrogen")
+Seen state [[Generator("lithium")], [Generator("hydrogen"), Chip("lithium")], [Chip("hydrogen")], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []] before
+Considering moving Generator("lithium")
+Seen state [[Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []] before
+[]
+Floor 2, can move [Chip("hydrogen"), Chip("lithium")]
+Move 6
+Current state: [[Generator("hydrogen")], [Generator("lithium")], [Chip("hydrogen"), Chip("lithium")], []]
+Considering moving Chip("hydrogen")
+Validating state: [[Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen")], [Chip("lithium")], []] - INVALID
+Seen state [[Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Validating state: [[Generator("hydrogen")], [Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")]] - OK
+Validating state: [[Generator("hydrogen")], [Generator("lithium")], [], [Chip("hydrogen"), Chip("lithium")]] - OK
+Considering moving Chip("lithium")
+Seen state [[Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []] before
+Seen state [[Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [], []] before
+Validating state: [[Generator("hydrogen")], [Generator("lithium")], [Chip("hydrogen")], [Chip("lithium")]] - OK
+Seen state [[Generator("hydrogen")], [Generator("lithium")], [], [Chip("hydrogen"), Chip("lithium")]] before
+Possible move: (3, [[Generator("hydrogen")], [Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")]], 7)
+Possible move: (3, [[Generator("hydrogen")], [Generator("lithium")], [], [Chip("hydrogen"), Chip("lithium")]], 7)
+Possible move: (3, [[Generator("hydrogen")], [Generator("lithium")], [Chip("hydrogen")], [Chip("lithium")]], 7)
+[(3, [[Generator("hydrogen")], [Generator("lithium")], [Chip("lithium")], [Chip("hydrogen")]], 7), (3, [[Generator("hydrogen")], [Generator("lithium")], [], [Chip("hydrogen"), Chip("lithium")]], 7), (3, [[Generator("hydrogen")], [Generator("lithium")], [Chip("hydrogen")], [Chip("lithium")]], 7)]
+Floor 0, can move [Generator("hydrogen")]
+Move 6
+Current state: [[Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []]
+Considering moving Generator("hydrogen")
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []] before
+[]
+Floor 2, can move [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")]
+Move 6
+Current state: [[], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")], []]
+Considering moving Generator("hydrogen")
+Validating state: [[], [Generator("hydrogen"), Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], []] - INVALID
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []] before
+Seen state [[], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [Generator("lithium")], []] before
+Validating state: [[], [Chip("lithium")], [Generator("lithium"), Chip("hydrogen")], [Generator("hydrogen")]] - INVALID
+Validating state: [[], [Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")]] - OK
+Validating state: [[], [Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")]] - OK
+Considering moving Generator("lithium")
+Seen state [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []] before
+Seen state [[], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], []] before
+Validating state: [[], [Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")]] - OK
+Seen state [[], [Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")]] before
+Validating state: [[], [Chip("lithium")], [Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen")]] - INVALID
+Considering moving Chip("hydrogen")
+Seen state [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], []] before
+Seen state [[], [Generator("hydrogen"), Chip("hydrogen"), Chip("lithium")], [Generator("lithium")], []] before
+Seen state [[], [Generator("lithium"), Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], []] before
+Validating state: [[], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")]] - OK
+Seen state [[], [Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")]] before
+Seen state [[], [Chip("lithium")], [Generator("hydrogen")], [Generator("lithium"), Chip("hydrogen")]] before
+Possible move: (3, [[], [Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")]], 7)
+Possible move: (3, [[], [Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")]], 7)
+Possible move: (3, [[], [Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")]], 7)
+Possible move: (3, [[], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")]], 7)
+[(3, [[], [Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")]], 7), (3, [[], [Chip("lithium")], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")]], 7), (3, [[], [Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], [Generator("lithium")]], 7), (3, [[], [Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")]], 7)]
+Floor 0, can move [Chip("lithium")]
+Move 6
+Current state: [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [Chip("hydrogen")], []]
+Considering moving Chip("lithium")
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [Chip("hydrogen")], []] before
+[]
+Floor 2, can move [Generator("lithium")]
+Move 6
+Current state: [[Chip("lithium")], [], [Generator("lithium")], [Generator("hydrogen"), Chip("hydrogen")]]
+Considering moving Generator("lithium")
+Validating state: [[Chip("lithium")], [Generator("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")]] - OK
+Seen state [[Chip("lithium")], [], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")]] before
+Possible move: (1, [[Chip("lithium")], [Generator("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")]], 7)
+[(1, [[Chip("lithium")], [Generator("lithium")], [], [Generator("hydrogen"), Chip("hydrogen")]], 7)]
+Floor 2, can move [Chip("hydrogen")]
+Move 6
+Current state: [[Chip("lithium")], [], [Chip("hydrogen")], [Generator("hydrogen"), Generator("lithium")]]
+Considering moving Chip("hydrogen")
+Validating state: [[Chip("lithium")], [Chip("hydrogen")], [], [Generator("hydrogen"), Generator("lithium")]] - OK
+Seen state [[Chip("lithium")], [], [], [Generator("hydrogen"), Generator("lithium"), Chip("hydrogen")]] before
+Possible move: (1, [[Chip("lithium")], [Chip("hydrogen")], [], [Generator("hydrogen"), Generator("lithium")]], 7)
+[(1, [[Chip("lithium")], [Chip("hydrogen")], [], [Generator("hydrogen"), Generator("lithium")]], 7)]
+Floor 0, can move [Chip("hydrogen"), Chip("lithium")]
+Move 6
+Current state: [[Chip("hydrogen"), Chip("lithium")], [], [Generator("hydrogen")], [Generator("lithium")]]
+Considering moving Chip("hydrogen")
+Seen state [[Chip("lithium")], [Chip("hydrogen")], [Generator("hydrogen")], [Generator("lithium")]] before
+Validating state: [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")]] - OK
+Considering moving Chip("lithium")
+Validating state: [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")]] - OK
+Seen state [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")]] before
+Possible move: (1, [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")]], 7)
+Possible move: (1, [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")]], 7)
+[(1, [[], [Chip("hydrogen"), Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")]], 7), (1, [[Chip("hydrogen")], [Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")]], 7)]
+Floor 0, can move [Generator("hydrogen"), Generator("lithium"), Chip("lithium")]
+Move 6
+Current state: [[Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [], [Chip("hydrogen")]]
+Considering moving Generator("hydrogen")
+Validating state: [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [], [Chip("hydrogen")]] - OK
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen")]] before
+Validating state: [[Generator("lithium")], [Generator("hydrogen"), Chip("lithium")], [], [Chip("hydrogen")]] - INVALID
+Considering moving Generator("lithium")
+Validating state: [[Generator("hydrogen"), Chip("lithium")], [Generator("lithium")], [], [Chip("hydrogen")]] - INVALID
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen")]] before
+Validating state: [[Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")]] - OK
+Considering moving Chip("lithium")
+Validating state: [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [], [Chip("hydrogen")]] - OK
+Seen state [[Generator("lithium")], [Generator("hydrogen"), Chip("lithium")], [], [Chip("hydrogen")]] before
+Seen state [[Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")]] before
+Possible move: (1, [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [], [Chip("hydrogen")]], 7)
+Possible move: (1, [[Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")]], 7)
+Possible move: (1, [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [], [Chip("hydrogen")]], 7)
+[(1, [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [], [Chip("hydrogen")]], 7), (1, [[Generator("hydrogen")], [Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")]], 7), (1, [[Generator("hydrogen"), Generator("lithium")], [Chip("lithium")], [], [Chip("hydrogen")]], 7)]
+Floor 0, can move [Generator("lithium"), Chip("lithium")]
+Move 6
+Current state: [[Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [], [Chip("hydrogen")]]
+Considering moving Generator("lithium")
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen")]] before
+Validating state: [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")]] - OK
+Considering moving Chip("lithium")
+Seen state [[Generator("lithium")], [Generator("hydrogen"), Chip("lithium")], [], [Chip("hydrogen")]] before
+Seen state [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")]] before
+Possible move: (1, [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")]], 7)
+[(1, [[], [Generator("hydrogen"), Generator("lithium"), Chip("lithium")], [], [Chip("hydrogen")]], 7)]
+Floor 2, can move [Generator("lithium")]
+Move 6
+Current state: [[Chip("lithium")], [Generator("hydrogen")], [Generator("lithium")], [Chip("hydrogen")]]
+Considering moving Generator("lithium")
+Seen state [[Chip("lithium")], [Generator("hydrogen"), Generator("lithium")], [], [Chip("hydrogen")]] before
+Seen state [[Chip("lithium")], [Generator("hydrogen")], [], [Generator("lithium"), Chip("hydrogen")]] before
+[]
+Floor 0, can move [Generator("lithium"), Chip("lithium")]
+Move 6
+Current state: [[Generator("lithium"), Chip("lithium")], [], [Generator("hydrogen")], [Chip("hydrogen")]]
+Considering moving Generator("lithium")
+Seen state [[Chip("lithium")], [Generator("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]] before
+Validating state: [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]] - OK
+Considering moving Chip("lithium")
+Validating state: [[Generator("lithium")], [Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]] - OK
+Seen state [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]] before
+Possible move: (1, [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]], 7)
+Possible move: (1, [[Generator("lithium")], [Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]], 7)
+[(1, [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]], 7), (1, [[Generator("lithium")], [Chip("lithium")], [Generator("hydrogen")], [Chip("hydrogen")]], 7)]
+Floor 0, can move [Generator("lithium")]
+Move 6
+Current state: [[Generator("lithium")], [Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []]
+Considering moving Generator("lithium")
+Seen state [[], [Generator("lithium"), Chip("lithium")], [Generator("hydrogen"), Chip("hydrogen")], []] before
+[]
+Solution Part 1: 6

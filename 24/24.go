@@ -70,7 +70,7 @@ func crossValley(winds *[4]map[int][]int,
 	nextMoves := make(helpers.MinHeap[LocationState], 0)
 	heap.Init(&nextMoves)
 	startingState := helpers.NewPrioritisedItem(0, LocationState{elapsedTime: startTime, location: start})
-	nextMoves.Push(&startingState)
+	heap.Push(&nextMoves, &startingState)
 
 	seenStates := make(helpers.Set[LocationState])
 

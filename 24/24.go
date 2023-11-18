@@ -111,17 +111,10 @@ nextMove:
 		// A* algorithm, weighted toward minimising distance to goal
 		for _, neighbour := range currentState.GameState.location.Neighbours() {
 			nextMove := helpers.NewPrioritisedItem(currentState.GameState.elapsedTime+1+(2*neighbour.ManhattanDistance(end)), LocationState{elapsedTime: currentState.GameState.elapsedTime + 1, location: neighbour})
-<<<<<<< HEAD
-			nextMoves.Push(&nextMove)
-		}
-		nextMove := helpers.NewPrioritisedItem(currentState.GameState.elapsedTime+1+(2*currentState.GameState.location.ManhattanDistance(end)), LocationState{elapsedTime: currentState.GameState.elapsedTime + 1, location: helpers.Coordinate[int]{X: currentState.GameState.location.X, Y: currentState.GameState.location.Y}})
-		nextMoves.Push(&nextMove)
-=======
 			heap.Push(&nextMoves, &nextMove)
 		}
 		nextMove := helpers.NewPrioritisedItem(currentState.GameState.elapsedTime+1+(2*currentState.GameState.location.ManhattanDistance(end)), LocationState{elapsedTime: currentState.GameState.elapsedTime + 1, location: helpers.Coordinate[int]{X: currentState.GameState.location.X, Y: currentState.GameState.location.Y}})
 		heap.Push(&nextMoves, &nextMove)
->>>>>>> 9d75374 (Advent of Code 2022. Go!)
 	}
 	return 0
 }

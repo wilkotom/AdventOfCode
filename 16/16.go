@@ -45,6 +45,8 @@ func parseValveDetails(filename string) map[int]Valve {
 		panic(err)
 	}
 	valves := make(map[int]Valve)
+	valveIDs := map[string]int{"AA": 0}
+
 	for _, valve := range valveDetails {
 		splitpoint := strings.Index(valve, ";")
 		var valveName string
@@ -52,13 +54,20 @@ func parseValveDetails(filename string) map[int]Valve {
 		if _, err := fmt.Fscanf(strings.NewReader(valve[:splitpoint]), "Valve %s has flow rate=%d", &valveName, &flowRate); err != nil {
 			panic(err)
 		}
-		valveId := nameToInt(valveName)
+		var valveID int
+		if valveId, ok := valveIDs[valveName]; !ok {
+			valveId = len(valveIDs)
+			valveIDs[valveName] = valveId
+		} else {
+			valveID = valveId
+		}
+		// valveId := nameToInt(valveName)
 		distances := make(map[int]int)
 		for _, adjacentValveName := range strings.Split(valve[splitpoint+1:], " ")[5:] {
 			distances[nameToInt(adjacentValveName[:2])] = 1
 		}
-		distances[valveId] = 0
-		valves[valveId] = Valve{FlowRate: flowRate,
+		distances[valveID] = 0
+		valves[valveID] = Valve{FlowRate: flowRate,
 			Distances: distances}
 	}
 	for valveId := range valves {
@@ -92,6 +101,7 @@ func parseValveDetails(filename string) map[int]Valve {
 			}
 		}
 	}
+	fmt.Println(valves)
 	return valves
 }
 

@@ -1,0 +1,292 @@
+RACECOUNT = 3
+DIM RACES(RACECOUNT-1,2)
+FOR I = 0 TO 1
+FOR J = 0 TO RACECOUNT-1
+READ RACES(J,I)
+NEXT J,I
+RESULT = 1
+FOR I = 0 TO RACECOUNT-1
+COUNTER = 0
+FOR J = 0 TO RACES(I,0)
+IF (RACES(I,0) -J) * J > RACES(I,1) THEN COUNTER = COUNTER + 1
+NEXT J
+RESULT = RESULT * COUNTER
+NEXT I
+PRINT "Part 1 "; RESULT
+
+PROCinit
+DIM FINALRACE$(2)
+FOR F = 0 TO 1
+PROCset(0,0)
+FOR I = 0 TO RACECOUNT-1
+L = LOG(RACES(I,F))
+COUNTER = 0
+REPEAT 
+PROCset(1,10)
+PROCmul
+COUNTER = COUNTER + 1
+UNTIL COUNTER > L
+PROCset(1,RACES(I,F))
+PROCadd
+NEXT I
+FINALRACE$(F) = reg$(0)
+NEXT F
+
+reg$(0)= FINALRACE$(0)
+PROCdiv(2)
+JUMPSTART$ = FNgetStr(0)
+
+JUMP$ = JUMPSTART$
+POSITION$ = JUMP$
+REPEAT
+reg$(0)=FINALRACE$(0)
+PROCsetStr(1, POSITION$)
+PROCsub
+PROCsetStr(1, POSITION$)
+
+PROCmul
+reg$(1) =FINALRACE$(1)
+IF FNgt(0,1) THEN PROCdecrementPos ELSE PROCincrementPos
+
+PROCsetStr(0, JUMP$)
+PROCdiv(2)
+IF FNget(1) = 1 AND FNget(0) <> 0 THEN PROCadd
+
+JUMP$ = FNgetStr(0)
+UNTIL JUMP$ = ""
+EARLIEST$ = POSITION$
+
+JUMP$ = JUMPSTART$
+POSITION$ = JUMP$
+REPEAT
+reg$(0)= FINALRACE$(0)
+PROCsetStr(1, POSITION$)
+PROCsub
+
+PROCsetStr(1, POSITION$)
+
+PROCmul
+reg$(1)=FINALRACE$(1)
+IF FNgt(1,0) THEN PROCdecrementPos ELSE PROCincrementPos
+
+PROCsetStr(0, JUMP$)
+PROCdiv(2)
+IF FNget(1) = 1 AND FNget(0) <> 0 THEN PROCadd
+JUMP$ = FNgetStr(0)
+UNTIL JUMP$ = ""
+
+LATEST$ = POSITION$
+
+PROCsetStr(0, LATEST$)
+PROCsetStr(1, EARLIEST$)
+PROCsub
+PRINT "Part 2:"; FNgetStr(0)
+END
+
+REM Data from AoC goes here - list of raw values extracted from the site
+DATA 7 , 15  , 30
+DATA 9 , 40  ,200
+
+DEF PROCincrementPos
+PROCsetStr(0, POSITION$)
+PROCsetStr(1, JUMP$)
+PROCadd
+POSITION$ = FNgetStr(0)
+ENDPROC
+
+DEFPROCdecrementPos
+PROCsetStr(0, POSITION$)
+PROCsetStr(1, JUMP$)
+PROCsub
+POSITION$ = FNgetStr(0)
+ENDPROC
+
+REM Below code is instantiator's bignum library
+REM https://github.com/instantiator/2022-advent-of-code/blob/main/bignums/bignum.v1.basic
+
+REM registers: 0=acc, 1=param, 2=scratch, 3=scratch2
+DEFPROCinit
+DIM reg$(3):FOR R%=0 TO 3:reg$(R%)=STRING$(256,"0"):NEXT
+DIM pos%(3):FOR R%=0 TO 3:pos%(R%)=TRUE:NEXT
+verbose%=FALSE
+ENDPROC
+
+DEFPROCset(R%,N%)
+pos%(R%)=N%>=0:N%=ABS(N%)
+reg$(2)=STR$(N%)
+reg$(R%)=""
+FOR I%=LEN(reg$(2)) TO 1 STEP -1
+reg$(R%)=reg$(R%)+MID$(reg$(2),I%,1)
+NEXT
+IF verbose% THEN P. CHR$(134);"Reg(";R%;") = ";FNget(R%)
+ENDPROC
+
+DEFPROCsetStr(R%,value$)
+IF LEFT$(value$,1)="-" THEN pos%(R%)=FALSE:value$=RIGHT$(value$,LEN(value$)-1) ELSE pos%(R%)=TRUE
+reg$(R%)=""
+FOR SI%=LEN(value$) TO 1 STEP -1
+reg$(R%)=reg$(R%)+MID$(value$,SI%,1)
+NEXT
+IF verbose% THEN P. CHR$(134);"Reg(";R%;") = ";value$
+ENDPROC
+
+REM register,digit,value
+DEFPROCput(R%,U%,V%)
+reg$(R%)=LEFT$(reg$(R%),U%-1) + STR$(V%) + RIGHT$(reg$(R%), LEN(reg$(R%))-U%)
+ENDPROC
+
+DEFFNget(R%)
+N% = 0
+FOR I%=1 TO LEN(reg$(R%))
+N% = N% + (FNdig(R%,I%) * (10^(I%-1)))
+NEXT
+IF pos%(R%) THEN =N% ELSE =-N%
+
+DEFFNgetStr(R%)
+IF NOT pos%(R%) THEN reg$(2)="-" ELSE reg$(2)=""
+leading%=TRUE
+FOR I%=LEN(reg$(R%)) TO 1 STEP -1
+C$=MID$(reg$(R%),I%,1)
+IF C$<>"0" THEN leading%=FALSE
+IF NOT leading% THEN reg$(2)=reg$(2)+C$
+NEXT
+=reg$(2)
+
+DEFPROCprint(R%)
+IF NOT pos%(R%) THEN P."-";
+FOR PR%=1 TO LEN(reg$(R%))
+P. MID$(reg$(R%),PR%,1);
+NEXT
+P.
+ENDPROC
+
+REM retrieves digit D% from register R%
+REM remember: smallest digits come first
+DEFFNdig(R%,D%) =VAL(MID$(reg$(R%),D%,1))
+
+REM true if the contents of both registers are equal
+DEFFNeq(A%,B%)
+result=TRUE
+IF LEN(reg$(A%)) <> LEN(reg$(B%)) =FALSE
+FOR I%=LEN(reg$(A%)) TO 1 STEP -1
+IF FNdig(A%,I%) <> FNdig(B%,I%) result=FALSE:I%=0
+NEXT
+=result
+
+REM true if the contents of register A% > contents of register B%
+DEFFNgt(A%,B%)
+IF pos%(A%) AND NOT pos%(B%) THEN =TRUE
+IF pos%(B%) AND NOT pos%(A%) THEN =FALSE
+larger=FALSE
+L%=LEN(reg$(A%)):IF LEN(reg$(B%))>L% THEN L%=LEN(reg$(B%))
+FOR GTI%=L% TO 1 STEP -1
+CA%=FNdig(A%,GTI%):CB%=FNdig(B%,GTI%)
+IF CA% > CB% THEN larger=pos%(A%):GTI%=0
+IF CA% < CB% THEN larger=NOT pos%(A%):GTI%=0
+NEXT
+=larger
+
+REM adds registers 0 and 1, result goes into register 0
+DEFPROCadd
+IF verbose% THEN P. CHR$(132);"ADD: Reg(0) = Reg(0) + Reg(1)"
+IF pos%(0) AND NOT pos%(1) THEN pos%(1)=TRUE:PROCsub:ENDPROC
+IF NOT pos%(0) AND pos%(1) THEN PROCswap:pos%(1)=TRUE:PROCsub:ENDPROC
+L%=LEN(reg$(0)):IF LEN(reg$(1))>L% THEN L%=LEN(reg$(1))
+C%=0:reg$(2)=""
+FOR I%=1 TO L%
+S%=FNdig(0,I%) + FNdig(1,I%) + C%:REM sum
+P%=S% MOD 10:REM place
+C%=S% / 10:REM carry
+reg$(2)=reg$(2)+STR$(P%)
+NEXT
+IF C%>0 reg$(2)=reg$(2)+STR$(C%)
+reg$(0)=reg$(2)
+IF NOT pos%(0) AND NOT pos%(2) THEN pos%(0)=FALSE
+ENDPROC
+
+REM swap registers 0 and 1
+DEFPROCswap
+IF verbose% THEN P. CHR$(132);"SWAP: Reg(0) <=> Reg(1)"
+reg$(2)=reg$(0):pos%(2)=pos%(0)
+reg$(0)=reg$(1):pos%(0)=pos%(1)
+reg$(1)=reg$(2):pos%(1)=pos%(2)
+ENDPROC
+
+REM subtracts register 1 FROM register 0, result goes into register 0
+DEFPROCsub
+IF verbose% THEN P. CHR$(132);"SUB: Reg(0) = Reg(0) - Reg(1)"
+IF NOT pos%(1) THEN pos%(1)=TRUE:PROCadd:ENDPROC
+IF FNgt(1,0) THEN PROCswap:PROCsub:pos%(0)=FALSE:ENDPROC
+L%=LEN(reg$(0)):IF LEN(reg$(1))>L% THEN L%=LEN(reg$(1))
+reg$(2)=""
+FOR I%=1 TO L%
+S%=FNdig(0,I%) - FNdig(1,I%)
+IF S%<0 THEN PROCborrow(0,I%+1):S%=S%+10
+reg$(2)=reg$(2)+STR$(S%)
+NEXT
+reg$(0)=reg$(2)
+ENDPROC
+
+REM borrows from the next (recursive) digit in register 0
+DEFPROCborrow(R%,borrow%)
+digit%=FNdig(R%,borrow%)
+IF digit%>0 PROCput(R%,borrow%,digit%-1)
+IF digit%=0 THEN PROCborrow(R%,borrow%+1):PROCput(R%,borrow%,9)
+ENDPROC
+
+DEFPROCmul
+MA$=STRING$(256,"0"):MB$=STRING$(256,"0")
+IF verbose% THEN P. CHR$(132);"MUL: Reg(0) = Reg(0) * Reg(1)"
+IF pos%(0)=pos%(1) THEN sign%=TRUE ELSE sign%=FALSE
+IF LEN(reg$(0)) > LEN(reg$(1)) THEN MA$=reg$(0):MB$=reg$(1)
+IF LEN(reg$(0)) <= LEN(reg$(1)) THEN MA$=reg$(1):MB$=reg$(0)
+PROCset(0,0):REM reset reg 0
+pos%(1)=TRUE
+FOR MI%=1 TO LEN(MA$)
+reg$(1)=STRING$(MI%-1,"0"):REM leading zeroes
+MC%=0
+FOR MJ%=1 TO LEN(MB$)
+M%=MC%+(VAL(MID$(MA$,MI%,1))*VAL(MID$(MB$,MJ%,1)))
+MC%=M%/10
+MP%=M% MOD 10
+reg$(1)=reg$(1)+STR$(MP%)
+NEXT
+IF MC%>0 THEN reg$(1)=reg$(1)+STR$(MC%)
+PROCadd
+NEXT
+pos%(0)=sign%
+ENDPROC
+
+REM quite a slow modulus calculation
+DEFPROCmod
+MD$=STRING$(256,"0")
+MD$=reg$(1)
+pos%(0)=TRUE
+REPEAT
+pos%(1)=TRUE:reg$(1)=MD$
+IF FNgt(0,1) THEN PROCsub
+UNTIL NOT FNgt(0,1) AND NOT FNeq(0,1)
+ENDPROC
+
+REM division - divides r0 by mod%, puts the result in r0, the remainder in r2
+DEFPROCdiv(mod%)
+IF mod%<0 P."ERR - negative divisor":END
+result$=STRING$(256,"0"):result$=""
+remainder%=0
+FOR I%=LEN(reg$(0)) TO 1 STEP -1
+REM pull down the next most significant digit into the remainder
+remainder%=VAL(MID$(reg$(0),I%,1))+(remainder%*10)
+REM divide the result by the mod
+partial%=remainder%/mod%
+REM pop the result into the next most significant place in the result
+place%=partial%:REM MOD 10 probably not needed?
+result$=STR$(place%)+result$
+REM calc the remainder
+remainder%=remainder%-(partial%*mod%)
+REM until there are no more results
+NEXT
+REM pop result into r0
+reg$(0)=result$
+REM pop remainder into r1
+PROCset(1,remainder%)
+ENDPROC

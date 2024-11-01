@@ -1,0 +1,93 @@
+[A]
+add x 11
+add y 6
+stack =>  [A] + 6
+
+[B]
+add x 11
+add y 14
+stack => [A] + 6, [B] + 14
+
+[C]
+add x 15
+add y 13
+stack => [A] + 6, [B] + 14, [C] + 13
+
+[D] 
+add x -14
+add y 1
+stack => [A] + 6, [B] + 14
+stop if [C] -1 != [D]
+
+[E]
+add x 10
+add y 6
+stack => [A] + 6, [B] + 14, [E] + 6
+
+[F]
+add x 0
+add y 13
+stack => [A] + 6, [B] + 14, [E] + 6
+stop if [F] ==  != [E] + 6
+
+[G]
+add x -6
+add y 6
+stack => [A] + 6
+stop if [B] + 14 -6 != G
+
+[H]
+add x 13
+add y 3
+stack => [A] + 6. [H] +3
+
+[I]
+add x -3
+add y 8
+stack => [A] + 6,
+stop if  [H] != [I]
+
+[J]
+add x 13
+add y 14
+stack => [A] + 6, [J] + 14
+
+[K]
+add x 15
+add y 4
+stack => [A] + 6, [J] + 14, [K] + 4
+
+[L]
+add x -2
+add y 7
+stack => [A] + 6, [J] + 14
+stop if [K] + 4 -2 != [L]
+
+
+[M]
+add x -9
+add y 15
+stack => [A] + 6
+stop if [J] + 5 != [M]
+
+[N]
+add x -2
+add y 1
+stack: <empty>
+stop if [A] + 6 - 2 != [N]
+
+[A] = [A]
+[B] = [B]
+[C] = [D] +1
+[D] = [C] 
+[E] = [E]
+[F] = [E] +6
+[G] = [B] +8
+[H] = [H]
+[I] = [H]
+[J] = [J]
+[K] = [K]
+[L] = [K] + 2
+[M] = [J] +5
+[N] = [A]+4
+

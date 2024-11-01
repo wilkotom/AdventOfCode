@@ -1,0 +1,200 @@
+use std::{fs::read_to_string, collections::HashSet};
+
+#[derive(Debug, Clone)]
+struct AttackGroup {
+    unit_count: i32,
+    unit_hit_points: i32,
+    weaknesses: Vec<String>,
+    immunities: Vec<String>,
+    initiative: i32,
+    attack_damage: i32,
+    attack_type: String,
+    is_immune_system: bool,
+    id: usize,
+    target: Option<usize>
+}
+
+impl AttackGroup{
+    fn effective_power(&self) -> i32{
+        self.unit_count * self.attack_damage
+    }
+}
+
+
+fn main() {
+    let battlefield = parse_input("./input.txt");
+    println!("{:#?}", battlefield);
+    combat(battlefield);
+}
+
+fn combat(mut battlefield: Vec<AttackGroup>) {
+    // for _ in 0..1{
+    while battlefield.iter().filter(|a| a.unit_count> 0 && a.is_immune_system).count() > 0 && 
+            battlefield.iter().filter(|a| a.unit_count> 0 && !a.is_immune_system).count() > 0  {
+        battlefield.sort_by(|a,b| (b.effective_power(), b.initiative).cmp(&(a.effective_power(), a.initiative)));
+        println!("{:#?}", battlefield);
+        let mut targeted = HashSet::new();
+
+        for i in 0..battlefield.len() {
+            let targets = battlefield.clone();
+            let attack_group = battlefield.get(i).unwrap();
+            
+            // attack_group.target = None;
+            if attack_group.unit_count == 0 {
+                continue;
+            }
+            let mut max_damage = 0;
+            let mut target = None;
+            for j in 0..battlefield.len() {
+                if targeted.contains(&j) || battlefield[j].is_immune_system == attack_group.is_immune_system {
+                    continue;
+                }
+                let target_group = &battlefield[j];
+                let attack_modifier = if target_group.immunities.contains(&attack_group.attack_type) {
+                    0
+                } else if target_group.weaknesses.contains(&attack_group.attack_type) {
+                    2
+                } else {
+                    1
+                };
+                let damage_done = attack_group.effective_power() * attack_modifier;
+                println!("{} group {} would deal defending group {} {} damage", if attack_group.is_immune_system {"Immune System"} else {"Infection"}, attack_group.id, target_group.id, damage_done);
+                if damage_done > max_damage {
+                    max_damage = damage_done;
+                    target = Some(j);
+                }
+            }
+            if let Some(n) = target {
+                target = Some(battlefield[n].id);
+                targeted.insert(n);
+            } 
+            let attack_group = battlefield.get_mut(i).unwrap();
+
+            attack_group.target = target;
+            
+        }
+
+
+        println!();
+        battlefield.sort_by(|a,b| b.initiative.cmp(&a.initiative));
+
+        for n in 0..battlefield.len() {
+
+            let attack_group = battlefield[n].clone();
+            if attack_group.target == None {
+                continue;
+            }
+            if let Some(attack_target) = attack_group.target {
+                let target_index = battlefield.iter().position(|g| g.id == attack_target && g.is_immune_system != attack_group.is_immune_system).unwrap();
+                let target_group = battlefield.get_mut(target_index).unwrap();
+                let attack_modifier = if target_group.immunities.contains(&attack_group.attack_type) {
+                    0
+                } else if target_group.weaknesses.contains(&attack_group.attack_type) {
+                    2
+                } else {
+                    1
+                };
+                let damage_done = attack_group.effective_power() * attack_modifier;
+                let killed_units = target_group.unit_count.min(damage_done / target_group.unit_hit_points);
+                println!("{} group {} attacks defending group {}, killing {} units  ", if attack_group.is_immune_system {"Immune System"} else {"Infection"}, attack_group.id, target_group.id, killed_units);
+                target_group.unit_count -= killed_units;
+            }
+        }
+        println!("----------");
+
+    }
+    battlefield.sort_by(|a,b| (b.unit_count * b.attack_damage).cmp(&(a.unit_count * a.attack_damage)));
+    println!("{:#?}", battlefield);
+    println!("{:#?}", battlefield.iter().map(|a| a.unit_count).collect::<Vec<_>>());
+    println!("{:#?}", battlefield.iter().map(|a| a.unit_count).sum::<i32>());
+
+}
+
+
+fn parse_input(filename: &str) -> Vec<AttackGroup> {
+    let input = read_to_string(filename).unwrap();
+    let mut armies = input.split("\n\n");
+    let mut battlefield =  return_attack_groups(armies.next().unwrap(), true);
+    let mut infection =  return_attack_groups(armies.next().unwrap(), false);
+    battlefield.append(&mut infection);
+    battlefield.sort_by(|a,b| a.initiative.cmp(&b.initiative));
+    battlefield
+}
+
+fn return_attack_groups(raw_input: &str, is_immune_system: bool) -> Vec<AttackGroup> {
+
+    let mut lines = raw_input.split('\n');
+
+    let mut attack_groups = Vec::new();
+
+    lines.next();
+    for (id, line) in lines .enumerate(){
+        let mut weaknesses = Vec::new();
+        let mut immunities = Vec::new();    
+        let mut words = line.split_ascii_whitespace();
+        let unit_count: i32 = words.next().unwrap().parse().unwrap();
+        words.next();
+        words.next();
+        words.next();
+        let unit_hit_points: i32 = words.next().unwrap().parse().unwrap();
+        
+        words.next();
+        words.next();
+        if line.contains('(') {
+           let mut section = Vec::new();
+           for mut w in &mut words {
+               println!("{}", w);
+               println!("{:?}", section);
+               let ending = w.ends_with(')');
+               if w.ends_with(')') || w.ends_with(';') {
+                    if w.ends_with(';') || w.ends_with(')') {
+                        w = &w[0..w.len()-1];
+                    }
+                   section.push(w);
+                   println!("{:?}", section);
+                   if section[0] == "(weak" {
+                       weaknesses = section[2..].to_vec();
+                   } else {
+                    immunities = section[2..].to_vec();
+                   }
+                   section = Vec::new();
+                   if ending {
+                       break;
+                   }
+               }
+               section.push(w);
+               
+           }
+           println!("{:?}", section);
+        }
+        words.next();
+        words.next();
+        words.next();
+        words.next();
+        words.next();
+        let attack_power: i32 = words.next().unwrap().parse().unwrap();
+        let attack_type = words.next().unwrap().to_owned();
+        let initiative:i32 = words.last().unwrap().parse().unwrap();
+
+        let attack_group = AttackGroup{ 
+            unit_count, 
+            unit_hit_points, 
+            weaknesses: weaknesses.iter().map(|x| x.to_string()).collect::<Vec<_>>(), 
+            immunities: immunities.iter().map(|x| x.to_string()).collect::<Vec<_>>(), 
+            initiative, attack_damage: attack_power, 
+            attack_type, 
+            is_immune_system, 
+            id: id+1,
+            target: None};
+        if weaknesses == immunities && weaknesses.len() > 0 {
+            println!("{:#?}", attack_group );
+            panic!("{}", line);
+        }
+    
+        attack_groups.push(attack_group);
+    }
+    attack_groups
+}
+
+
+//18243 too high

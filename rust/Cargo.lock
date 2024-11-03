@@ -32,14 +32,14 @@ dependencies = [
 name = "Aoc-2015-06"
 version = "0.1.0"
 dependencies = [
- "hashbrown 0.11.2",
+ "hashbrown 0.15.0",
 ]
 
 [[package]]
 name = "Aoc-2015-07"
 version = "0.1.0"
 dependencies = [
- "cached 0.26.2",
+ "cached",
 ]
 
 [[package]]
@@ -91,7 +91,7 @@ version = "0.1.0"
 name = "Aoc-2015-17"
 version = "0.1.0"
 dependencies = [
- "cached 0.26.2",
+ "cached",
 ]
 
 [[package]]
@@ -266,7 +266,7 @@ version = "0.1.0"
 name = "Aoc-2017-04"
 version = "0.1.0"
 dependencies = [
- "hashbrown 0.11.2",
+ "hashbrown 0.15.0",
 ]
 
 [[package]]
@@ -281,14 +281,14 @@ version = "0.1.0"
 name = "Aoc-2017-07"
 version = "0.1.0"
 dependencies = [
- "hashbrown 0.11.2",
+ "hashbrown 0.15.0",
 ]
 
 [[package]]
 name = "Aoc-2017-08"
 version = "0.1.0"
 dependencies = [
- "hashbrown 0.11.2",
+ "hashbrown 0.15.0",
 ]
 
 [[package]]
@@ -315,7 +315,7 @@ version = "0.1.0"
 name = "Aoc-2017-14"
 version = "0.1.0"
 dependencies = [
- "hashbrown 0.11.2",
+ "hashbrown 0.15.0",
 ]
 
 [[package]]
@@ -455,7 +455,7 @@ dependencies = [
 name = "Aoc-2018-20"
 version = "0.1.0"
 dependencies = [
- "hashbrown 0.11.2",
+ "hashbrown 0.15.0",
 ]
 
 [[package]]
@@ -575,8 +575,8 @@ dependencies = [
 name = "Aoc-2019-18"
 version = "0.1.0"
 dependencies = [
- "hashbrown 0.12.3",
- "itertools 0.10.5",
+ "hashbrown 0.15.0",
+ "itertools 0.13.0",
 ]
 
 [[package]]
@@ -731,126 +731,125 @@ name = "Aoc-2020-9"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202101"
+name = "Aoc-2021-01"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202102"
+name = "Aoc-2021-02"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202103"
+name = "Aoc-2021-03"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202104"
+name = "Aoc-2021-04"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202105"
+name = "Aoc-2021-05"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202106"
+name = "Aoc-2021-06"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202107"
+name = "Aoc-2021-07"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202108"
+name = "Aoc-2021-08"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202109"
+name = "Aoc-2021-09"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202110"
+name = "Aoc-2021-10"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202111"
+name = "Aoc-2021-11"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202112"
+name = "Aoc-2021-12"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202113"
+name = "Aoc-2021-13"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202114"
+name = "Aoc-2021-14"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202115"
+name = "Aoc-2021-15"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202116"
+name = "Aoc-2021-16"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202117"
+name = "Aoc-2021-17"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-202118"
+name = "Aoc-2021-18"
 version = "0.1.0"
 dependencies = [
  "itertools 0.13.0",
 ]
 
 [[package]]
-name = "Aoc-202119"
+name = "Aoc-2021-19"
 version = "0.1.0"
 dependencies = [
  "hashbrown 0.15.0",
 ]
 
 [[package]]
-name = "Aoc-202120"
+name = "Aoc-2021-20"
 version = "0.1.0"
 dependencies = [
  "hashbrown 0.15.0",
 ]
 
 [[package]]
-name = "Aoc-202121"
+name = "Aoc-2021-21"
 version = "0.1.0"
 dependencies = [
- "cached 0.53.1",
+ "cached",
 ]
 
 [[package]]
-name = "Aoc-202122"
+name = "Aoc-2021-22"
 version = "0.1.0"
 dependencies = [
  "hashbrown 0.15.0",
 ]
 
 [[package]]
-name = "Aoc-202123"
+name = "Aoc-2021-23"
 version = "0.1.0"
 dependencies = [
- "cached 0.53.1",
+ "cached",
  "hashbrown 0.15.0",
 ]
 
 [[package]]
-name = "Aoc-202124"
+name = "Aoc-2021-24"
 version = "0.1.0"
 dependencies = [
- "cached 0.53.1",
- "hashbrown 0.15.0",
+ "cached",
 ]
 
 [[package]]
-name = "Aoc-202125"
+name = "Aoc-2021-25"
 version = "0.1.0"
 dependencies = [
  "hashbrown 0.15.0",
@@ -958,7 +957,7 @@ dependencies = [
 name = "Aoc-2022-16"
 version = "0.1.0"
 dependencies = [
- "cached 0.53.1",
+ "cached",
  "itertools 0.13.0",
 ]
 
@@ -1015,148 +1014,148 @@ name = "Aoc-2022-25"
 version = "0.1.0"
 
 [[package]]
-name = "Aoc-2023-01"
+name = "Aoc-2023--01"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-02"
+name = "Aoc-2023--02"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-03"
+name = "Aoc-2023--03"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "hashbrown 0.15.0",
+ "hashbrown 0.14.5",
 ]
 
 [[package]]
-name = "Aoc-2023-04"
-version = "0.1.0"
-dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
-]
-
-[[package]]
-name = "Aoc-2023-05"
+name = "Aoc-2023--04"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-06"
+name = "Aoc-2023--05"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-07"
+name = "Aoc-2023--06"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-09"
+name = "Aoc-2023--07"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-10"
+name = "Aoc-2023--09"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-11"
+name = "Aoc-2023--10"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-12"
+name = "Aoc-2023--11"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-13"
+name = "Aoc-2023--12"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-14"
+name = "Aoc-2023--13"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-15"
+name = "Aoc-2023--14"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-16"
-version = "0.1.0"
-dependencies = [
- "aochelpers 0.5.0",
-]
-
-[[package]]
-name = "Aoc-2023-17"
-version = "0.1.0"
-dependencies = [
- "aochelpers 0.5.0",
-]
-
-[[package]]
-name = "Aoc-2023-18"
+name = "Aoc-2023--15"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-19"
+name = "Aoc-2023--16"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-20"
+name = "Aoc-2023--17"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-21"
+name = "Aoc-2023--18"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-22"
+name = "Aoc-2023--19"
+version = "0.1.0"
+dependencies = [
+ "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "Aoc-2023--20"
+version = "0.1.0"
+dependencies = [
+ "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "Aoc-2023--21"
+version = "0.1.0"
+dependencies = [
+ "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "Aoc-2023--22"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -1164,25 +1163,33 @@ dependencies = [
 ]
 
 [[package]]
-name = "Aoc-2023-23"
+name = "Aoc-2023--23"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-24"
+name = "Aoc-2023--24"
 version = "0.1.0"
 dependencies = [
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "Aoc-2023-25"
+name = "Aoc-2023--25"
 version = "0.1.0"
 dependencies = [
  "anyhow",
  "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "Aoc-2023-08"
+version = "0.1.0"
+dependencies = [
+ "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "tokio",
 ]
 
 [[package]]
@@ -1199,17 +1206,6 @@ name = "adler2"
 version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "512761e0bb2578dd7380c6baaa0f4ce03e84f95e960231d1dec8bf4d7d6e2627"
-
-[[package]]
-name = "ahash"
-version = "0.7.8"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "891477e0c6a8957309ee5c45a6368af3ae14bb510732d2684ffa19af310920f9"
-dependencies = [
- "getrandom",
- "once_cell",
- "version_check",
-]
 
 [[package]]
 name = "ahash"
@@ -1246,24 +1242,10 @@ checksum = "74f37166d7d48a0284b99dd824694c26119c700b53bf0d1540cdb147dbdaaf13"
 
 [[package]]
 name = "aochelpers"
-version = "0.5.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ea04533aa3e5a0f83fba03b9306b981f5c18d0d45551754ff463325b0ff92a36"
-dependencies = [
- "dirs",
- "hashbrown 0.14.5",
- "log",
- "num",
- "reqwest 0.11.27",
-]
-
-[[package]]
-name = "aochelpers"
 version = "0.6.1"
 dependencies = [
  "anyhow",
  "dirs",
- "hashbrown 0.15.0",
  "log",
  "num",
  "reqwest 0.12.9",
@@ -1281,36 +1263,6 @@ dependencies = [
  "log",
  "num",
  "reqwest 0.11.27",
-]
-
-[[package]]
-name = "async-mutex"
-version = "1.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "479db852db25d9dbf6204e6cb6253698f175c15726470f78af0d918e99d6156e"
-dependencies = [
- "event-listener",
-]
-
-[[package]]
-name = "async-rwlock"
-version = "1.3.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "261803dcc39ba9e72760ba6e16d0199b1eef9fc44e81bffabbebb9f5aea3906c"
-dependencies = [
- "async-mutex",
- "event-listener",
-]
-
-[[package]]
-name = "async-trait"
-version = "0.1.83"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "721cae7de5c34fbb2acd27e21e6d2cf7b886dce0c27388d46c4e6c47ea4318dd"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 2.0.86",
 ]
 
 [[package]]
@@ -1378,28 +1330,12 @@ checksum = "9ac0150caa2ae65ca5bd83f25c7de183dea78d4d366469f148435e2acfbad0da"
 
 [[package]]
 name = "cached"
-version = "0.26.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c2bc2fd249a24a9cdd4276f3a3e0461713271ab63b0e9e656e200e8e21c8c927"
-dependencies = [
- "async-mutex",
- "async-rwlock",
- "async-trait",
- "cached_proc_macro 0.7.1",
- "cached_proc_macro_types",
- "futures",
- "hashbrown 0.11.2",
- "once_cell",
-]
-
-[[package]]
-name = "cached"
 version = "0.53.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b4d73155ae6b28cf5de4cfc29aeb02b8a1c6dab883cb015d15cd514e42766846"
 dependencies = [
- "ahash 0.8.11",
- "cached_proc_macro 0.23.0",
+ "ahash",
+ "cached_proc_macro",
  "cached_proc_macro_types",
  "hashbrown 0.14.5",
  "once_cell",
@@ -1409,26 +1345,14 @@ dependencies = [
 
 [[package]]
 name = "cached_proc_macro"
-version = "0.7.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ac3531903b39df48a378a7ed515baee7c1fff32488489c7d0725eb1749b22a91"
-dependencies = [
- "cached_proc_macro_types",
- "darling 0.13.4",
- "quote",
- "syn 1.0.109",
-]
-
-[[package]]
-name = "cached_proc_macro"
 version = "0.23.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2f42a145ed2d10dce2191e1dcf30cfccfea9026660e143662ba5eec4017d5daa"
 dependencies = [
- "darling 0.20.10",
+ "darling",
  "proc-macro2",
  "quote",
- "syn 2.0.86",
+ "syn 2.0.87",
 ]
 
 [[package]]
@@ -1439,9 +1363,9 @@ checksum = "ade8366b8bd5ba243f0a58f036cc0ca8a2f069cff1a2351ef1cac6b083e16fc0"
 
 [[package]]
 name = "cc"
-version = "1.1.31"
+version = "1.1.34"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c2e7962b54006dcfcc61cb72735f4d89bb97061dd6a7ed882ec6b8ee53714c6f"
+checksum = "67b9470d453346108f93a59222a9a1a5724db32d0a4727b7ab7ace4b4d822dc9"
 dependencies = [
  "shlex",
 ]
@@ -1470,36 +1394,12 @@ checksum = "773648b94d0e5d620f64f280777445740e61fe701025087ec8b57f45c791888b"
 
 [[package]]
 name = "darling"
-version = "0.13.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a01d95850c592940db9b8194bc39f4bc0e89dee5c4265e4b1807c34a9aba453c"
-dependencies = [
- "darling_core 0.13.4",
- "darling_macro 0.13.4",
-]
-
-[[package]]
-name = "darling"
 version = "0.20.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6f63b86c8a8826a49b8c21f08a2d07338eec8d900540f8630dc76284be802989"
 dependencies = [
- "darling_core 0.20.10",
- "darling_macro 0.20.10",
-]
-
-[[package]]
-name = "darling_core"
-version = "0.13.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "859d65a907b6852c9361e3185c862aae7fafd2887876799fa55f5f99dc40d610"
-dependencies = [
- "fnv",
- "ident_case",
- "proc-macro2",
- "quote",
- "strsim 0.10.0",
- "syn 1.0.109",
+ "darling_core",
+ "darling_macro",
 ]
 
 [[package]]
@@ -1512,19 +1412,8 @@ dependencies = [
  "ident_case",
  "proc-macro2",
  "quote",
- "strsim 0.11.1",
- "syn 2.0.86",
-]
-
-[[package]]
-name = "darling_macro"
-version = "0.13.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9c972679f83bdf9c42bd905396b6c3588a843a17f0f16dfcfa3e2c5d57441835"
-dependencies = [
- "darling_core 0.13.4",
- "quote",
- "syn 1.0.109",
+ "strsim",
+ "syn 2.0.87",
 ]
 
 [[package]]
@@ -1533,17 +1422,9 @@ version = "0.20.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d336a2a514f6ccccaa3e09b02d41d35330c07ddf03a62165fcec10bb561c7806"
 dependencies = [
- "darling_core 0.20.10",
+ "darling_core",
  "quote",
- "syn 2.0.86",
-]
-
-[[package]]
-name = "day08"
-version = "0.1.0"
-dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "tokio",
+ "syn 2.0.87",
 ]
 
 [[package]]
@@ -1599,12 +1480,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "event-listener"
-version = "2.5.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0206175f82b8d6bf6652ff7d71a1e27fd2e4efde587fd368662814d6ec1d9ce0"
-
-[[package]]
 name = "fastrand"
 version = "2.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1647,21 +1522,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "futures"
-version = "0.3.31"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "65bc07b1a8bc7c85c5f2e110c476c7389b4554ba72af57d8445ea63a576b0876"
-dependencies = [
- "futures-channel",
- "futures-core",
- "futures-executor",
- "futures-io",
- "futures-sink",
- "futures-task",
- "futures-util",
-]
-
-[[package]]
 name = "futures-channel"
 version = "0.3.31"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1678,32 +1538,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "05f29059c0c2090612e8d742178b0580d2dc940c837851ad723096f87af6663e"
 
 [[package]]
-name = "futures-executor"
-version = "0.3.31"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1e28d1d997f585e54aebc3f97d39e72338912123a67330d723fdbb564d646c9f"
-dependencies = [
- "futures-core",
- "futures-task",
- "futures-util",
-]
-
-[[package]]
 name = "futures-io"
 version = "0.3.31"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9e5c1b78ca4aae1ac06c48a526a655760685149f0d465d21f37abfe57ce075c6"
-
-[[package]]
-name = "futures-macro"
-version = "0.3.31"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "162ee34ebcb7c64a8abebc059ce0fee27c2262618d7b60ed8faf72fef13c3650"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 2.0.86",
-]
 
 [[package]]
 name = "futures-sink"
@@ -1723,10 +1561,8 @@ version = "0.3.31"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9fa08315bb612088cc391249efdc3bc77536f16c91f6cf495e6fbe85b20a4a81"
 dependencies = [
- "futures-channel",
  "futures-core",
  "futures-io",
- "futures-macro",
  "futures-sink",
  "futures-task",
  "memchr",
@@ -1798,29 +1634,11 @@ checksum = "65043da274378d68241eb9a8f8f8aa54e349136f7b8e12f63e3ef44043cc30e1"
 
 [[package]]
 name = "hashbrown"
-version = "0.11.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ab5ef0d4909ef3724cc8cce6ccc8572c5c817592e9285f5464f8e86f8bd3726e"
-dependencies = [
- "ahash 0.7.8",
-]
-
-[[package]]
-name = "hashbrown"
-version = "0.12.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8a9ee70c43aaf417c914396645a0fa852624801b24ebb7ae78fe8272889ac888"
-dependencies = [
- "ahash 0.7.8",
-]
-
-[[package]]
-name = "hashbrown"
 version = "0.14.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e5274423e17b7c9fc20b6e7e208532f9b19825d82dfd615708b70edd83df41f1"
 dependencies = [
- "ahash 0.8.11",
+ "ahash",
  "allocator-api2",
 ]
 
@@ -2048,7 +1866,7 @@ dependencies = [
 name = "intcode"
 version = "0.1.0"
 dependencies = [
- "hashbrown 0.12.3",
+ "hashbrown 0.15.0",
 ]
 
 [[package]]
@@ -2285,7 +2103,7 @@ checksum = "a948666b637a0f465e8564c73e89d4dde00d72d4d473cc972f390fc3dcee7d9c"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.86",
+ "syn 2.0.87",
 ]
 
 [[package]]
@@ -2372,7 +2190,7 @@ dependencies = [
  "regex",
  "regex-syntax 0.7.5",
  "structmeta 0.2.0",
- "syn 2.0.86",
+ "syn 2.0.87",
 ]
 
 [[package]]
@@ -2386,7 +2204,7 @@ dependencies = [
  "regex",
  "regex-syntax 0.8.5",
  "structmeta 0.3.0",
- "syn 2.0.86",
+ "syn 2.0.87",
 ]
 
 [[package]]
@@ -2750,7 +2568,7 @@ checksum = "de523f781f095e28fa605cdce0f8307e451cc0fd14e2eb4cd2e98a355b147766"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.86",
+ "syn 2.0.87",
 ]
 
 [[package]]
@@ -2816,12 +2634,6 @@ checksum = "6980e8d7511241f8acf4aebddbb1ff938df5eebe98691418c4468d0b72a96a67"
 
 [[package]]
 name = "strsim"
-version = "0.10.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "73473c0e59e6d5812c5dfe2a064a6444949f089e20eec9a2e5506596494e4623"
-
-[[package]]
-name = "strsim"
 version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7da8b5736845d9f2fcb837ea5d9e2628564b3b043a70948a3f0b778838c5fb4f"
@@ -2847,7 +2659,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "structmeta-derive 0.2.0",
- "syn 2.0.86",
+ "syn 2.0.87",
 ]
 
 [[package]]
@@ -2859,7 +2671,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "structmeta-derive 0.3.0",
- "syn 2.0.86",
+ "syn 2.0.87",
 ]
 
 [[package]]
@@ -2881,7 +2693,7 @@ checksum = "a60bcaff7397072dca0017d1db428e30d5002e00b6847703e2e42005c95fbe00"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.86",
+ "syn 2.0.87",
 ]
 
 [[package]]
@@ -2892,7 +2704,7 @@ checksum = "152a0b65a590ff6c3da95cabe2353ee04e6167c896b28e3b14478c2636c922fc"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.86",
+ "syn 2.0.87",
 ]
 
 [[package]]
@@ -2914,9 +2726,9 @@ dependencies = [
 
 [[package]]
 name = "syn"
-version = "2.0.86"
+version = "2.0.87"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e89275301d38033efb81a6e60e3497e734dfcc62571f2854bf4b16690398824c"
+checksum = "25aa4ce346d03a6dcd68dd8b4010bcb74e54e62c90c573f394c46eae99aba32d"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -2995,22 +2807,22 @@ dependencies = [
 
 [[package]]
 name = "thiserror"
-version = "1.0.66"
+version = "1.0.67"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5d171f59dbaa811dbbb1aee1e73db92ec2b122911a48e1390dfe327a821ddede"
+checksum = "3b3c6efbfc763e64eb85c11c25320f0737cb7364c4b6336db90aa9ebe27a0bbd"
 dependencies = [
  "thiserror-impl",
 ]
 
 [[package]]
 name = "thiserror-impl"
-version = "1.0.66"
+version = "1.0.67"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b08be0f17bd307950653ce45db00cd31200d82b624b36e181337d9c7d92765b5"
+checksum = "b607164372e89797d78b8e23a6d67d5d1038c1c65efd52e1389ef8b77caba2a6"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.86",
+ "syn 2.0.87",
 ]
 
 [[package]]
@@ -3195,7 +3007,7 @@ dependencies = [
  "once_cell",
  "proc-macro2",
  "quote",
- "syn 2.0.86",
+ "syn 2.0.87",
  "wasm-bindgen-shared",
 ]
 
@@ -3229,7 +3041,7 @@ checksum = "26c6ab57572f7a24a4985830b120de1594465e5d500f24afe89e16b4e833ef68"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.86",
+ "syn 2.0.87",
  "wasm-bindgen-backend",
  "wasm-bindgen-shared",
 ]
@@ -3465,7 +3277,7 @@ checksum = "fa4f8080344d4671fb4e831a13ad1e68092748387dfc4f55e356242fae12ce3e"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.86",
+ "syn 2.0.87",
 ]
 
 [[package]]

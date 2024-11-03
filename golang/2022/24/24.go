@@ -62,10 +62,7 @@ func Day24() error {
 	return nil
 }
 
-func crossValley(winds *[4]map[int][]int,
-	start, end, bottomLeft helpers.Coordinate[int],
-	startTime int,
-) int {
+func crossValley(winds *[4]map[int][]int, start, end, bottomLeft helpers.Coordinate[int], startTime int) int {
 
 	nextMoves := make(helpers.MinHeap[LocationState], 0)
 	heap.Init(&nextMoves)

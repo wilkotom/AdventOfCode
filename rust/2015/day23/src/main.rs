@@ -75,7 +75,7 @@ fn read_instructions(filename: &str) -> Vec<Day23Instruction> {
     program
 }
 
-fn run_program(mut registers: HashMap<Register, usize>, program: &Vec<Day23Instruction>) -> usize {
+fn run_program(mut registers: HashMap<Register, usize>, program: &[Day23Instruction]) -> usize {
     let mut pc = 0;
     while pc < program.len() {
         match program[pc] {

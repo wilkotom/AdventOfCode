@@ -51,7 +51,7 @@ fn decompress_part1(line: String) -> String {
     output
 }
 
-fn decompress_part2(line: &String) -> i64 {
+fn decompress_part2(line: &str) -> i64 {
     let mut c= 0;
     let chars = line.chars().collect::<Vec<_>>();
     let mut score = 0;

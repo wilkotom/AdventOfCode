@@ -13,8 +13,8 @@ fn main() {
         let right = words.next().unwrap().to_owned();
         words.next();
         let distance = words.next().unwrap().parse::<i32>().unwrap();
-        distance_mappings.entry(left.clone()).or_insert_with(HashMap::new);
-        distance_mappings.entry(right.clone()).or_insert_with(HashMap::new);
+        distance_mappings.entry(left.clone()).or_default();
+        distance_mappings.entry(right.clone()).or_default();
         distance_mappings.get_mut(&left).unwrap().insert(right.clone(), distance);
         distance_mappings.get_mut(&right).unwrap().insert(left.clone(), distance);
     }
@@ -38,7 +38,7 @@ fn get_distance(route:Vec<String>, distance_mappings: &HashMap<String,HashMap<St
         cache[&route]
     } else {
         let result = if route.len() > 2 {
-            distance_mappings.get(&route[0]).unwrap().get(&route[1]).unwrap() + get_distance((&route[1..]).to_vec(), distance_mappings, cache) 
+            distance_mappings.get(&route[0]).unwrap().get(&route[1]).unwrap() + get_distance(route[1..].to_vec(), distance_mappings, cache) 
         } else {
             *distance_mappings.get(&route[0]).unwrap().get(&route[1]).unwrap()
         };

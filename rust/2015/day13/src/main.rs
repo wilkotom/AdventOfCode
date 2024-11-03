@@ -7,7 +7,7 @@ fn main() {
     let mut preferences: HashMap<String,HashMap<String,i32>> = HashMap::new();
     for line in data.split('\n') {
         let details = line.split_ascii_whitespace().collect::<Vec<_>>();
-        preferences.entry(details[0].to_owned()).or_insert_with(HashMap::new);
+        preferences.entry(details[0].to_owned()).or_default();
         let difference = details[3].parse::<i32>().unwrap() * if details[2] == "gain" {1} else {-1};
         let person = &details[10][..details[10].len()-1];
         preferences.get_mut(details[0]).unwrap().insert(person.to_owned(), difference);
@@ -15,7 +15,7 @@ fn main() {
 
     println!("Part 1: {}", get_max_happiness(&preferences));
     
-    preferences.entry("Me".to_owned()).or_insert_with(HashMap::new);
+    preferences.entry("Me".to_owned()).or_default();
     println!("Part 2: {}", get_max_happiness(&preferences));
 }
 

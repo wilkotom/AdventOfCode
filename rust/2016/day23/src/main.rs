@@ -76,7 +76,7 @@ fn str_to_value(w: &str) -> Value {
     }
 }
 
-fn run_program(program: &mut Vec<AssemBunnyInstruction>) -> HashMap<Register, i32> {
+fn run_program(program: &mut [AssemBunnyInstruction]) -> HashMap<Register, i32> {
     let mut registers: HashMap<Register,i32> = HashMap::new();
     registers.insert(Register::A, 12);
 
@@ -127,7 +127,7 @@ fn run_program(program: &mut Vec<AssemBunnyInstruction>) -> HashMap<Register, i3
             AssemBunnyInstruction::Toggle(value) => {
                 let offset = match value {
                     Value::Literal(v) => *v,
-                    Value::RegisterValue(r) => *registers.get(&r).unwrap_or(&0)
+                    Value::RegisterValue(r) => *registers.get(r).unwrap_or(&0)
                 };
                 let location_to_flip = program_counter + offset;
                 if location_to_flip >= 0 && location_to_flip < program.len()  as i32 {

@@ -11,15 +11,10 @@ enum SeatPosition {
 }
 
 impl Clone for SeatPosition{
-    fn clone(&self) -> SeatPosition {
-        match self {
-            SeatPosition::Empty => SeatPosition::Empty,
-            SeatPosition::Occupied => SeatPosition::Occupied,
-            SeatPosition::Floor => SeatPosition::Floor,
-            SeatPosition::OutOfBounds => SeatPosition::OutOfBounds
-        }
-    }
+    fn clone(&self) -> SeatPosition { *self }
 }
+
+type SeatPlan = HashMap<Coordinate, SeatPosition>;
 
 #[derive(Copy,Clone,PartialEq,Eq,Hash,Debug)]
 struct Coordinate {
@@ -35,7 +30,7 @@ fn main() -> Result<(), Error> {
 }
 
 fn run_sim(mut seatplan: HashMap<Coordinate, SeatPosition>, 
-         neighbour_map: fn(seatplan: &HashMap<Coordinate, SeatPosition>) -> HashMap<Coordinate, Vec<Coordinate>>,
+         neighbour_map: fn(seatplan: &SeatPlan) -> HashMap<Coordinate, Vec<Coordinate>>,
          threshold: i64
         ) -> i64 {
     let neighbour_map = neighbour_map(&seatplan);
@@ -89,7 +84,7 @@ fn get_neighbour_count(seatplan: &HashMap<Coordinate, SeatPosition>,
     let mut neighbours: Vec<SeatPosition> = Vec::new();
     for neighbour in neighbour_list
     {
-        neighbours.push(*seatplan.get(&neighbour).unwrap_or(&SeatPosition::OutOfBounds));
+        neighbours.push(*seatplan.get(neighbour).unwrap_or(&SeatPosition::OutOfBounds));
     }
     neighbours.iter().filter(|&&n| n == SeatPosition::Occupied).count() as i64
 }
@@ -100,16 +95,16 @@ fn part_1_neighbour_map(seatplan: &HashMap<Coordinate, SeatPosition>) -> HashMap
         let x = seat.x;
         let y = seat.y; 
         for neighbour in [
-            Coordinate{x:x,   y:y+1},
+            Coordinate{x,     y:y+1},
             Coordinate{x:x+1, y:y+1}, 
-            Coordinate{x:x+1, y:y},
+            Coordinate{x:x+1, y},
             Coordinate{x:x-1, y: y+1}
             ] {
                 match seatplan.get(&neighbour) {
                     Some(SeatPosition::Floor) | None => {},
                     _  =>  { 
-                        mappings.entry(*seat).or_insert(Vec::new()).push(neighbour); 
-                        mappings.entry(neighbour).or_insert(Vec::new()).push(*seat);}
+                        mappings.entry(*seat).or_default().push(neighbour); 
+                        mappings.entry(neighbour).or_default().push(*seat);}
                 }
         }   
             
@@ -128,8 +123,8 @@ fn part_2_neighbour_map(seatplan: &HashMap<Coordinate, SeatPosition>) -> HashMap
             }
             if seatplan.get(&(Coordinate{x: seat.x + (direction.0 * factor), y: seat.y + (direction.1 * factor)}))
                     .unwrap_or(&SeatPosition::OutOfBounds) == &SeatPosition::Empty {
-                mappings.entry(*seat).or_insert(Vec::new()).push(Coordinate{x: seat.x + (direction.0 * factor), y: seat.y + (direction.1 * factor)}); 
-                mappings.entry(Coordinate{x: seat.x + (direction.0 * factor), y: seat.y + (direction.1 * factor)}).or_insert(Vec::new()).push(*seat);    
+                mappings.entry(*seat).or_default().push(Coordinate{x: seat.x + (direction.0 * factor), y: seat.y + (direction.1 * factor)}); 
+                mappings.entry(Coordinate{x: seat.x + (direction.0 * factor), y: seat.y + (direction.1 * factor)}).or_default().push(*seat);    
             }
         }   
             

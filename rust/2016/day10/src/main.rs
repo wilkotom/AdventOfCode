@@ -58,11 +58,11 @@ fn main() {
         }
     }
 
-    while assignments.len() > 0 {
+    while !assignments.is_empty() {
         let assignment = assignments.pop_front().unwrap();
         match assignment.destination {
             Destination::Bot(n) => {
-                let mut robot = robots.get_mut(&n).unwrap();
+                let robot = robots.get_mut(&n).unwrap();
                 match robot.holding {
                     Holding::Nothing => {
                         robot.holding = Holding::Chip(assignment.value);

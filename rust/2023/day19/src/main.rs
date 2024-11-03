@@ -153,84 +153,84 @@ fn get_rule_result_part2(rules: &[ComparisonRule], mut range: MachinePartRange) 
                 } else if range.upper.x > rule.value {
                     let mut upper_split = range;
                     upper_split.lower.x = rule.value +1;
-                    results.push((rule.destination.clone(), upper_split));
+                    results.push((rule.destination, upper_split));
                     range.upper.x = rule.value;
                 }
             },
             ('x', Threshold::Lesser) => {
                 if range.upper.x < rule.value {
-                    results.push((rule.destination.clone(), range));
+                    results.push((rule.destination, range));
                     break;
                 } else if range.lower.x < rule.value {
                     let mut lower_split = range;
                     lower_split.upper.x = rule.value-1;
-                    results.push((rule.destination.clone(), lower_split));
+                    results.push((rule.destination, lower_split));
                     range.lower.x = rule.value;
                 }
             },
             ('m', Threshold::Greater) => {
                 if range.lower.m > rule.value {
-                    results.push((rule.destination.clone(), range));
+                    results.push((rule.destination, range));
                     break;
                 } else if range.upper.m > rule.value {
                     let mut upper_split = range;
                     upper_split.lower.m = rule.value +1;
-                    results.push((rule.destination.clone(), upper_split));
+                    results.push((rule.destination, upper_split));
                     range.upper.m = rule.value;
                 }
             },
             ('m', Threshold::Lesser) => {
                 if range.upper.m < rule.value {
-                    results.push((rule.destination.clone(), range));
+                    results.push((rule.destination, range));
                     break;
                 } else if range.lower.m < rule.value {
                     let mut lower_split = range;
                     lower_split.upper.m = rule.value-1;
-                    results.push((rule.destination.clone(), lower_split));
+                    results.push((rule.destination, lower_split));
                     range.lower.m = rule.value;
                 }
             },
             ('a', Threshold::Greater) => {
                 if range.lower.a > rule.value {
-                    results.push((rule.destination.clone(), range));
+                    results.push((rule.destination, range));
                     break;
                 } else if range.upper.a > rule.value {
                     let mut upper_split = range;
                     upper_split.lower.a = rule.value +1;
-                    results.push((rule.destination.clone(), upper_split));
+                    results.push((rule.destination, upper_split));
                     range.upper.a = rule.value;
                 }
             },
             ('a', Threshold::Lesser) => {
                 if range.upper.a < rule.value {
-                    results.push((rule.destination.clone(), range));
+                    results.push((rule.destination, range));
                     break;
                 } else if range.lower.a < rule.value {
                     let mut lower_split = range;
                     lower_split.upper.a = rule.value-1;
-                    results.push((rule.destination.clone(), lower_split));
+                    results.push((rule.destination, lower_split));
                     range.lower.a = rule.value;
                 }
             },
             ('s', Threshold::Greater) => {
                 if range.lower.s > rule.value {
-                    results.push((rule.destination.clone(), range));
+                    results.push((rule.destination, range));
                     break;
                 } else if range.upper.s > rule.value {
                     let mut upper_split = range;
                     upper_split.lower.s = rule.value +1;
-                    results.push((rule.destination.clone(), upper_split));
+                    results.push((rule.destination, upper_split));
                     range.upper.s = rule.value;
                 }
             },
             ('s', Threshold::Lesser) => {
                 if range.upper.s < rule.value {
-                    results.push((rule.destination.clone(), range));
+                    results.push((rule.destination, range));
                     break;
                 } else if  range.lower.s < rule.value {
                     let mut lower_split = range;
                     lower_split.upper.s = rule.value-1;
-                    results.push((rule.destination.clone(), lower_split));
+                    results.push((rule.destination, lower_split));
                     range.lower.s = rule.value;
                 }
             },

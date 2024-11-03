@@ -74,7 +74,7 @@ fn generation(plants: &str, leftmost: i128, mappings: &HashMap<String,char>) -> 
     for i in 2..plants.len()-2 {
         let next_plant = *mappings.get(&plants[i-2..=i+2]).unwrap_or(&'.');
         next_gen.push(next_plant);
-        if next_plant == '#' && start == None {
+        if next_plant == '#' && start.is_none() {
             start = Some(i as i128 -4 + leftmost);
         }
     }

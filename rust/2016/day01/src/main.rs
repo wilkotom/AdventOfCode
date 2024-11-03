@@ -20,7 +20,7 @@ struct Location {
 }
 
 fn main() {
-    let directions = std::fs::read_to_string(String::from("./input.txt")).unwrap().split(", ").map(|x| String::from(x)).collect::<Vec<_>>();
+    let directions = std::fs::read_to_string(String::from("./input.txt")).unwrap().split(", ").map(String::from).collect::<Vec<_>>();
 
     let mut location = Location{facing: CompassDirection::North, loc: Coordinate{x: 0, y: 0}};
     let mut visited_locations: HashSet<Coordinate> = HashSet::new();
@@ -52,7 +52,7 @@ fn main() {
                     location.loc.y += 1;
                     distance -= 1;
                     if visited_locations.contains(&location.loc) {
-                        if first_unvisited == None {
+                        if first_unvisited.is_none() {
                             first_unvisited = Some(location.loc);
                         }
                     } else {
@@ -65,7 +65,7 @@ fn main() {
                     location.loc.y -= 1;
                     distance -= 1;
                     if visited_locations.contains(&location.loc) {
-                        if first_unvisited == None {
+                        if first_unvisited.is_none() {
                             first_unvisited = Some(location.loc);
                         }
                     }
@@ -79,7 +79,7 @@ fn main() {
                     location.loc.x += 1;
                     distance -= 1;
                     if visited_locations.contains(&location.loc) {
-                        if first_unvisited == None {
+                        if first_unvisited.is_none() {
                             first_unvisited = Some(location.loc);
                         }
                     } else {
@@ -92,7 +92,7 @@ fn main() {
                     location.loc.x -= 1;
                     distance -= 1;
                     if visited_locations.contains(&location.loc) {
-                        if first_unvisited == None {
+                        if first_unvisited.is_none() {
                             first_unvisited = Some(location.loc);
                         }
                     } else {

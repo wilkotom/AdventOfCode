@@ -27,7 +27,7 @@ fn main() {
     println!("Part 1: {}\nPart 2: {}", node.metadata_sum(), node.node_value());
 }
 
-fn parse_packet(mut packet: &mut Vec<usize>) -> Node {
+fn parse_packet(packet: &mut Vec<usize>) -> Node {
     let mut child_count = packet.pop().unwrap();
     let mut metadata_count = packet.pop().unwrap();
     let mut node = Node{ child_nodes: vec![], metadata: vec![]};

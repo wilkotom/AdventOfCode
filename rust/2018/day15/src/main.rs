@@ -43,7 +43,7 @@ impl Ord for Coordinate {
 
 impl PartialOrd for Coordinate {
     fn partial_cmp(&self, other: &Self) -> Option<Ordering>{
-        Some(self.cmp(&other))
+        Some(self.cmp(other))
     }
 }
 
@@ -75,7 +75,7 @@ impl Ord for SquareDistance {
 
 impl PartialOrd for SquareDistance {
     fn partial_cmp(&self, other: &Self) -> Option<Ordering>{
-        Some(self.cmp(&other))
+        Some(self.cmp(other))
     }
 
 
@@ -303,7 +303,7 @@ fn get_distances(location: Coordinate, arena: &HashMap<Coordinate,Square>) -> Ha
 
 
 fn display_arena(arena: &HashMap<Coordinate,Square>) {
-    let (top_left, bottom_right) = arena_dimensions(&arena);
+    let (top_left, bottom_right) = arena_dimensions(arena);
 
     for y in top_left.y..=bottom_right.y {
         let mut health_details = vec![];

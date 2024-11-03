@@ -2,7 +2,6 @@ use std::fs::read_to_string;
 
 #[derive(Debug,Clone)]
 struct Ingredient {
-    name: String,
     capacity: i32,
     durability: i32,
     flavour: i32,
@@ -16,13 +15,12 @@ fn main() {
     let mut ingredients = Vec::new();
     for line in data.split('\n') {
         let tokens = line.split_ascii_whitespace().collect::<Vec<_>>();
-        let name = tokens[0][..tokens[0].len() -1].to_owned();
         let capacity = tokens[2][..tokens[2].len() -1].parse::<i32>().unwrap();
         let durability = tokens[4][..tokens[4].len() -1].parse::<i32>().unwrap();
         let flavour = tokens[6][..tokens[6].len() -1].parse::<i32>().unwrap();
         let texture = tokens[8][..tokens[8].len() -1].parse::<i32>().unwrap();
         let calories = tokens[10].parse::<i32>().unwrap();
-        ingredients.push(Ingredient{name, capacity,durability,flavour,texture,calories});
+        ingredients.push(Ingredient{capacity,durability,flavour,texture,calories});
     }
     let mut max_score_part1 = 0;
     let mut max_score_part2 = 0;

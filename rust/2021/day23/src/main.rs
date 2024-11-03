@@ -82,7 +82,7 @@ fn main() {
     let mut heap = BinaryHeap::new();
     heap.push(starting_state);
 
-    let bin_requirements = vec![Amphipod::Amber, Amphipod::Bronze, Amphipod::Copper, Amphipod::Desert];
+    let bin_requirements = [Amphipod::Amber, Amphipod::Bronze, Amphipod::Copper, Amphipod::Desert];
 
     let mut seen: HashSet<(Vec<Square>, Vec<Vec<Amphipod>>)> = HashSet::new();
     while let Some(state) = heap.pop() {

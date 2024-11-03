@@ -9,7 +9,7 @@ struct AttackGroup {
     initiative: i32,
     attack_damage: i32,
     attack_type: String,
-    is_immune_system: bool,
+    // is_immune_system: bool,
     id: usize,
     boost: i32
 }
@@ -117,7 +117,7 @@ fn combat(battlefield: (Vec<AttackGroup>, Vec<AttackGroup>)) -> (i32, i32){
         }
         let mut initiatives = immune_system.iter().map(|g| g.initiative).collect::<Vec<_>>();
         initiatives.append(&mut infection.iter().map(|g| g.initiative).collect::<Vec<_>>());
-        initiatives.sort_by(|a,b| b.cmp(&a));
+        initiatives.sort_by(|a,b| b.cmp(a));
         for initiative in initiatives {
             for immune_unit in &immune_system {
                 if immune_unit.initiative == initiative  && immune_unit.unit_count > 0{
@@ -137,7 +137,7 @@ fn combat(battlefield: (Vec<AttackGroup>, Vec<AttackGroup>)) -> (i32, i32){
                 if infection_unit.initiative == initiative && infection_unit.unit_count > 0{
                    for target in immune_system.iter_mut() {
                        if infection_targets.contains_key(&infection_unit.id) && target.id == infection_targets[&infection_unit.id] {
-                           let damage_done = infection_unit.damage_done(&target);
+                           let damage_done = infection_unit.damage_done(target);
                            let units_killed = target.unit_count.min(damage_done / target.unit_hit_points);
                            target.unit_count -= units_killed;
 
@@ -158,12 +158,12 @@ fn combat(battlefield: (Vec<AttackGroup>, Vec<AttackGroup>)) -> (i32, i32){
 fn parse_input(filename: &str) -> (Vec<AttackGroup>, Vec<AttackGroup>) {
     let input = read_to_string(filename).unwrap();
     let mut armies = input.split("\n\n");
-    let immune_system =  return_attack_groups(armies.next().unwrap(), true);
-    let infection =  return_attack_groups(armies.next().unwrap(), false);
+    let immune_system =  return_attack_groups(armies.next().unwrap());
+    let infection =  return_attack_groups(armies.next().unwrap());
     (immune_system, infection)
 }
 
-fn return_attack_groups(raw_input: &str, is_immune_system: bool) -> Vec<AttackGroup> {
+fn return_attack_groups(raw_input: &str) -> Vec<AttackGroup> {
 
     let mut lines = raw_input.split('\n');
 
@@ -219,7 +219,7 @@ fn return_attack_groups(raw_input: &str, is_immune_system: bool) -> Vec<AttackGr
             immunities: immunities.iter().map(|x| x.to_string()).collect::<Vec<_>>(), 
             initiative, attack_damage: attack_power, 
             attack_type, 
-            is_immune_system, 
+            // is_immune_system, 
             id: id+1,
             boost: 0
             };

@@ -45,8 +45,8 @@ fn main() {
 fn collapse_poly(mut poly: Vec<Unit>, skip: char) -> usize {
     let mut ptr = 0;
     while poly.get(ptr).unwrap().next.is_some() {
-        let cur = poly.get(ptr).unwrap().clone();
-        let next = poly.get(cur.next.unwrap()).unwrap().clone();
+        let cur = *poly.get(ptr).unwrap();
+        let next = *poly.get(cur.next.unwrap()).unwrap();
         if cur.label == skip {
             let previous = cur.prev.unwrap();
             poly.get_mut(previous).unwrap().next = cur.next;
@@ -64,7 +64,7 @@ fn collapse_poly(mut poly: Vec<Unit>, skip: char) -> usize {
             ptr = cur.next.unwrap();
          }
     }
-    let mut ptr = poly.get(0).unwrap().next;
+    let mut ptr = poly.first().unwrap().next;
     let mut counter = 0;
     while ptr.is_some() {
         ptr = poly.get(ptr.unwrap()).unwrap().next;

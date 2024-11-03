@@ -50,8 +50,8 @@ fn main() {
     let mut grid = read_grid("./input.txt");
     let mut next = vec![Coordinate{x:500, y:grid.min_y()}];
     
-    while !next.is_empty() {
-        let location = next.pop().unwrap();
+    while let Some(location) = next.pop() {
+        
         if location.y > grid.max_y() {
             continue;
         }

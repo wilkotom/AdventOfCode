@@ -13,14 +13,14 @@ fn main() {
 fn create_decks(filename: String) -> (VecDeque<usize>, VecDeque<usize>) {
     let mut players: Vec<VecDeque<usize>> = Vec::new();
     for player_details in std::fs::read_to_string(filename).unwrap_or("".to_string()).split("\n\n") {
-        let cards = player_details.split(":\n").into_iter().last().unwrap().split("\n").map(|x| x.parse::<usize>().unwrap()).collect::<VecDeque<_>>();
+        let cards = player_details.split(":\n").last().unwrap().split("\n").map(|x| x.parse::<usize>().unwrap()).collect::<VecDeque<_>>();
         players.push(cards);
     }
     (players.pop().unwrap(), players.pop().unwrap())
 }
 
 fn play_combat(mut player1: VecDeque<usize>, mut player2: VecDeque<usize>) -> usize {
-    while player1.len() != 0 && player2.len() != 0 {
+    while !player1.is_empty() && !player2.is_empty() {
         let p1 = player1.pop_front().unwrap();
         let p2 = player2.pop_front().unwrap();
         if p1 > p2 {
@@ -31,7 +31,7 @@ fn play_combat(mut player1: VecDeque<usize>, mut player2: VecDeque<usize>) -> us
             player2.push_back(p1);
         }
     }
-    if player1.len() > 0 {
+    if !player1.is_empty() {
         score_hand(player1)
     } else {
         score_hand(player2)
@@ -42,7 +42,7 @@ fn play_combat(mut player1: VecDeque<usize>, mut player2: VecDeque<usize>) -> us
 
 fn play_recursive_combat(mut player1: VecDeque<usize>, mut player2: VecDeque<usize>) -> (usize,usize) {
     let mut seen_hands: HashSet<(usize,usize)> = HashSet::new();
-    while player1.len() != 0 && player2.len() != 0 {
+    while !player1.is_empty() && !player2.is_empty() {
          let scores = (score_hand(player1.clone()), score_hand(player2.clone()));
         if seen_hands.contains(&scores) {
             return (scores.0,0);
@@ -80,7 +80,7 @@ fn play_recursive_combat(mut player1: VecDeque<usize>, mut player2: VecDeque<usi
 fn score_hand(mut hand: VecDeque<usize>) -> usize {
     let mut multiplier = 1;
     let mut score: usize = 0;
-    while hand.len() > 0 {
+    while !hand.is_empty() {
         score += hand.pop_back().unwrap() * multiplier;
         multiplier += 1;
     }

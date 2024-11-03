@@ -39,7 +39,7 @@ fn parse_part_2(expressions: &Vec<Vec<char>>) -> Vec<Vec<ExpressionEntry>> {
                 '+' => oper_stack.push_back(ExpressionEntry::Add),
 
                 '*' =>{
-                    if oper_stack.len() > 0 {
+                    if !oper_stack.is_empty() {
                         let mut stack_top = oper_stack.pop_back().unwrap_or(ExpressionEntry::OpeningParen);
                         while stack_top == ExpressionEntry::Add {
                             rpn.push(ExpressionEntry::Add);

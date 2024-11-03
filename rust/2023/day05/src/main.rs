@@ -21,7 +21,7 @@ struct Almanac {
 
 
 fn main() -> Result<(), Box<dyn Error>>{
-    let data = get_daily_input(05,2023)?;
+    let data = get_daily_input(5,2023)?;
     let almanac = parse_almanac(&data);
     println!("Part 1: {}", part1(&almanac));
     println!("Part 2: {}", part2(&almanac));

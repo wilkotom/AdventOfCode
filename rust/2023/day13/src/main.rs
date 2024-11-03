@@ -8,14 +8,14 @@ fn main() -> Result<(), Box<dyn Error>>{
     Ok(())
 }
 
-fn score_mirror(grid: &str, find_fn: fn(&Vec<String>) -> Option<usize> ) -> usize {
+fn score_mirror(grid: &str, find_fn: fn(&[String]) -> Option<usize> ) -> usize {
     let lines = grid.split('\n').map(|c| c.to_owned()).collect::<Vec<String>>();
     let vertical_reflection = find_fn(&lines).unwrap_or(0);
     let horizontal_reflection = find_fn(&reflect_grid(&lines)).unwrap_or(0);
     vertical_reflection + 100* horizontal_reflection
 }
 
-fn find_reflection_line(grid: &Vec<String>) -> Option<usize> {
+fn find_reflection_line(grid: &[String]) -> Option<usize> {
     let mut symmetries  = line_reflection_points(&grid[0]);
     for line in grid {
         let new_symmetries = line_reflection_points(line);
@@ -24,7 +24,7 @@ fn find_reflection_line(grid: &Vec<String>) -> Option<usize> {
     symmetries.iter().next().copied()
 }
 
-fn find_smudge_line(grid: &Vec<String>) -> Option<usize> {
+fn find_smudge_line(grid: &[String]) -> Option<usize> {
     let mut symmetry_counts = HashMap::new();
     for new_symmetries in grid.iter().map(line_reflection_points) {
         for symmetry in new_symmetries {

@@ -45,13 +45,11 @@ impl PartialOrd for Equipment {
 
 
 fn main() {
-    let weapons = vec![
-        Object{name: "Dagger".to_owned(), cost: 8, damage: 4, armour: 0},
+    let weapons = [Object{name: "Dagger".to_owned(), cost: 8, damage: 4, armour: 0},
         Object{name: "Shortsword".to_owned(), cost: 10, damage: 5, armour: 0},
         Object{name: "Warhammer".to_owned(), cost: 25, damage: 6, armour: 0},
         Object{name: "Longsword".to_owned(), cost: 40, damage: 7, armour: 0},
-        Object{name: "Greataxe".to_owned(), cost: 74, damage: 8, armour: 0},
-    ];
+        Object{name: "Greataxe".to_owned(), cost: 74, damage: 8, armour: 0}];
     let armours = vec![
         Object{name: "Nothing".to_owned(), cost: 0, damage: 0, armour: 0},
         Object{name: "Leather Armour".to_owned(), cost: 13, damage: 0, armour: 1},

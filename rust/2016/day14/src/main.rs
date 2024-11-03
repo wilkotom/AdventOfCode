@@ -1,6 +1,5 @@
 use std::collections::HashMap;
 
-use md5;
 
 const SALT: &str = "jlmsuwbz";
 

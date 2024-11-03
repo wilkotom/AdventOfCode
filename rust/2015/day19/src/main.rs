@@ -33,7 +33,7 @@ fn main() {
         let mut mapping = line.split(" => ");
         let ingredient = mapping.next().unwrap();
         let result = mapping.next().unwrap();
-        mappings.entry(ingredient.to_owned()).or_insert_with(Vec::new).push(result.to_owned());
+        mappings.entry(ingredient.to_owned()).or_default().push(result.to_owned());
         reverse_mappings.insert(result.to_owned(), ingredient.to_owned());
     
     }
@@ -88,7 +88,7 @@ fn split_molecule(molecule: &str) -> Vec<String> {
     let mut result = Vec::new();
     let mut current = "".to_owned();
     for c in molecule.chars() {
-        if ('A'..='Z').contains(&c) {
+        if c.is_ascii_uppercase() {
             if !current.is_empty() {
                 result.push(current);
             }

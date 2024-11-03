@@ -29,7 +29,7 @@ fn follow_directions(directions: &str, map: &HashMap<Label, NextStage>, start: &
 }
 
 fn direct_ghosts(directions: &str, map: &HashMap<Label, NextStage>) -> usize {
-    map.keys().filter(|x| x.ends_with('A')).map(|x| follow_directions(directions, map, &x)).reduce(lcm).unwrap()
+    map.keys().filter(|x| x.ends_with('A')).map(|x| follow_directions(directions, map, x)).reduce(lcm).unwrap()
 }
 
 fn parse_data(data: &str) -> (String, HashMap<Label, NextStage>) {

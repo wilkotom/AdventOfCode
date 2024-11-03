@@ -44,9 +44,9 @@ fn validate_springs(springs: &str, counts: &[usize], cache: &mut HashMap<(String
         return *res
     } else if let Some(word) = springs.strip_prefix('.') {
         validate_springs(word, counts, cache)
-    } else if springs.starts_with('?') {
+    } else if let Some(stripped) = springs.strip_prefix('?') {
         let unknown_is_spring: String = springs.replacen('?', "#", 1);
-        validate_springs(&unknown_is_spring, counts, cache) + validate_springs(&springs[1..], counts, cache)
+        validate_springs(&unknown_is_spring, counts, cache) + validate_springs(stripped, counts, cache)
     } else if springs.is_empty() {
         counts.is_empty() as usize
     } else if counts.is_empty() && springs.contains('#') || 

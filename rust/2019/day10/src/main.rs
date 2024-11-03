@@ -60,8 +60,8 @@ fn visible_others(x: isize, y: isize, field: &HashSet<(isize,isize)>) -> HashMap
         // Rust doesn't allow hashing of floating point numbers, and working in large multiples of pi radians is 
         // less easy on the mental arithmetic.
         let angle = (36000 - ((((x - asteroid_x) as f64 ).atan2((y - asteroid_y) as f64) / PI) * 18000_f64) as i64) % 36000;
-        results.entry(angle as i64).or_insert_with(Vec::new);
-        results.get_mut(&(angle as i64)).unwrap().push((*asteroid_x, *asteroid_y));
+        results.entry(angle).or_insert_with(Vec::new);
+        results.get_mut(&{ angle }).unwrap().push((*asteroid_x, *asteroid_y));
     }
 
     results

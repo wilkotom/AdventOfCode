@@ -26,7 +26,7 @@ fn main() {
         let result = knot_hash(&format!("vbqugkhl-{}",y));
         counter += result.chars().filter(|c| *c == '1').count();
         for (x, c) in result.chars().enumerate() {
-            grid.insert(Coordinate{x: x as i32, y: y as i32}, c == '1');
+            grid.insert(Coordinate{x: x as i32, y}, c == '1');
         }
     }
     println!("Part 1: {}", counter);

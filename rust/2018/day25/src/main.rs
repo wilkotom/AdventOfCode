@@ -31,8 +31,7 @@ fn pull_constellation(points: Vec<Point>) -> (HashSet<Point>, Vec<Point>) {
     let mut constellation = HashSet::new();
     let start = points[0];
     let mut unevaluated = vec![start];
-    while ! unevaluated.is_empty() {
-        let next_point = unevaluated.pop().unwrap();
+    while let Some(next_point) = unevaluated.pop() {
         constellation.insert(next_point);
         for point in &points {
             if ! constellation.contains(point) && next_point.distance(point) <= 3{

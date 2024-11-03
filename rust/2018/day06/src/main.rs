@@ -1,4 +1,4 @@
-use hashbrown::{HashMap, HashSet};
+use std::collections::{HashMap, HashSet};
 use itertools::Itertools;
 
 #[derive(Debug,Clone,Copy,Hash, Eq, PartialEq)]
@@ -31,9 +31,9 @@ fn main() {
             for coord in coords.iter() {
                 let distance = (x - coord.x).abs() + (y - coord.y).abs(); 
                 area_map.entry(Coordinate{x, y})
-                    .or_insert(HashMap::new())
+                    .or_default()
                     .entry(distance)
-                    .or_insert(vec![])
+                    .or_default()
                     .push(*coord);
                 all_distances += distance;
             }
@@ -45,13 +45,13 @@ fn main() {
     let mut infinite = HashSet::new();
     let mut square_radii = HashMap::new();
     for (point, distances) in area_map{
-        let points = distances.get(&distances.keys().sorted().next().unwrap()).unwrap();
+        let points = distances.get(distances.keys().sorted().next().unwrap()).unwrap();
         if point.x == min_x || point.x == max_x || point.y == min_y || point.y == max_y && points.len() == 1 {
-            infinite.insert(points.iter().next().unwrap().clone());
+            infinite.insert(*points.iter().next().unwrap());
         } else if points.len() ==1 {
             let target = points.iter().next().unwrap();
             square_radii.entry(*target).or_insert(0);
-            *square_radii.get_mut(&target).unwrap() += 1;
+            *square_radii.get_mut(target).unwrap() += 1;
         }
     }
     

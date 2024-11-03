@@ -20,7 +20,7 @@ fn main() {
     println!("Part 2: {}" , programs.iter().collect::<String>())
 }
 
-fn dance(programs: &mut Vec<char>, instructions: &str) {
+fn dance(programs: &mut [char], instructions: &str) {
     for dance_move in instructions.split(',') {
         match dance_move.chars().next() {
             Some('s') => {

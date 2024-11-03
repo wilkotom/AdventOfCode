@@ -34,7 +34,6 @@ impl AddAssign for Coordinate {
 struct Planet  {
 	position: Coordinate,
 	velocity: Coordinate,
-	period: Coordinate,
 	start_pos: Coordinate,
 	start_velocity: Coordinate
 }
@@ -144,7 +143,6 @@ fn read_planets(filename: &str) -> Vec<Planet>{
         let z = fields.next().unwrap()[2..].strip_suffix('>').unwrap().parse::<i32>().unwrap();
         planets.push(  Planet{ position: Coordinate{x, y, z }, 
             velocity: zeroed,
-            period: zeroed,
             start_pos: Coordinate{x, y, z },
             start_velocity: zeroed});
     }

@@ -1,4 +1,3 @@
-use hashbrown::HashMap;
 use cached::proc_macro::cached;
 
 fn main() {

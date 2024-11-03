@@ -170,9 +170,11 @@ fn parse_data(data: &str) -> Vec<Hailstone> {
     hailstones
 }
 
+#[cfg(test)]
 mod tests {
 
-    use super::*; 
+    use super::*;
+
     const DATA: &str = 
 "19, 13, 30 @ -2, 1, -2
 18, 19, 22 @ -1, -1, -2

@@ -8,7 +8,7 @@ struct Coordinate {
 
 fn main() {
     let file = std::fs::read_to_string(String::from("./input.txt")).unwrap();
-    let instructions: Vec<_> = file.split("\n").map(|x| String::from(x)).collect();
+    let instructions: Vec<_> = file.split("\n").map(String::from).collect();
     let mut display: HashMap<Coordinate,bool> = HashMap::new();
     for x in 0..50 {
         for y in 0..6 {
@@ -16,7 +16,7 @@ fn main() {
         }
     }
     execute_instructions(&mut display, instructions);
-    let lit_pixels = display.values().filter(|&&x| x == true).collect::<Vec<_>>().len();
+    let lit_pixels = display.values().filter(|&&x| x).collect::<Vec<_>>().len();
     println!("Lit pixels: {}", lit_pixels);
 }
 
@@ -37,11 +37,11 @@ fn execute_instructions(display: &mut HashMap<Coordinate,bool>, instructions: Ve
             },
             "rotate" => {
                 let dist = tokens[4].parse::<i32>().unwrap();
-                let selector = *&tokens[2][2..].parse::<usize>().unwrap();
+                let selector = tokens[2][2..].parse::<usize>().unwrap();
                 match tokens[1] {
                     "row" => {
                         let mut row: Vec<bool> = Vec::new();
-                        for x in 0..50 as usize{
+                        for x in 0..50_usize{
                             let y = selector;
                             row.push( *display.get(&Coordinate{x,y}).unwrap());
                         }
@@ -49,15 +49,15 @@ fn execute_instructions(display: &mut HashMap<Coordinate,bool>, instructions: Ve
                             let t = row.pop().unwrap();
                             row.insert(0, t);
                         }
-                        for x  in 0..50 as usize{
+                        for (x,v)  in row.iter().take(50).enumerate() {
                             let y = selector;
-                            display.insert(Coordinate{x ,y}, row[x]);
+                            display.insert(Coordinate{x ,y}, *v);
                         }
 
                     },
                     "column" => {
                         let mut col: Vec<bool> = Vec::new();
-                        for y in 0..6 as usize{
+                        for y in 0..6_usize{
                             let x = selector;
                             col.push( *display.get(&Coordinate{x,y}).unwrap());
                         }
@@ -65,9 +65,9 @@ fn execute_instructions(display: &mut HashMap<Coordinate,bool>, instructions: Ve
                             let t = col.pop().unwrap();
                             col.insert(0, t);
                         }
-                        for y  in 0..6 as usize{
+                        for (y, v)  in col.iter().take(6).enumerate(){
                             let x = selector;
-                            display.insert(Coordinate{x ,y}, col[y]);
+                            display.insert(Coordinate{x ,y}, *v);
                         }
                     },
                     _ => {}
@@ -76,7 +76,7 @@ fn execute_instructions(display: &mut HashMap<Coordinate,bool>, instructions: Ve
             _ => {}
         }
     }
-    print_display(&display);
+    print_display(display);
 }
 
 fn print_display(display: &HashMap<Coordinate,bool>) {

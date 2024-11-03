@@ -41,7 +41,7 @@ fn find_solution(starting_state: Vec<Vec<Object>>) -> usize {
     seen_states.insert((gen_hash(&starting_state.clone()),0));
 
     current_moves.push_back((0, starting_state, 0));
-    while current_moves.len() > 0 {
+    while !current_moves.is_empty() {
 
         let board = current_moves.pop_front().unwrap();
         let mut next_moves: VecDeque<(usize, Vec<Vec<Object>>, usize)> = VecDeque::new();
@@ -58,7 +58,7 @@ fn find_solution(starting_state: Vec<Vec<Object>>) -> usize {
             let mut next_state = state.clone();
             if floor > 0  && floor > first_occupied_floor(&state) { 
                 next_state[floor-1].push(item.clone());
-                next_state[floor] = next_state[floor].iter().filter(|x| x != &item).map(|x| x.clone()).collect();
+                next_state[floor] = next_state[floor].iter().filter(|x| x != &item).cloned().collect();
                 next_state[floor-1].sort();
                 next_state[floor].sort();
                 // push a state with 1 item moved down
@@ -72,7 +72,7 @@ fn find_solution(starting_state: Vec<Vec<Object>>) -> usize {
                 for item in next_state[floor].iter() {
                     let mut next_state = next_state.clone();
                     next_state[floor-1].push(item.clone());
-                    next_state[floor] = next_state[floor].iter().filter(|x| x != &item).map(|x| x.clone()).collect();
+                    next_state[floor] = next_state[floor].iter().filter(|x| x != &item).cloned().collect();
                     next_state[floor-1].sort();
                     next_state[floor].sort();
                     if is_valid_state(&next_state){
@@ -88,7 +88,7 @@ fn find_solution(starting_state: Vec<Vec<Object>>) -> usize {
             if floor < state.len() -1 { // don't try to go above the top floor
                 let mut next_state = state.clone();
                 next_state[floor+1].push(item.clone());
-                next_state[floor] = next_state[floor].iter().filter(|x| x != &item).map(|x| x.clone()).collect();
+                next_state[floor] = next_state[floor].iter().filter(|x| x != &item).cloned().collect();
                 next_state[floor+1].sort();
                 next_state[floor].sort();
                 // push a state with 1 item moved up
@@ -103,7 +103,7 @@ fn find_solution(starting_state: Vec<Vec<Object>>) -> usize {
                 for item in next_state[floor].iter() {
                     let mut next_state = next_state.clone();
                     next_state[floor+1].push(item.clone());
-                    next_state[floor] = next_state[floor].iter().filter(|x| x != &item).map(|x| x.clone()).collect();
+                    next_state[floor] = next_state[floor].iter().filter(|x| x != &item).cloned().collect();
                     next_state[floor+1].sort();
                     next_state[floor].sort();
                     if is_valid_state(&next_state){
@@ -121,7 +121,7 @@ fn find_solution(starting_state: Vec<Vec<Object>>) -> usize {
     0
 }
 
-fn is_valid_state(state: &Vec<Vec<Object>>) -> bool {
+fn is_valid_state(state: &[Vec<Object>]) -> bool {
     for floor in state.iter(){
         let mut generators: HashSet<String> = HashSet::new();
         let mut chips: HashSet<String> = HashSet::new();
@@ -132,7 +132,7 @@ fn is_valid_state(state: &Vec<Vec<Object>>) -> bool {
             }
         } 
         for chip in chips{
-            if generators.len() > 0 && !generators.contains(&chip) {
+            if !generators.is_empty() && !generators.contains(&chip) {
                 return false;
             }
         }
@@ -141,9 +141,9 @@ fn is_valid_state(state: &Vec<Vec<Object>>) -> bool {
     true
 }
 
-fn is_winning_state(state: &Vec<Vec<Object>>) -> bool {
+fn is_winning_state(state: &[Vec<Object>]) -> bool {
     for floor in &state[0..state.len()-1] {
-        if floor.len() > 0 {
+        if !floor.is_empty() {
             return false;
         }
     }
@@ -169,9 +169,9 @@ fn gen_hash(state: &Vec<Vec<Object>>) -> Vec<(usize, usize)> {
     result
 }
 
-fn first_occupied_floor(state: &Vec<Vec<Object>>) -> usize {
+fn first_occupied_floor(state: &[Vec<Object>]) -> usize {
     for (i, n) in state.iter().enumerate() {
-        if n.len() > 0 {
+        if !n.is_empty() {
             return i;
         }
     }

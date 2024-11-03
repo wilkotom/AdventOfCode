@@ -7,7 +7,6 @@ struct Coordinate {
 }
 
 enum NodeState {
-    Clean,
     Weakened,
     Infected,
     Flagged
@@ -102,7 +101,6 @@ fn part2(data: &str) {
                 map.insert(carrier.location, NodeState::Weakened);
                 carrier.turn_left();
             },
-            _ => {}
         }
 
         carrier.step()

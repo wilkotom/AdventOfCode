@@ -1,4 +1,3 @@
-use std::os::unix::raw::time_t;
 
 #[derive(Debug)]
 struct Disc {
@@ -13,8 +12,8 @@ fn main() {
     let mut discs: Vec<Disc> = Vec::new();
     for line in data.split("\n") {
         let words = line.split_ascii_whitespace().collect::<Vec<_>>();
-        let start_pos = *&words[11][0..&words[11].len()-1].parse::<isize>().unwrap() + *&words[1][1..].parse::<isize>().unwrap();
-        let period = *&words[3].parse::<isize>().unwrap();
+        let start_pos = words[11][0..&words[11].len()-1].parse::<isize>().unwrap() + words[1][1..].parse::<isize>().unwrap();
+        let period = words[3].parse::<isize>().unwrap();
         discs.push(Disc{period, start_pos})
     }
     let mut time = 0;

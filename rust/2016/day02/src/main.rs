@@ -116,7 +116,7 @@ fn main() {
         ]))
     ]);
 
-    let instructions = std::fs::read_to_string(String::from("./input.txt")).unwrap().split("\n").map(|x| String::from(x)).collect::<Vec<_>>();
+    let instructions = std::fs::read_to_string(String::from("./input.txt")).unwrap().split("\n").map(String::from).collect::<Vec<_>>();
     println!("{:?}", key_layout);
     let mut part_1_keypresses: Vec<i32> = Vec::new();
     let mut part_2_keypresses: Vec<i32> = Vec::new();

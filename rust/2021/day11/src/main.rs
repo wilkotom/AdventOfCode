@@ -43,7 +43,7 @@ fn main() {
         while flashed {
             flashed = false;
             for loc in locations {
-                let mut octopus = floor_map.get_mut(loc).unwrap();
+                let octopus = floor_map.get_mut(loc).unwrap();
                 if octopus.energy > 9 {
                     flash_count += 1;
                     octopus.energy = 0;

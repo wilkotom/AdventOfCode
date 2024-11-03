@@ -1,5 +1,4 @@
 use std::fs::read_to_string;
-use hashbrown::HashSet;
 
 #[derive(Debug,Hash,Eq,PartialEq, Copy, Clone)]
 struct Coordinate {

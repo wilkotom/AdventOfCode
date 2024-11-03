@@ -123,5 +123,5 @@ fn rock_tetris(data: &str,  rounds: i128) -> i128 {
         round +=1;
 
     }
-    (starting_y - 3) as i128
+    starting_y - 3
 }

@@ -41,10 +41,10 @@ fn read_instructions(filename: &str) -> Vec<AssemBunnyInstruction> {
                 AssemBunnyInstruction::Copy(str_to_value(words[1]), str_to_register(words[2]))
             },
             "inc" => {
-                AssemBunnyInstruction::Increment(str_to_register(&words[1]))
+                AssemBunnyInstruction::Increment(str_to_register(words[1]))
             },
             "dec" => {
-                AssemBunnyInstruction::Decrement(str_to_register(&words[1]))
+                AssemBunnyInstruction::Decrement(str_to_register(words[1]))
             },
             "jnz" => {
                 AssemBunnyInstruction::JumpIfNotZero(str_to_value(words[1]), str_to_value(words[2]))
@@ -87,26 +87,26 @@ fn run_program(program: Vec<AssemBunnyInstruction>) -> HashMap<Register, i32> {
             AssemBunnyInstruction::Copy(src, dst) => {
                 registers.insert(*dst, match src{
                     Value::Literal(v) => *v,
-                    Value::RegisterValue(r) => *registers.get(&r).unwrap_or(&0)
+                    Value::RegisterValue(r) => *registers.get(r).unwrap_or(&0)
                 });
                 program_counter += 1;
             },
             AssemBunnyInstruction::Increment(reg) => {
-                registers.insert(*reg, registers.get(&reg).unwrap_or(&0) + 1);
+                registers.insert(*reg, registers.get(reg).unwrap_or(&0) + 1);
                 program_counter += 1;
             },
             AssemBunnyInstruction::Decrement(reg) => {
-                registers.insert(*reg, registers.get(&reg).unwrap_or(&0) - 1);
+                registers.insert(*reg, registers.get(reg).unwrap_or(&0) - 1);
                 program_counter +=1;
             },
             AssemBunnyInstruction::JumpIfNotZero(value, increment) => {
                 program_counter += if match value {
                     Value::Literal(v) => *v,
-                    Value::RegisterValue(r) => *registers.get(&r).unwrap_or(&0)
+                    Value::RegisterValue(r) => *registers.get(r).unwrap_or(&0)
                 } != 0 {
                     match increment {
                         Value::Literal(v) => *v,
-                        Value::RegisterValue(r) => *registers.get(&r).unwrap_or(&0)
+                        Value::RegisterValue(r) => *registers.get(r).unwrap_or(&0)
                     }
                 } else {
                     1

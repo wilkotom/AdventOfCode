@@ -3,7 +3,7 @@ use std::collections::HashMap;
 
 
 fn main() {
-    let raw_file = fs::read_to_string("./input.txt".to_string()).unwrap();
+    let raw_file = fs::read_to_string("./input.txt").unwrap();
     let numbers: Vec<i64> = raw_file.split(",").map(|x| x.parse::<i64>().unwrap()).collect();
     let turns = 30000000;
     let mut spoken: HashMap<i64,i64> = HashMap::new();

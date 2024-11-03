@@ -26,8 +26,8 @@ fn main() {
             }
         }
         if complete {
-            while !stack.is_empty() {
-                let c = stack.pop().unwrap();
+            while let Some(c) = stack.pop() {
+                
                 line_score = (line_score * 5) + scores.get(&c).unwrap();
             }
             part2_scores.push(line_score);

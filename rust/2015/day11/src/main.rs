@@ -39,7 +39,7 @@ fn is_valid(password: &[char]) -> bool{
             ascending |= password[i] as u8 +1 == password[i+1] as u8 && password[i] as u8 +2 == password[i+2] as u8; 
         }
         if i < password.len() -1 {
-            if password[i] == password[i+1] && repeated == None {
+            if password[i] == password[i+1] && repeated.is_none() {
                 repeated = Some(password[i]);
             } else if password[i] == password[i+1] {
                 two_repeats |= Some(password[i]) != repeated;

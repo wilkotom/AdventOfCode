@@ -18,7 +18,7 @@ fn run_program(ip: usize, program: Vec<ProgramLine>) {
         if registers[ip] == 2 {
             println!("Need sum of factors for {}", registers[3])
         } 
-        let line = &program[registers[ip] as usize];
+        let line = &program[registers[ip]];
         // println!("{:?} {:?}", registers, line);
         execute(&line.instruction, &line.arguments, &mut registers);
         registers[ip] += 1;

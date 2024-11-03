@@ -1,4 +1,4 @@
-use std::{fs::read_to_string,thread, time::Duration, sync::mpsc::{Receiver, Sender}};
+use std::{fs::read_to_string,thread, time::Duration};
 use itertools::Itertools;
 
 use intcode::intcode::start_machine;

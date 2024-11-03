@@ -1,4 +1,4 @@
-use hashbrown::HashMap;
+use std::collections::HashMap;
 
 fn main() {
     let input = std::fs::read_to_string("./input.txt").unwrap();
@@ -34,7 +34,7 @@ fn main() {
     let mut max_sleep = 0;
     let mut sleepiest = 0;
     for guard in guards.keys() {
-        let sleeping_time: usize = guards.get(&guard).unwrap().iter().sum();
+        let sleeping_time: usize = guards.get(guard).unwrap().iter().sum();
         if sleeping_time > max_sleep {
             max_sleep = sleeping_time;
             sleepiest = *guard;
@@ -51,7 +51,7 @@ fn main() {
     let mut max_sleep = 0;
     let mut sleepiest = 0;
     for guard in guards.keys() {
-        let sleeping_time: usize = *guards.get(&guard).unwrap().iter().max().unwrap();
+        let sleeping_time: usize = *guards.get(guard).unwrap().iter().max().unwrap();
         if sleeping_time > max_sleep {
             max_sleep = sleeping_time;
             sleepiest = *guard;

@@ -62,8 +62,8 @@ fn read_maze(ascii_map: &str) -> HashMap<Coordinate, MazeSquare> {
                 '#' => MazeSquare::Wall,
                 '.' => MazeSquare::Corridor,
                 '@' => MazeSquare::Entrance,
-                k if ('a'..='z').contains(&k) => MazeSquare::Key(k),
-                d if ('A'..='Z').contains(&d) => MazeSquare::Door(d.to_lowercase().next().unwrap()),
+                k if k.is_ascii_lowercase() => MazeSquare::Key(k),
+                d if d.is_ascii_uppercase() => MazeSquare::Door(d.to_lowercase().next().unwrap()),
                 _ => unimplemented!()
             });
         }

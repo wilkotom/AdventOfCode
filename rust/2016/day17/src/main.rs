@@ -11,7 +11,7 @@ struct Coordinate {
 fn main() {
     let mut next_steps: VecDeque<String> = VecDeque::new();
     next_steps.push_back(String::from(PASSCODE));
-    while next_steps.len() > 0 {
+    while !next_steps.is_empty() {
         let mut location = Coordinate{x: 0, y: 0};
         let directions = next_steps.pop_front().unwrap();
         for direction in directions[PASSCODE.len()..].chars() {
@@ -30,7 +30,7 @@ fn main() {
     
         
         let md5sum = format!("{:x}", md5::compute(&directions));
-        match md5sum.chars().nth(0).unwrap() {
+        match md5sum.chars().next().unwrap() {
             'b' | 'c' | 'd' | 'e' | 'f' => {
                 if location.y > 0 {
                     let next = format!("{}U", directions);

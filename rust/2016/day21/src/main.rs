@@ -25,7 +25,7 @@ fn part1 (starting_string: &str, instructions: &str) -> String {
     for line in instructions.split('\n') {
         let words = line.split_ascii_whitespace().collect::<Vec<&str>>();
         
-        match words.get(0) {
+        match words.first() {
             Some(&"swap") => {
                 match words.get(1) {
                     Some(&"position") => {

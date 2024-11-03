@@ -1,4 +1,4 @@
-use hashbrown::{HashMap,HashSet};
+use std::collections::{HashMap,HashSet};
 
 #[derive(Debug,Copy,Clone)]
 struct Worker {
@@ -62,7 +62,7 @@ fn part2(parents: &HashMap<char,Vec<char>>, mut all_steps: HashSet<char>) -> i32
             }
             if workers.iter().any(|w| w.job.is_none()) {
                 let mut preqs_met = true;
-                for prereq in  parents.get(&next_step).unwrap_or(&vec![]) {
+                for prereq in  parents.get(next_step).unwrap_or(&vec![]) {
                     if !completed.contains(prereq) {
                         preqs_met = false;
                     }

@@ -1,5 +1,5 @@
 fn main() {
-    let mut lanternfish = vec![0_usize; 9];
+    let mut lanternfish = [0_usize; 9];
     for fish in std::fs::read_to_string("./input.txt").unwrap().split(',').map(|x| x.parse::<usize>().unwrap()){
         lanternfish[fish] += 1;
     }

@@ -6,7 +6,7 @@ fn main() {
     println!("Part 2: {}", part2(&numbers));
 }
 
-fn part1(numbers: &Vec<i32>) -> i32 {
+fn part1(numbers: &[i32]) -> i32 {
     let mut last_value = numbers[0];
     let mut increment_count = 0;
     for num in &numbers[1..] {
@@ -18,7 +18,7 @@ fn part1(numbers: &Vec<i32>) -> i32 {
     increment_count
 }
 
-fn part2(numbers: &Vec<i32>) -> i32 {
+fn part2(numbers: &[i32]) -> i32 {
     let mut sliding: Vec<i32> = Vec::new();
     let mut current_value = numbers[0]+ numbers[1] + numbers[2];
     sliding.push(current_value);

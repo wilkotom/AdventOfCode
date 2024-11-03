@@ -140,7 +140,7 @@ fn run_program(program: &[Instruction],
             Instruction{inst: DuetInstruction::Receive, a, b: _  } => {
                 let register = match a {
                     Argument::Register(r) => r,
-                    Argument::Literal(v) => unimplemented!(),
+                    Argument::Literal(_) => unimplemented!(),
                     Argument::Missing => unimplemented!(),
                 }.to_owned();
                 if input_buffer.is_empty() {

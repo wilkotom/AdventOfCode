@@ -81,12 +81,12 @@ Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
 
     #[test]
     fn test_part1() {
-        assert_eq!(solution(&DATA).0, 8)
+        assert_eq!(solution(DATA).0, 8)
     }
 
 
     #[test]
     fn test_part2() {
-        assert_eq!(solution(&DATA).1, 2286)
+        assert_eq!(solution(DATA).1, 2286)
     }
 }

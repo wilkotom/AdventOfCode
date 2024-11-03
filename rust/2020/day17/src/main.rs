@@ -44,7 +44,7 @@ fn generation(cubes: HashSet<Vec<i32>>, generations: i32) -> HashSet<Vec<i32>> {
         let mut possible_next_cubes: HashSet<Vec<i32>> = HashSet::new();
         for cube in cubes.iter() {
             possible_next_cubes.insert(cube.clone());
-            for n in gen_neighbours(&cube).clone() {
+            for n in gen_neighbours(cube).clone() {
                 possible_next_cubes.insert(n);
             }
         }
@@ -68,7 +68,7 @@ fn generation(cubes: HashSet<Vec<i32>>, generations: i32) -> HashSet<Vec<i32>> {
 
 
 
-fn gen_neighbours( coordinate: &Vec<i32>) -> HashSet<Vec<i32>> {
+fn gen_neighbours( coordinate: &[i32]) -> HashSet<Vec<i32>> {
     let offsets = gen_neighbours_coords(coordinate.len() as i32);
     let mut neighbours = HashSet::new();
     for offset in offsets.iter() {

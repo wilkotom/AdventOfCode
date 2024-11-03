@@ -22,9 +22,9 @@ fn part1(lines: &[&str]) -> i32 {
     gamma * epsilon
 }
 
-fn part2(lines: &Vec<&str>, most: bool) -> i32 {
+fn part2(lines: &[&str], most: bool) -> i32 {
     let mut pos = 0;
-    let mut values = lines.clone();
+    let mut values = lines.to_owned();
     while values.len() > 1 {
         let ones_count = values.iter().map(|x| x.chars().nth(pos).unwrap()).filter(|x| *x == '1').count();
         if ones_count >= (values.len() - ones_count) {

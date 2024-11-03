@@ -19,7 +19,7 @@ fn main() {
         }
         let mut valid_tls = false;
         for word in &supernet {
-            valid_tls = valid_tls || is_abba_compliant(&word);
+            valid_tls = valid_tls || is_abba_compliant(word);
         }
         for word in hypernet {
             valid_tls = valid_tls && !is_abba_compliant(&word);
@@ -46,16 +46,16 @@ fn main() {
 
 }
 
-fn is_abba_compliant(word: &String) -> bool {
+fn is_abba_compliant(word: &str) -> bool {
     if word.len() < 4 {
         false
     } else {
         let mut compliant = false;
         let word = word.chars().collect::<Vec<_>>();
         for i in 0..word.len() -3 {
-            if &word[i+0] == &word[i+3] && 
-               &word[1 + i] == &word[2+i] && 
-               &word[i] != &word[i+1] {
+            if word[i] == word[i+3] && 
+               word[1 + i] == word[2+i] && 
+               word[i] != word[i+1] {
                 compliant = true;
                 break;
             }
@@ -64,7 +64,7 @@ fn is_abba_compliant(word: &String) -> bool {
     }
 }
 
-fn get_accessors(network: &String) -> Vec<String> {
+fn get_accessors(network: &str) -> Vec<String> {
     let mut blocks: Vec<String> = Vec::new();
     let network = network.chars().collect::<Vec<_>>();
     for i in 0.. network.len()-2 {

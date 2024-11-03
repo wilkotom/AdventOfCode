@@ -13,7 +13,7 @@ fn part1(instructions: &[&str]) {
 
     for line in instructions {
         let instruction = line.split_ascii_whitespace().collect::<Vec<_>>();
-        match instruction.get(0) {
+        match instruction.first() {
             Some(&"forward") => {
                x += instruction.get(1).unwrap().parse::<isize>().unwrap();
             },
@@ -36,7 +36,7 @@ fn part2(instructions: &[&str]) {
 
     for line in instructions {
         let instruction = line.split_ascii_whitespace().collect::<Vec<_>>();
-        match instruction.get(0) {
+        match instruction.first() {
             Some(&"forward") => {
                 let n = instruction.get(1).unwrap().parse::<isize>().unwrap();
                 x += n;

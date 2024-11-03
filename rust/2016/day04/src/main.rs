@@ -6,7 +6,7 @@ fn main() {
     let rooms = get_valid_room(input);
     for room in rooms {
         let result = decrypt_room_name(room);
-        if result.0 == String::from("northpole object storage"){
+        if result.0 == *"northpole object storage"{
             println!("Part 2 answer: {:?}", result.1);
         }
         
@@ -23,10 +23,7 @@ fn get_valid_room(input: String) -> Vec<String> {
         let supplied_checksum = &tokens.next().unwrap()[0..5];
 
         for c in room_name.chars() {
-            match c {
-                'a'..='z' => {letter_counts.insert(c, *letter_counts.get(&c).unwrap_or(&0) +1);}
-                _ => {}
-            }
+            if let 'a'..='z' = c {letter_counts.insert(c, *letter_counts.get(&c).unwrap_or(&0) +1);}
         }
         let mut letters_by_count: HashMap<i32, Vec<char>> = HashMap::new();
         for letter in letter_counts.keys() {
@@ -38,12 +35,12 @@ fn get_valid_room(input: String) -> Vec<String> {
             }
 
         }
-        let mut counts_in_order = letters_by_count.keys().map(|x| *x).collect::<Vec<_>>();
+        let mut counts_in_order = letters_by_count.keys().copied().collect::<Vec<_>>();
         counts_in_order.sort_by_key(|w| Reverse(*w));
         let mut checksum: String = String::new();
         for count in &counts_in_order {
             if checksum.len() <5 {
-                let mut letters = letters_by_count.get(&count).unwrap().clone();
+                let mut letters = letters_by_count.get(count).unwrap().clone();
                 letters.sort();
                 for letter in letters {
                     checksum.push(letter);
@@ -81,10 +78,7 @@ fn decrypt_room_name(room_name: String) -> (String, u32) {
             '-' => Some(' '),
             _ => None
         };
-        match d {
-            Some(x) => decrypted.push(x),
-            None => {}
-        }
+        if let Some(x) = d { decrypted.push(x) }
     }
     decrypted.pop();
 

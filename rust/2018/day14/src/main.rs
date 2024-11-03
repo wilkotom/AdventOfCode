@@ -23,7 +23,7 @@ fn part1(reps: &usize) {
     }
     print!("Part 1: ");
     for i in *reps..*reps+10 {
-        print!("{}", scoreboard[ i as usize % scoreboard.len()]);
+        print!("{}", scoreboard[ i % scoreboard.len()]);
     }
     println!()
 }

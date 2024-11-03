@@ -30,7 +30,7 @@ fn part1(data: &Vec<&str>) -> u64 {
     twos * threes
 }
 
-fn part2(data: &Vec<&str>) -> String {
+fn part2(data: &[&str]) -> String {
     // O(n^2 w - ugh)
     for l in 0..data.len() {
         for r in l+1..data.len() {

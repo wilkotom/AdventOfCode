@@ -79,7 +79,7 @@ fn get_off_the_mountain(mountain: &mut GameState) -> Option<i32>{
             candidate.x == mountain.target.x +1 ||
             candidate.y < 0 || candidate.y > max_y) {
                 let mut cache = mountain.blizzard_cache.borrow_mut();
-                let winds = cache.entry((candidate, (time +1) % cycle_time)).or_insert_with(|| is_snowy(candidate, &mountain, (time +1) % cycle_time));
+                let winds = cache.entry((candidate, (time +1) % cycle_time)).or_insert_with(|| is_snowy(candidate, mountain, (time +1) % cycle_time));
                 if ! *winds {
                     // Weight strongly in favour of distance to target; blizzards will likely significantly increase number of actual steps needed
                     let heuristic = candidate.manhattan_distance(&target) *2 + time;

@@ -5,7 +5,6 @@ enum NodeType {
     Full,
     Empty,
     Immovable,
-    Goal
 }
 
 #[derive(Debug,Copy,Clone,Hash,Eq,PartialEq)]
@@ -49,7 +48,7 @@ fn main() {
         if node.used != 0 {
             for other in nodes.keys() {
                 if *other != loc {
-                    let other = nodes.get(&other).unwrap();
+                    let other = nodes.get(other).unwrap();
                     if other.used + node.used < other.size {
                         viable_pairs += 1
                     }
@@ -65,7 +64,6 @@ fn main() {
                 NodeType::Empty => '_',
                 NodeType::Immovable => '#',
                 NodeType::Full => '.',
-                _ => unreachable!()
             });
             
         }

@@ -36,17 +36,15 @@ fn parse_file(filename: String) -> (HashMap<i32,RuleReference>, Vec<String>) {
     for line in entries[0].split("\n") {
         let tokens: Vec<_> = line.split(": ").collect();
         let rule_number: i32 = tokens[0].parse::<i32>().unwrap();
-        let rule_value: RuleReference;
         if tokens[1].contains("\"") {
-            rule_value = RuleReference::Letter(tokens[1].chars().nth(1).unwrap());
+            rules.insert(rule_number, RuleReference::Letter(tokens[1].chars().nth(1).unwrap()));
         } else {
             let mut subrules:Vec<Vec<i32>> = Vec::new();
             for subrule in tokens[1].split(" | ") {
                 subrules.push(subrule.split(" ").map(|x| x.parse::<i32>().unwrap()).collect());
             }
-            rule_value = RuleReference::OtherRules(subrules);
+            rules.insert(rule_number, RuleReference::OtherRules(subrules));
         }
-        rules.insert(rule_number, rule_value);
     }
 
     (rules, entries.get(1).unwrap_or(&"").split("\n").map(|x| x.to_string()).collect())

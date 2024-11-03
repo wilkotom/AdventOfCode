@@ -11,12 +11,6 @@ struct Valve {
 #[derive(Debug, PartialEq, Eq)]
 struct ParseValveError;
 
-#[derive(Eq, PartialEq, Debug, Clone)]
-struct SeenState {
-    time: i64,
-    flowed: i64,
-}
-
 impl FromStr for Valve {
     type Err = ParseValveError;
 
@@ -51,13 +45,13 @@ fn main() -> Result<(), Error> {
     Ok(())
 }
 
-fn part1<'a>(valves: &HashMap<String,Valve>,distances: &HashMap<String,HashMap<String,i64>>, working_valves: &[&'a String]) -> i64 {
+fn part1(valves: &HashMap<String,Valve>,distances: &HashMap<String,HashMap<String,i64>>, working_valves: &[&String]) -> i64 {
     let start = "AA".to_string();
     let mut cache: HashMap<(String, Vec<&String>, i64), Option<i64>> = HashMap::new();
     best_path_for_valves(&start, working_valves, distances, valves, 30, &mut cache).unwrap()
 }
 
-fn part2<'a>(valves: &HashMap<String,Valve>,distances: &HashMap<String,HashMap<String,i64>>, working_valves: &[&'a String]) -> i64 {
+fn part2(valves: &HashMap<String,Valve>,distances: &HashMap<String,HashMap<String,i64>>, working_valves: &[&String]) -> i64 {
 
     let unchecked = working_valves.iter().map(|v| v.to_string()).collect::<Vec<_>>();
     let start = "AA".to_string();

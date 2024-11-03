@@ -7,10 +7,10 @@ use std::path::Path;
 fn main() {
     let mut mappings: HashMap<i32, HashSet<i32>> = HashMap::new();
     if let Ok(lines) = read_lines("./input.txt") {
-        for line in lines.flatten() {
+        for line in lines.map_while(Result::ok) {
             let mut sides = line.split(" <-> ");
             let source = sides.next().unwrap().parse::<i32>().unwrap();
-            mappings.entry(source).or_insert_with(HashSet::new);
+            mappings.entry(source).or_default();
             for dest in sides.next().unwrap().split(", ") {
                 mappings.get_mut(&source).unwrap().insert(dest.parse::<i32>().unwrap());
             }

@@ -27,7 +27,7 @@ fn main() {
             let distance = (i / (reindeer.run_time + reindeer.rest_time)) * (reindeer.speed * reindeer.run_time) + 
                                 (reindeer.run_time.min(i % (reindeer.run_time + reindeer.rest_time)) * reindeer.speed);
             max_distance= max_distance.max(distance);
-            distances.entry(distance).or_insert_with(Vec::new);
+            distances.entry(distance).or_default();
             distances.get_mut(&distance).unwrap().push(reindeer.name.clone());
         }
         let win_dist = distances.keys().max().unwrap();

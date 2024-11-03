@@ -46,15 +46,15 @@ impl PhotoFragment {
     }
 
     fn left_edge(&self) -> i32 {
-        _edge_helper(&self.matrix.iter().map(|x| x[0]).collect())
+        _edge_helper(&self.matrix.iter().map(|x| x[0]).collect::<Vec<bool>>())
     }
 
     fn right_edge(&self) -> i32 {
-        _edge_helper(&self.matrix.iter().map(|x| x[x.len()-1]).collect())
+        _edge_helper(&self.matrix.iter().map(|x| x[x.len()-1]).collect::<Vec<bool>>())
     }
 }
 
-fn _edge_helper(edge: &Vec<bool>) -> i32 {
+fn _edge_helper(edge: &[bool]) -> i32 {
     let mut total = 0;
     for (i, &pixel) in edge.iter().enumerate() {
         if pixel {
@@ -96,7 +96,7 @@ fn read_fragments(filename: String) -> HashMap<i32, Box<PhotoFragment>> {
             matrix.push(line.chars().map(|x| x == '#').collect());
         }
         let frag: PhotoFragment = PhotoFragment{matrix, up:0, down:0, left:0, right:0, id: *tile_number, oriented: false};
-        fragments.insert(*tile_number as i32, Box::new(frag));
+        fragments.insert(*tile_number, Box::new(frag));
     }
 
     fragments
@@ -115,7 +115,7 @@ fn orient_pieces(mut fragments: HashMap<i32, Box<PhotoFragment>>) -> HashMap<i32
         let pieces: Vec<_> = fragments.keys().cloned().collect();
         all_oriented = true;
         for piece_id in pieces.iter() {
-            let mut piece = fragments.remove(&piece_id).unwrap();
+            let mut piece = fragments.remove(piece_id).unwrap();
             let mut matched =false;
             if !piece.oriented {
                 all_oriented = false;
@@ -162,7 +162,7 @@ fn orient_pieces(mut fragments: HashMap<i32, Box<PhotoFragment>>) -> HashMap<i32
 
         fragments.insert(fragment_id, fragment);
         oriented.push_back(fragment_id);
-        while oriented.len() > 0 {
+        while !oriented.is_empty() {
             let new_val = oriented.pop_front().unwrap();
             if !queue.contains(&new_val) {
                 queue.push_back(new_val);
@@ -174,10 +174,10 @@ fn orient_pieces(mut fragments: HashMap<i32, Box<PhotoFragment>>) -> HashMap<i32
     let mut final_fragments: HashMap<i32,Box<PhotoFragment>> = HashMap::new();
     let fragment_ids: Vec<_> = fragments.keys().cloned().collect();
     for frag_id in fragment_ids.iter() {
-        let mut final_fragment = fragments.remove(&frag_id).unwrap();
+        let mut final_fragment = fragments.remove(frag_id).unwrap();
         let remaining_fragments: Vec<_> = fragments.keys().cloned().collect();
         for f_id in remaining_fragments.iter() {
-            let possible_join = fragments.get_mut(&f_id).unwrap();
+            let possible_join = fragments.get_mut(f_id).unwrap();
             if final_fragment.right_edge() == possible_join.left_edge() {
                 final_fragment.right = possible_join.id;
                 possible_join.left = final_fragment.id;
@@ -200,56 +200,50 @@ fn orient_pieces(mut fragments: HashMap<i32, Box<PhotoFragment>>) -> HashMap<i32
 fn join_pieces(mut fragments: HashMap<i32, Box<PhotoFragment>>) -> HashMap<i32, Box<PhotoFragment>> {
     let ids: Vec<_> = fragments.keys().cloned().collect();
     for id in ids.iter() {
-        let c = fragments.remove(&id);
-        match c {
-            Some(mut fragment) => {
-                while fragment.up != 0 {
-                    let above = fragments.remove(&fragment.up).unwrap();
-                    let mut new_matrix = above.matrix;
-                    new_matrix.append(&mut fragment.matrix);
-                    fragment.matrix = new_matrix;
-                    fragment.up = above.up;
-                    fragment.left = above.left;
-                    fragment.right = above.right;
-                    fragment.id = above.id;
-                }
-                while fragment.down != 0 {
-                    let mut below = fragments.remove(&fragment.down).unwrap();
-                    fragment.matrix.append(&mut below.matrix);
-                    fragment.down = below.down;
-                }
-                fragments.insert(fragment.id, fragment);
+        let c = fragments.remove(id);
+        if let Some(mut fragment) = c {
+            while fragment.up != 0 {
+                let above = fragments.remove(&fragment.up).unwrap();
+                let mut new_matrix = above.matrix;
+                new_matrix.append(&mut fragment.matrix);
+                fragment.matrix = new_matrix;
+                fragment.up = above.up;
+                fragment.left = above.left;
+                fragment.right = above.right;
+                fragment.id = above.id;
             }
-            _ => {}
+            while fragment.down != 0 {
+                let mut below = fragments.remove(&fragment.down).unwrap();
+                fragment.matrix.append(&mut below.matrix);
+                fragment.down = below.down;
+            }
+            fragments.insert(fragment.id, fragment);
         }
     
     }
     let ids: Vec<_> = fragments.keys().cloned().collect();
     for id in ids.iter() {
-        let c = fragments.remove(&id);
-        match c {
-            Some(mut fragment) => {
-                while fragment.left != 0 {
-                    let left = fragments.remove(&fragment.left).unwrap();
-                    let mut new_matrix = left.matrix;
-                    for i in 0..new_matrix.len() {
-                        new_matrix[i].append(&mut fragment.matrix[i]);
-                    }
-                    fragment.matrix = new_matrix;
-                    fragment.left = left.left;
+        let c = fragments.remove(id);
+        if let Some(mut fragment) = c {
+            while fragment.left != 0 {
+                let left = fragments.remove(&fragment.left).unwrap();
+                let mut new_matrix = left.matrix;
+                for (i, row) in new_matrix.iter_mut().enumerate() {
+                    row.append(&mut fragment.matrix[i]);
                 }
-                while fragment.right != 0 {
-                    let mut right = fragments.remove(&fragment.right).unwrap();
-                    let mut new_matrix = fragment.matrix;
-                    for i in 0..new_matrix.len(){
-                        new_matrix[i].append(&mut right.matrix[i]);
-                    }
-                    fragment.matrix = new_matrix;
-                    fragment.right = right.right;
-                }
-                fragments.insert(fragment.id, fragment);
+                fragment.matrix = new_matrix;
+                fragment.left = left.left;
             }
-            _ => {}
+            while fragment.right != 0 {
+                let mut right = fragments.remove(&fragment.right).unwrap();
+                let mut new_matrix = fragment.matrix;
+                for (i, row) in new_matrix.iter_mut().enumerate(){
+                    row.append(&mut right.matrix[i]);
+                }
+                fragment.matrix = new_matrix;
+                fragment.right = right.right;
+            }
+            fragments.insert(fragment.id, fragment);
         }
     }
     fragments
@@ -279,8 +273,8 @@ fn monster_hunt(fragments: HashMap<i32, Box<PhotoFragment>> ) -> usize {
     let mut fragment = fragments.into_values().next().unwrap();
     let monster_shape = vec![(0,0), (1,1), (1,4), (0,5), (0,6), (1,7),
                        (1,10), (0,11), (0,12), (1,13), (1,16), 
-                       (0,17),(-1 as isize,18),(0,18),(0,19)];
-    let roughness =  &fragment.matrix.iter().cloned().map(|x| x.iter().filter(|&x| *x == true).count()).sum::<usize>();
+                       (0,17),(-1_isize,18),(0,18),(0,19)];
+    let roughness =  &fragment.matrix.iter().cloned().map(|x| x.iter().filter(|&x| *x).count()).sum::<usize>();
     for i in 0..8 {
         for row in 1..fragment.matrix.len() {
             for col in 0..fragment.matrix[0].len() {

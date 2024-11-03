@@ -11,7 +11,7 @@ fn main() -> Result<(), Error> {
     Ok(())  
 }
 
-fn part1(jolts: &Vec<i64>) ->  i64 {
+fn part1(jolts: &[i64]) ->  i64 {
     let mut ones = 1;
     let mut threes = 1;
     for i in 1..jolts.len() {
@@ -24,7 +24,7 @@ fn part1(jolts: &Vec<i64>) ->  i64 {
     ones * threes
 }
 
-fn part2(jolts: &Vec<i64>) -> i64 {
+fn part2(jolts: &[i64]) -> i64 {
     let mut steps: HashMap<i64, i64> = HashMap::new();
     steps.insert(0,1);
     for i in jolts.iter() {

@@ -1,4 +1,4 @@
-use std::{error::Error, collections::{HashMap, HashSet, VecDeque}};
+use std::error::Error;
 use aochelpers::{get_daily_input, Direction, Coordinate};
 
 #[derive(Debug, Clone, PartialEq, Eq)]

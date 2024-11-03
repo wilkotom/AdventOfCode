@@ -1,5 +1,3 @@
-use hashbrown::HashSet;
-
 #[derive(Debug,Copy,Clone, PartialEq, Eq)]
 enum Square {
     Empty,
@@ -40,7 +38,6 @@ fn main() {
 fn generation(grid: Vec<Vec<Square>>) -> (Vec<Vec<Square>>, bool) {
 
     let mut line = 0;
-    let mut seen: HashSet<(usize, usize)> = HashSet::new();
     // move right
     let mut inter_grid: Vec<Vec<Square>> = Vec::new();
     let grid_len = grid.len(); 

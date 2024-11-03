@@ -44,7 +44,7 @@ fn main() {
         let mut perfumes: Option<i32> = None;
         while let Some(thing) = fields.next() {
             let number = fields.next().unwrap(); 
-            let quantity = Some((if let Some(num) = number.strip_suffix(',') {num} else {&number}).parse::<i32>().unwrap());
+            let quantity = Some((if let Some(num) = number.strip_suffix(',') {num} else {number}).parse::<i32>().unwrap());
             match thing.strip_suffix(':').unwrap() {
                 "children"    => { children = quantity; },
                 "cats"        => { cats = quantity; },
@@ -63,28 +63,28 @@ fn main() {
     
         }
         let this_sue = Sue{id, children, cats, samoyeds, pomeranians, akitas, vizslas, goldfish, trees, cars, perfumes};
-        if (this_sue.children == None || this_sue.children == sought_sue.children) && 
-            (this_sue.cats == None || this_sue.cats == sought_sue.cats) && 
-            (this_sue.samoyeds == None || this_sue.samoyeds == sought_sue.samoyeds) && 
-            (this_sue.pomeranians == None || this_sue.pomeranians == sought_sue.pomeranians) && 
-            (this_sue.akitas == None || this_sue.akitas == sought_sue.akitas) && 
-            (this_sue.vizslas == None || this_sue.vizslas == sought_sue.vizslas) &&
-            (this_sue.goldfish == None || this_sue.goldfish == sought_sue.goldfish) &&
-            (this_sue.trees == None || this_sue.trees == sought_sue.trees) &&
-            (this_sue.cars == None || this_sue.cars == sought_sue.cars) &&
-            (this_sue.perfumes == None || this_sue.perfumes == sought_sue.perfumes) {
+        if (this_sue.children.is_none() || this_sue.children == sought_sue.children) && 
+            (this_sue.cats.is_none() || this_sue.cats == sought_sue.cats) && 
+            (this_sue.samoyeds.is_none() || this_sue.samoyeds == sought_sue.samoyeds) && 
+            (this_sue.pomeranians.is_none() || this_sue.pomeranians == sought_sue.pomeranians) && 
+            (this_sue.akitas.is_none() || this_sue.akitas == sought_sue.akitas) && 
+            (this_sue.vizslas.is_none() || this_sue.vizslas == sought_sue.vizslas) &&
+            (this_sue.goldfish.is_none() || this_sue.goldfish == sought_sue.goldfish) &&
+            (this_sue.trees.is_none() || this_sue.trees == sought_sue.trees) &&
+            (this_sue.cars.is_none() || this_sue.cars == sought_sue.cars) &&
+            (this_sue.perfumes.is_none() || this_sue.perfumes == sought_sue.perfumes) {
                 println!("Part 1: {}", this_sue.id);
         }
-        if (this_sue.children == None || this_sue.children == sought_sue.children) && 
-            (this_sue.cats == None || this_sue.cats > sought_sue.cats) && 
-            (this_sue.samoyeds == None || this_sue.samoyeds == sought_sue.samoyeds) && 
-            (this_sue.pomeranians == None || this_sue.pomeranians < sought_sue.pomeranians) && 
-            (this_sue.akitas == None || this_sue.akitas == sought_sue.akitas) && 
-            (this_sue.vizslas == None || this_sue.vizslas == sought_sue.vizslas) &&
-            (this_sue.goldfish == None || this_sue.goldfish < sought_sue.goldfish) &&
-            (this_sue.trees == None || this_sue.trees > sought_sue.trees) &&
-            (this_sue.cars == None || this_sue.cars == sought_sue.cars) &&
-            (this_sue.perfumes == None || this_sue.perfumes == sought_sue.perfumes) {
+        if (this_sue.children.is_none() || this_sue.children == sought_sue.children) && 
+            (this_sue.cats.is_none() || this_sue.cats > sought_sue.cats) && 
+            (this_sue.samoyeds.is_none() || this_sue.samoyeds == sought_sue.samoyeds) && 
+            (this_sue.pomeranians.is_none() || this_sue.pomeranians < sought_sue.pomeranians) && 
+            (this_sue.akitas.is_none() || this_sue.akitas == sought_sue.akitas) && 
+            (this_sue.vizslas.is_none() || this_sue.vizslas == sought_sue.vizslas) &&
+            (this_sue.goldfish.is_none() || this_sue.goldfish < sought_sue.goldfish) &&
+            (this_sue.trees.is_none() || this_sue.trees > sought_sue.trees) &&
+            (this_sue.cars.is_none() || this_sue.cars == sought_sue.cars) &&
+            (this_sue.perfumes.is_none() || this_sue.perfumes == sought_sue.perfumes) {
                 println!("Part 2: {}", this_sue.id);
         }
     }

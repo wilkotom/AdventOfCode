@@ -1,7 +1,7 @@
 fn main() {
     let data = std::fs::read_to_string("./input.txt").unwrap();
-    println!("{}", data.split('\n').map(|w| is_nice_part1(w)).filter(|x| *x).count());
-    println!("{}", data.split('\n').map(|w| is_nice_part2(w)).filter(|x| *x).count());
+    println!("{}", data.split('\n').map(is_nice_part1).filter(|x| *x).count());
+    println!("{}", data.split('\n').map(is_nice_part2).filter(|x| *x).count());
 
 }
 

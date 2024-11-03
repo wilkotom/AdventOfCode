@@ -22,14 +22,14 @@ fn main() {
     let mut final_answer = 1;
     for heading in correct_mappings.keys() {
         if heading.len() >= 9 && &heading[0..9] == "departure"{
-            let field_number = correct_mappings.get(heading).unwrap().get(0).unwrap();
+            let field_number = correct_mappings.get(heading).unwrap().first().unwrap();
             final_answer *= my_ticket.get(*field_number).unwrap();
         }
     }
     println!("Part 2 answer: {}", final_answer);
 }
 
-fn part1(ticket_fields: &HashMap<String,Restriction>, other_tickets: &Vec<Vec<usize>>) -> (Vec<Vec<usize>>, usize) {
+fn part1(ticket_fields: &HashMap<String,Restriction>, other_tickets: &[Vec<usize>]) -> (Vec<Vec<usize>>, usize) {
     let mut error_rate = 0;
     let mut valid_tickets: Vec<Vec<usize>> = Vec::new();
     for ticket in other_tickets.iter() {
@@ -54,7 +54,7 @@ fn part1(ticket_fields: &HashMap<String,Restriction>, other_tickets: &Vec<Vec<us
     (valid_tickets, error_rate)
 }
 
-fn number_ticket_fields(ticket_fields: &HashMap<String,Restriction>, other_tickets: &Vec<Vec<usize>>) -> HashMap<String, Vec<usize>> {
+fn number_ticket_fields(ticket_fields: &HashMap<String,Restriction>, other_tickets: &[Vec<usize>]) -> HashMap<String, Vec<usize>> {
     let mut ticket_mapping: HashMap<String, Vec<usize>> = HashMap::new();
     for ticket_field in ticket_fields.keys() {
 

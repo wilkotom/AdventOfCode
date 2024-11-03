@@ -44,28 +44,28 @@ impl Coordinate {
         let z = self.z;
         match rotation {
           0  => Coordinate{ x,    y,    z   },
-          1  => Coordinate{ x: y, y:-x, z: z},
-          2  => Coordinate{ x:-x, y:-y, z: z},
-          3  => Coordinate{ x:-y, y: x, z: z},
-          4  => Coordinate{ x: z, y: y, z:-x},
+          1  => Coordinate{ x: y, y:-x, z},
+          2  => Coordinate{ x:-x, y:-y, z},
+          3  => Coordinate{ x:-y, y: x, z},
+          4  => Coordinate{ x: z, y, z:-x},
           5  => Coordinate{ x: y, y:-z, z:-x},
           6  => Coordinate{ x: -z,y:-y, z:-x},
           7  => Coordinate{ x:-y, y: z, z:-x},
           8  => Coordinate{ x: z, y:-x, z:-y},
           9  => Coordinate{ x:-x, y:-z, z:-y},
           10 => Coordinate{ x:-z, y: x, z:-y},
-          11 => Coordinate{ x: x, y: z, z:-y},
+          11 => Coordinate{ x, y: z, z:-y},
           12 => Coordinate{ x: z, y:-y, z: x},
           13 => Coordinate{ x:-y, y:-z, z: x},
-          14 => Coordinate{ x:-z, y: y, z: x},
+          14 => Coordinate{ x:-z, y, z: x},
           15 => Coordinate{ x: y, y: z, z: x},
           16 => Coordinate{ x: z, y: x, z: y},
-          17 => Coordinate{ x: x, y:-z, z: y},
+          17 => Coordinate{ x, y:-z, z: y},
           18 => Coordinate{ x:-z, y:-x, z: y},
           19 => Coordinate{ x:-x, y: z, z: y},
-          20 => Coordinate{ x:-x, y: y, z:-z},
+          20 => Coordinate{ x:-x, y, z:-z},
           21 => Coordinate{ x: y, y: x, z:-z},
-          22 => Coordinate{ x: x, y:-y, z:-z},
+          22 => Coordinate{ x, y:-y, z:-z},
           23 => Coordinate{ x:-y, y:-x, z:-z},
           _ => unreachable!()
         }
@@ -76,7 +76,6 @@ impl Coordinate {
 struct Scanner {
     location: Option<Coordinate>,
     beacons: Vec<Coordinate>,
-    id: i32,
     orientation: i32,
 }
 
@@ -106,7 +105,7 @@ fn main() {
         }
         let location = if id == 0 { Some(Coordinate{x:0, y:0, z:0}) } else {None};
         let orientation = 0;
-        scanners.insert(id, Scanner{location, beacons, id, orientation});
+        scanners.insert(id, Scanner{location, beacons, orientation});
     }    
 
     let scanner_ids = scanners.keys().copied().collect::<Vec<_>>();

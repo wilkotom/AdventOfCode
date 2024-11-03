@@ -7,7 +7,7 @@ fn main() {
     let mut mappings: HashMap<String, char> = HashMap::new();
     for mapping in sections.next().unwrap().split('\n') {
         let mut words = mapping.split(" -> ");
-        mappings.insert(words.next().unwrap().to_string(), words.next().unwrap().chars().nth(0).unwrap());
+        mappings.insert(words.next().unwrap().to_string(), words.next().unwrap().chars().next().unwrap());
     }
     let original_poly = polymer.clone();
     println!("Part 1 {}", part2(polymer, &mappings, 10));
@@ -18,7 +18,7 @@ fn main() {
 fn part2(polymer: String, mappings: &HashMap<String, char>, iterations: i32) -> i64 {
     let mut pair_count: HashMap<String, i64> = HashMap::new();
     for i in 0..polymer.len() -1 { 
-        let pair = (&polymer[i..i+2]).to_string();
+        let pair = polymer[i..i+2].to_string();
         pair_count.entry(pair.clone()).or_insert(0);
         let pc = pair_count.get(&pair).unwrap() +1;
         pair_count.insert(pair, pc);

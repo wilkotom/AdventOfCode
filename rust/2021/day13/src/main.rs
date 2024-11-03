@@ -55,7 +55,7 @@ fn main() {
             },
             _ => unreachable!()
         }
-        if part1 == None {
+        if part1.is_none() {
             part1 = Some(paper.len());
         }
     }

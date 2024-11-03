@@ -17,7 +17,7 @@ fn main() {
         let mut steps = direction.chars().rev().collect::<Vec<char>>();
         let mut x: i64 = 0;
         let mut y: i64 = 0;
-        while steps.len() > 0 {
+        while !steps.is_empty() {
             match steps.pop() {
                 Some('e') => { x += 2;},
                 Some('w') => { x -= 2;},
@@ -28,8 +28,8 @@ fn main() {
                 _ => {}
             }
         }
-        if !floor.contains_key(&Coordinate{x,y}) {
-            floor.insert(Coordinate{x,y}, true);
+        if let std::collections::hash_map::Entry::Vacant(e) = floor.entry(Coordinate{x,y}) {
+            e.insert(true);
         } else {
             floor.remove(&Coordinate{x,y});
         }
@@ -47,16 +47,14 @@ fn get_next_generation(mut floor: HashMap<Coordinate,bool>) -> HashMap<Coordinat
     let mut next_floor: HashMap<Coordinate,bool> = HashMap::new();
     let known_tiles = &floor.keys().cloned().collect::<Vec<_>>();
     for black_tile in known_tiles.iter() {
-        for tile in get_neighbours(&black_tile) {
-            if ! floor.contains_key(&tile) {
-                floor.insert(tile, false);
-            }
+        for tile in get_neighbours(black_tile) {
+            floor.entry(tile).or_insert(false);
         }
     }
 
     for tile in floor.keys() {
-        let neighbour_count = get_neighbours(&tile).iter().filter(|x| *floor.get(&x).unwrap_or(&false)).count();
-        if neighbour_count == 2 || neighbour_count == 1 && *floor.get(&tile).unwrap_or(&false) {
+        let neighbour_count = get_neighbours(tile).iter().filter(|x| *floor.get(x).unwrap_or(&false)).count();
+        if neighbour_count == 2 || neighbour_count == 1 && *floor.get(tile).unwrap_or(&false) {
             next_floor.insert(*tile, true);
         }
     }

@@ -65,6 +65,6 @@ fn generate_claim(line: &str) -> FabricClaim {
 #[test]
 fn test_generate_claim() {
     let raw_claim = "#1 @ 1,3: 4x4";
-    assert_eq!(generate_claim(&raw_claim), FabricClaim{id: 1, location: Coordinate{x:1, y:3}, size: Coordinate{x: 4, y:4}});
+    assert_eq!(generate_claim(raw_claim), FabricClaim{id: 1, location: Coordinate{x:1, y:3}, size: Coordinate{x: 4, y:4}});
 
 }

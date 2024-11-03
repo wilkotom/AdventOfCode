@@ -1,4 +1,4 @@
-use std::{collections::{HashSet, VecDeque, HashMap}, io::Error};
+use std::{collections::HashMap, io::Error};
 use aochelpers::Coordinate;
 
 #[derive(Debug, PartialEq, Eq)]

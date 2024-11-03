@@ -16,7 +16,7 @@ fn main() {
             match allergen_mappings.get(allergen) {
                 Some(old_allergens) => {
                     let new_allergens = sections[0].split(" ").map(|x| x.to_string()).collect::<HashSet<_>>();
-                    let new_allergens = old_allergens.intersection(&new_allergens).map(|x| x.clone()).collect::<HashSet<_>>();
+                    let new_allergens = old_allergens.intersection(&new_allergens).cloned().collect::<HashSet<_>>();
                     allergen_mappings.insert(allergen.clone(), new_allergens);
                 },
                 None => {

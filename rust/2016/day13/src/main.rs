@@ -11,10 +11,16 @@ struct Coordinate{
     y: i32
 }
 
-#[derive(Debug, Eq,PartialEq,Hash, Copy, Clone, PartialOrd)]
+#[derive(Debug, Eq,PartialEq,Hash, Copy, Clone)]
 struct NextNode {
     tentative_distance: i32,
     location: Coordinate
+}
+
+impl PartialOrd for NextNode{
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        Some(self.cmp(other))
+    }
 }
 
 impl Ord for NextNode{
@@ -46,7 +52,7 @@ fn distance_to_location(dest: Coordinate) -> i32 {
     let mut visited: HashSet<Coordinate> = HashSet::new();
     tentative_distances.insert(Coordinate{x: 1, y: 1}, 0);
     next_nodes.push(NextNode{tentative_distance: 0, location:Coordinate{x: 1, y: 1}});
-    while next_nodes.len() > 0 {
+    while !next_nodes.is_empty() {
         let current_node_details = next_nodes.pop().unwrap();
         if current_node_details.location == dest {
             let mut squares_within_distance = 0;
@@ -59,9 +65,9 @@ fn distance_to_location(dest: Coordinate) -> i32 {
             return current_node_details.tentative_distance;
         }
         let current_node = current_node_details.location;
-        let current_node_distance = tentative_distances.get(&current_node).unwrap().clone();
+        let current_node_distance = *tentative_distances.get(&current_node).unwrap();
         for node in get_neighbours(&current_node) {
-            if &tentative_distances.get(&node).unwrap_or(&i32::MAX) > &&(current_node_distance + 1)  {
+            if tentative_distances.get(&node).unwrap_or(&i32::MAX) > &(current_node_distance + 1)  {
                 tentative_distances.insert(node, current_node_distance + 1);
                 next_nodes.push(NextNode{tentative_distance: 0 - (current_node_distance + 1), location: node})
             }
@@ -75,11 +81,10 @@ fn distance_to_location(dest: Coordinate) -> i32 {
 fn get_neighbours(square: &Coordinate) -> Vec<Coordinate> {
     let x = square.x;
     let y = square.y;
-    vec![Coordinate{x: x+1, y}, 
+    [Coordinate{x: x+1, y}, 
          Coordinate{x: x-1 , y},
          Coordinate{x, y:  y+ 1},
          Coordinate{x, y:  y+ -1}].iter()
-      .filter(|c| !is_wall(*c.clone()))
-      .map(|c| *c)
+      .filter(|c| !is_wall(**c)).copied()
       .collect::<Vec<_>>()
 }

@@ -15,7 +15,7 @@ fn main() {
             if part_2_password.contains(&None) {
                 let position  = checksum.chars().nth(5).unwrap().to_string().parse::<usize>().unwrap_or(9);
                 let password_char = checksum.chars().nth(6).unwrap();
-                if position < 8 && part_2_password[position] == None {
+                if position < 8 && part_2_password[position].is_none() {
                     part_2_password[position] = Some(password_char);
                 }
                 println!("{} {}", number, part_2_password.iter().map(|x| x.unwrap_or('_')).collect::<String>());

@@ -5,7 +5,7 @@ use hashbrown::HashMap;
 #[derive(Debug)]
 enum Square {
      Number(i32),
-     Symbol(char),
+     Symbol,
      Gear(i32)
 
 }
@@ -40,7 +40,7 @@ fn parse_engine_schematic(data: &str)-> (i32, i32) {
                     if !neighbour_detected {
                         for coord in (Coordinate{x,y}).extended_neighbours().iter() {
                             match grid.get(coord) {
-                            Some(Square::Symbol(_)) => {
+                            Some(Square::Symbol) => {
                                 neighbour_detected = true;
                                 break;
                             }
@@ -54,7 +54,7 @@ fn parse_engine_schematic(data: &str)-> (i32, i32) {
                     }
                 }
             },
-                Some(Square::Symbol(_)) |Some(Square::Gear(_)) | None => {
+                Some(Square::Symbol) |Some(Square::Gear(_)) | None => {
                     if running_total  >0 && neighbour_detected{
                         part_numbers += running_total;
                         neighbour_detected = false;
@@ -96,7 +96,7 @@ fn parse_grid(data: &str) -> HashMap<Coordinate<i32>, Square> {
         } else if c == '*' {
             output.insert(Coordinate { x: x as i32, y: y as i32 }, Square::Gear(0));
     }else if c != '.' {
-            output.insert(Coordinate { x: x as i32, y: y as i32 }, Square::Symbol(c));
+            output.insert(Coordinate { x: x as i32, y: y as i32 }, Square::Symbol);
         }
     }
  }

@@ -38,8 +38,7 @@ fn generate_distances(corridor_map: &HashMap<Coordinate, Square>) -> HashMap<Coo
     let mut unevaluated = Vec::new();
     let mut distances = HashMap::new();
     unevaluated.push((0, *starting_point));
-    while ! unevaluated.is_empty() {
-        let (distance, coordinate) = unevaluated.pop().unwrap();
+    while let Some((distance, coordinate)) = unevaluated.pop() {
         if corridor_map.get(&coordinate).unwrap() != &Square::Wall && distances.get(&coordinate).unwrap_or(&i32::MAX) > &distance {
             distances.insert(coordinate, distance);
             for neighbour in coordinate.neighbours() {

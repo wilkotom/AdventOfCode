@@ -123,7 +123,7 @@ fn generation(grid: HashSet<Coordinate>, lookup: &[bool], grid_type: GridType) -
     (result, result_type)
 }
 
-fn print_grid(grid: &HashSet<Coordinate>) {
+fn _print_grid(grid: &HashSet<Coordinate>) {
     let mut min_y = isize::MAX;
     let mut min_x = isize::MAX;
     let mut max_y = isize::MIN;

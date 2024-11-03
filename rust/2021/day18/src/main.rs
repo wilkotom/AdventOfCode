@@ -10,14 +10,14 @@ enum PairValue {
     NestedPair(Box<Pair>)
 }
 
-fn print_pair(p: &Pair) {
+fn _print_pair(p: &Pair) {
     print!("[");
     match &p.left {
         PairValue::SingleValue(x) => {
             print!("{}", x);
         }
         PairValue::NestedPair(p) => {
-            print_pair(&p);
+            _print_pair(p);
         }
     }
     print!(",");
@@ -26,7 +26,7 @@ fn print_pair(p: &Pair) {
             print!("{}", x);
         }
         PairValue::NestedPair(p) => {
-            print_pair(&p);
+            _print_pair(p);
         }
     }
     print!("]");
@@ -57,15 +57,15 @@ fn main() {
     let mut processed: Vec<Pair> = Vec::new();
     for s in sums {
         if let PairValue::NestedPair(p) = s {
-            processed.push(process_line(p));
+            processed.push(process_line(*p));
         }
     }
 
     while processed.len() >= 2 {
         let left = PairValue::NestedPair(Box::new(processed.remove(0)));
         let right = PairValue::NestedPair(Box::new(processed.remove(0)));
-        let new_pair = Box::new(Pair{left,right});
-        let completed = process_line(new_pair);
+        // let new_pair = Box::new(Pair{left,right});
+        let completed = process_line(Pair{left,right});
         processed.insert( 0, completed);
     };
     let final_sum = processed.pop().unwrap();
@@ -89,7 +89,7 @@ fn main() {
                     c => {dangling.push(PairValue::SingleValue(c.to_digit(10).unwrap()))}
                     }
             }
-            let left_sum = dangling.pop().unwrap();
+            let left_sum = dangling.pop().unwrap().clone();
     
             for char in right_line.chars() {
                 match char {
@@ -105,8 +105,8 @@ fn main() {
                     }
             }
             let right_sum = dangling.pop().unwrap();
-            let new_pair = Box::new(Pair{left: left_sum,right: right_sum});
-            let completed = process_line(new_pair);
+            // let new_pair = Pair{left: left_sum,right: right_sum};
+            let completed = process_line(Pair{left: left_sum,right: right_sum});
             max_score = max_score.max(score(completed));
         }
     }
@@ -123,27 +123,27 @@ fn score(p: Pair) -> u32 {
     }
 }
 
-fn process_line(mut pair: Box<Pair>) -> Pair{
+fn process_line(mut pair: Pair) -> Pair{
     
     let mut finished = false;
     while !finished {
         finished = true;
         let mut exploded = true;
         while exploded {
-            let res = explode(*pair, 0);
+            let res = explode(pair, 0);
             exploded = res.1;
-            pair = Box::new(res.0);
+            pair = res.0;
         }
 
-        let res = split_pair(*pair);
-        pair = Box::new(res.0);
+        let res = split_pair(pair);
+        pair = res.0;
         if res.1 {
             finished = false;
         }
 
     }
 
-    *pair
+    pair
 }
 
 fn split_pair(p: Pair) -> (Pair,bool) {

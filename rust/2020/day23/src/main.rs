@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 
 fn main() {
     let list = "389125467".chars().map(|x| x.to_string().parse::<usize>().unwrap()).collect::<Vec<_>>();
@@ -20,8 +19,8 @@ fn main() {
     }
 
     let part_2_cups = 1000001;
-    for c in list.len()+1..part_2_cups {
-        mapping[c] = c+1;
+    for (i, next_cup) in mapping.iter_mut().enumerate().take(part_2_cups).skip(list.len()+1) {
+        *next_cup = i+1;
     }
 
     mapping[1000000] = list[0];
@@ -33,7 +32,7 @@ fn main() {
     println!("Part 2: {}", first * second);
 }
 
-fn shuffle(cups: &mut Vec<usize>, starting_cup: usize, moves: usize) {
+fn shuffle(cups: &mut [usize], starting_cup: usize, moves: usize) {
 
     let mut current_cup = starting_cup;
     for _ in 0..moves {
@@ -61,7 +60,7 @@ fn shuffle(cups: &mut Vec<usize>, starting_cup: usize, moves: usize) {
 
 }
 
-fn part1_result(start: &usize, ring: &Vec<usize>) {
+fn part1_result(start: &usize, ring: &[usize]) {
     // print!("({}) ", start);
     print!("Part 1: ");
     let mut next = ring.get(*start).unwrap();

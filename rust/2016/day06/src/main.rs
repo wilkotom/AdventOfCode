@@ -5,9 +5,7 @@ fn main() {
     let mut char_counts: HashMap<usize, HashMap<char, i32>> = HashMap::new();
     for line in file.split("\n"){
        for (i, c) in line.chars().enumerate() {
-            if !char_counts.contains_key(&i) {
-                char_counts.insert(i, HashMap::new());
-            }
+            char_counts.entry(i).or_default();
             let counts = char_counts.get_mut(&i).unwrap();
             counts.insert(c, counts.get(&c).unwrap_or(&0) +1);
 

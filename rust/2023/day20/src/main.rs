@@ -149,7 +149,7 @@ fn press_button(network: &mut HashMap<Label,CommunicationModule>, termination_co
 
         for module in receiver.next_modules.iter() {
             let packet = PulsePacket{
-                sender: message.receiver.clone(),
+                sender: message.receiver,
                 receiver: module.to_owned(),
                 pulse: result
             };

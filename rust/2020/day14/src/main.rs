@@ -1,5 +1,6 @@
 use std::fs;
 use std::collections::HashMap;
+use std::cmp::Ordering;
 
 
 #[derive(Copy, Clone,Debug)]
@@ -67,21 +68,26 @@ fn crystallise_bits(exes: i64) -> Vec<i64> {
             crystallised_bits.push(i64::pow(2,power));
         }
     }
-    let crystal_values = collapse_crystals(&crystallised_bits[0..]);
-    crystal_values
+    
+    collapse_crystals(&crystallised_bits[0..])
 }
 
 fn collapse_crystals(values: &[i64]) -> Vec<i64> {
     let mut crystals: Vec<i64> = Vec::new();
-    if values.len() == 1 {
-        crystals.push(0);
-        crystals.push(values[0]);
-    } else if values.len() > 1 {
-        let next_values = collapse_crystals(&values[1..]);
-        for value in next_values {
-            crystals.push(value);
-            crystals.push(values[0] + value);
-        }
+
+    match values.len().cmp(&1) {
+        Ordering::Less => unreachable!(),
+        Ordering::Equal => {
+            crystals.push(0);
+            crystals.push(values[0]);
+        },
+        Ordering::Greater => {
+            let next_values = collapse_crystals(&values[1..]);
+            for value in next_values {
+                crystals.push(value);
+                crystals.push(values[0] + value);
+            }
+        },
     }
     crystals
 }

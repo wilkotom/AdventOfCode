@@ -1,10 +1,10 @@
 use std::error::Error;
-use hashbrown::HashMap;
+use std::collections::HashMap;
 use aochelpers::{Coordinate, parse_number_grid};
 
 fn main() -> Result<(), Box<dyn Error>> {
     let data = std::fs::read_to_string("./day08/input.txt")?;
-    let grid = parse_number_grid::<usize>(&data);
+    let grid = parse_number_grid::<usize, usize>(&data);
     let bounds = Coordinate{x: grid.keys().map(|c| c.x).max().unwrap(), y: grid.keys().map(|c| c.y).max().unwrap()};
     println!("Part 1: {}", part1(&grid, &bounds));
     println!("Part 2: {}", part2(&grid, &bounds));
@@ -50,7 +50,7 @@ mod tests {
 
     #[test]
     fn test_part_1 (){
-     let grid = parse_number_grid::<usize>(DATA);
+     let grid = parse_number_grid::<usize, usize>(DATA);
      let bounds =     Coordinate{x: grid.keys().map(|c| c.x).max().unwrap(), y: grid.keys().map(|c| c.y).max().unwrap()};
 
      assert!(is_visible(&Coordinate{x:0,y:0}, &grid, &bounds));
@@ -64,7 +64,7 @@ mod tests {
 
     #[test]
     fn test_part_2() {
-        let grid = parse_number_grid::<usize>(DATA);
+        let grid = parse_number_grid::<usize, usize>(DATA);
         let bounds = Coordinate{x: grid.keys().map(|c| c.x).max().unwrap(), y: grid.keys().map(|c| c.y).max().unwrap()};
         assert_eq!(scenic_score(&Coordinate { x: 2, y: 1 }, &grid, &bounds), 4);
         assert_eq!(scenic_score(&Coordinate { x: 2, y: 3 }, &grid, &bounds), 8);

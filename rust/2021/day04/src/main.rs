@@ -39,12 +39,12 @@ fn play_bingo(cards: &mut Vec<HashMap<isize,BingoCardSquare>>, bingo_numbers: &V
         for number in bingo_numbers {
             last_drawn_number = *number;
             for card in cards.iter_mut() {
-                card.get_mut(&number).unwrap_or(&mut BingoCardSquare{marked: true, location:Coordinate{x:usize::MAX, y:usize::MAX}}).marked = true;
+                card.get_mut(number).unwrap_or(&mut BingoCardSquare{marked: true, location:Coordinate{x:usize::MAX, y:usize::MAX}}).marked = true;
             }
-            for i in 0..cards.len() {
-                if is_winner(&cards[i]) {
+            for (i, card) in cards.iter().enumerate() {
+                if is_winner(card) {
                     winning_card = i;
-                    score = winning_score(&cards[i]);
+                    score = winning_score(card);
                     break;
                 }
             }

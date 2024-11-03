@@ -41,7 +41,7 @@ fn main() {
     let mut unbalanced_node = "";
 
     for program in programs.keys() {
-        if programs[program].held_by == None {
+        if programs[program].held_by.is_none() {
             println!("Part 1: {}", program);
             unbalanced_node = program;
         }

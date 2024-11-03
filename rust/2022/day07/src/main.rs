@@ -54,7 +54,7 @@ fn solve(data: &str) -> Result<(i64, i64)> {
     let mut instruction_stack = data.lines().rev().collect::<Vec<_>>();
     let tree = parse_tree(&mut instruction_stack)?;
     let needed = 30000000 - (70000000 - tree.total_size());
-    Ok((tree.part1(), if let Some(n) = tree.part2(needed) {n} else {0}))
+    Ok((tree.part1(), tree.part2(needed).unwrap_or_default()))
 }
 
 fn parse_tree(instructions: &mut Vec<&str>) -> Result<Directory> {

@@ -43,7 +43,7 @@ fn main() {
     }
     let mut distances_from: HashMap<char, HashMap<Coordinate, usize>> = HashMap::new();
     for key in interesting_locations.keys().collect::<Vec<_>>() {
-        let distances = gen_distance_map(&maze_map, interesting_locations[&key]);
+        let distances = gen_distance_map(&maze_map, interesting_locations[key]);
         distances_from.insert(*key, distances);
     }
     let perms = interesting_locations.keys().filter(|x| **x != '0').copied().collect::<Vec<_>>();

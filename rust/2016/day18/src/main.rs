@@ -24,10 +24,10 @@ fn main() {
     }
     for y in 1..ROWS as isize {
         for x in 0..input.len() as isize {
-            let left = &floor_map.get(&Coordinate{x:x-1, y: y-1}).clone().unwrap_or(&Tile::Safe);
-            let centre = &floor_map.get(&Coordinate{x, y: y-1}).clone().unwrap_or(&Tile::Safe);
-            let right = &floor_map.get(&Coordinate{x: x+1, y: y-1}).clone().unwrap_or(&Tile::Safe);
-            let next_square  =  if (left == centre && left != right) || (right == centre && right != left) {
+            let left = &floor_map.get(&Coordinate{x:x-1, y: y-1}).unwrap_or(&Tile::Safe);
+            let centre = &floor_map.get(&Coordinate{x, y: y-1}).unwrap_or(&Tile::Safe);
+            let right = &floor_map.get(&Coordinate{x: x+1, y: y-1}).unwrap_or(&Tile::Safe);
+            let next_square  =  if (left == centre || right == centre) && left != right {
                 Tile::Trap
             } else {
                 Tile::Safe

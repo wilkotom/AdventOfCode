@@ -13,7 +13,7 @@ type asteroidLocation struct {
 	distance   float64
 }
 
-func msain() {
+func main() {
 	inputBytes, err := ioutil.ReadFile("input.txt")
 	if err != nil {
 		panic(err)

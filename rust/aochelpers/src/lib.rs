@@ -1,4 +1,4 @@
-use std::{fmt::{Debug,Display, self}, ops::{Add, Sub, AddAssign, SubAssign}, hash::Hash, cmp::Ordering, str::FromStr, fs::{self, File}, env, io::{Write, ErrorKind}, path::PathBuf, error::Error, collections::HashMap};
+use std::{cmp::{max, min, Ordering}, collections::HashMap, env, error::Error, fmt::{self, Debug, Display}, fs::{self, File}, hash::Hash, io::{ErrorKind, Write}, ops::{Add, AddAssign, Sub, SubAssign}, path::PathBuf, str::FromStr};
 use num::Integer;
 use log::warn;
 
@@ -176,15 +176,24 @@ impl<T: Integer + Copy> Rectangle<T> {
         let bottom_right = Coordinate{ x:  first.x.max(second.x), y: first.y.max(second.y)};
         Rectangle { top_left, bottom_right }
     }
+
+    /// Does the rectangle contain the specified point in space?
+    pub fn contains(&self, point: &Coordinate<T>) -> bool {
+            point.x >= self.top_left.x && point.x <= self.bottom_right.x &&
+            point.y >= self.top_left.y && point.y <= self.bottom_right.y 
+        }
     /// If there is an overlap between this and the other `Rectangle`, return the `Rectangle` describing the overlap
     pub fn intersection(&self, other: &Self) -> Option<Self> {
         if self.top_left.x > other.bottom_right.x || other.top_left.x > self.bottom_right.x ||
            self.top_left.y > other.bottom_right.y || other.top_left.y > self.bottom_right.y {
             None
         } else {
-            let top_left=  Coordinate{x: self.top_left.x.max(other.top_left.x), y: self.top_left.y.max(other.top_left.y)};
-            let bottom_right = Coordinate{x: self.bottom_right.x.min(other.bottom_right.x), y: self.bottom_right.x.min(other.bottom_right.y)};
-            Some(Rectangle { top_left, bottom_right})
+            Some(Rectangle{
+                top_left: Coordinate{     x: max(self.top_left.x, other.top_left.x),
+                                          y: max(self.top_left.y, other.top_left.y)},
+                bottom_right: Coordinate{ x: min(self.bottom_right.x, other.bottom_right.x),
+                                          y: min(self.bottom_right.y, other.bottom_right.y)},
+            })
         }
     }
 }
@@ -381,7 +390,7 @@ impl<N: Ord+ PartialOrd, T: Ord + PartialOrd> PartialOrd for ScoredItem<N, T> {
 /// # pub x: T,
 /// # pub y: T }
 /// #
-/// # use hashbrown::HashMap;
+/// # use std::collections::HashMap;
 /// HashMap::<Coordinate<usize>,i32>::from([
 ///     (Coordinate{x:0, y:0}, 1),
 ///     (Coordinate{x:1, y:0}, 2),

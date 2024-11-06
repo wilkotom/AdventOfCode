@@ -181,6 +181,24 @@ fn area_2d(){
 }
 
 #[test]
+fn contains_points(){
+    let r1 = Rectangle{
+        top_left: Coordinate{x:0, y:0},
+        bottom_right: Coordinate{x:2,y:2}
+    };
+    for x in -1..=3 {
+        for y in -1..=3 {
+            if x >=0 && x <=2 && y>=0 && y <=2 {
+                assert!(r1.contains(&Coordinate { x, y}))
+            } else {
+                assert!(! r1.contains(&Coordinate { x, y}))
+            }
+        }
+
+    }
+}
+
+#[test]
 fn intersection_2d_diagonal_offset() {
     let r1 = Rectangle{
         top_left: Coordinate{x:0, y:0},
@@ -195,6 +213,11 @@ fn intersection_2d_diagonal_offset() {
             bottom_right: Coordinate{x:2, y:2}};
     assert_eq!(r1.intersection(&r2), Some(expected));
     assert_eq!(r2.intersection(&r1), Some(expected));
+
+    let r3 = Rectangle{top_left: Coordinate { x: -1, y:1}, bottom_right: Coordinate { x: 1, y:3}};
+    let expected = Rectangle{top_left: Coordinate{x:0, y:1}, bottom_right: Coordinate{x:1, y:2}};
+    assert_eq!(r1.intersection(&r3), Some(expected));
+    assert_eq!(r3.intersection(&r1), Some(expected));
 
 }
 

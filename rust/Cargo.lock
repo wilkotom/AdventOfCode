@@ -859,7 +859,7 @@ dependencies = [
 name = "Aoc-2022-01"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
@@ -900,7 +900,7 @@ dependencies = [
 name = "Aoc-2022-08"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
  "hashbrown 0.15.0",
 ]
 
@@ -908,7 +908,7 @@ dependencies = [
 name = "Aoc-2022-09"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
  "parse-display 0.10.0",
 ]
 
@@ -927,7 +927,7 @@ version = "0.1.0"
 name = "Aoc-2022-12"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
@@ -941,7 +941,7 @@ dependencies = [
 name = "Aoc-2022-14"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
  "hashbrown 0.15.0",
 ]
 
@@ -949,7 +949,7 @@ dependencies = [
 name = "Aoc-2022-15"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
  "parse-display 0.10.0",
 ]
 
@@ -965,14 +965,14 @@ dependencies = [
 name = "Aoc-2022-17"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2022-18"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
@@ -991,21 +991,21 @@ version = "0.1.0"
 name = "Aoc-2022-22"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2022-23"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2022-24"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
  "hashbrown 0.15.0",
 ]
 
@@ -1017,21 +1017,21 @@ version = "0.1.0"
 name = "Aoc-2023--01"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--02"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--03"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
  "hashbrown 0.14.5",
 ]
 
@@ -1039,126 +1039,126 @@ dependencies = [
 name = "Aoc-2023--04"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--05"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--06"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--07"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--09"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--10"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--11"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--12"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--13"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--14"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--15"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--16"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--17"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--18"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--19"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--20"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--21"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--22"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
  "parse-display 0.8.2",
 ]
 
@@ -1166,14 +1166,14 @@ dependencies = [
 name = "Aoc-2023--23"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023--24"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
@@ -1181,14 +1181,14 @@ name = "Aoc-2023--25"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
 ]
 
 [[package]]
 name = "Aoc-2023-08"
 version = "0.1.0"
 dependencies = [
- "aochelpers 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "aochelpers 0.6.1",
  "tokio",
 ]
 
@@ -1243,17 +1243,6 @@ checksum = "74f37166d7d48a0284b99dd824694c26119c700b53bf0d1540cdb147dbdaaf13"
 [[package]]
 name = "aochelpers"
 version = "0.6.1"
-dependencies = [
- "anyhow",
- "dirs",
- "log",
- "num",
- "reqwest 0.12.9",
-]
-
-[[package]]
-name = "aochelpers"
-version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5ea35303e600d41b4cb596ba14a039e8f697a33819ab0210d0b6dc5cf7af87a9"
 dependencies = [
@@ -1263,6 +1252,17 @@ dependencies = [
  "log",
  "num",
  "reqwest 0.11.27",
+]
+
+[[package]]
+name = "aochelpers"
+version = "0.6.2"
+dependencies = [
+ "anyhow",
+ "dirs",
+ "log",
+ "num",
+ "reqwest 0.12.9",
 ]
 
 [[package]]

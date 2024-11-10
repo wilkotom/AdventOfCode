@@ -324,24 +324,24 @@ impl<T: Integer + Copy> Cuboid<T> {
         Self { top_left_back, bottom_right_front }
     }
 
-    // /// If the supplied `Cuboid` intersects with this one, returns the cuboid defined by the intersection points between the two. Otherwise return `None`
-    // pub fn intersection(&self, other: &Self) -> Option<Self> {
-    //     if self.contains(&other.top_left_back) {
-    //         Some(Cuboid { top_left_back: other.top_left_back, bottom_right_front: self.bottom_right_front})
-    //     } else if other.contains(&self.top_left_back) {
-    //         Some(Cuboid { top_left_back: self.top_left_back, bottom_right_front: other.bottom_right_front })
-    //     } else if self.contains(&Coordinate3d{x: other.top_left_back.x, y: other.top_left_back.y, z: other.bottom_right_front.z }) {
-    //         Some(Cuboid{
-    //             top_left_back: Coordinate3d{x: other.top_left_back.x, y: other.top_left_back.y, z: self.top_left_back.z },
-    //             bottom_right_front: Coordinate3d { x: other.bottom_right_front, y: (), z: () }
-    //         })
-    //         todo!()
-    //     } else if other.contains(&Coordinate3d{x: self.top_left_back.x, y: self.top_left_back.y, z: self.bottom_right_front.z }) {
-    //         todo!()
-    //     } else {
-    //         None
-    //     }
-    // }
+    /// If the supplied `Cuboid` intersects with this one, returns the cuboid defined by the intersection points between the two. Otherwise return `None`
+    pub fn intersection(&self, other: &Self) -> Option<Self> {
+        if self.top_left_back.x > other.bottom_right_front.x || other.top_left_back.x > self.bottom_right_front.x ||
+           self.top_left_back.y > other.bottom_right_front.y || other.top_left_back.y > self.bottom_right_front.y || 
+           self.top_left_back.z > other.bottom_right_front.z || other.top_left_back.z > self.bottom_right_front.z
+           {
+            None
+        } else {
+            Some(Self{ 
+                top_left_back:      Coordinate3d{ x: max(self.top_left_back.x, other.top_left_back.x),
+                                                  y: max(self.top_left_back.y, other.top_left_back.y),
+                                                  z: max(self.top_left_back.z, other.top_left_back.z)},
+                bottom_right_front: Coordinate3d{ x: min(self.bottom_right_front.x, other.bottom_right_front.x),
+                                                  y: min(self.bottom_right_front.y, other.bottom_right_front.y),
+                                                  z: min(self.bottom_right_front.z, other.bottom_right_front.z)},
+            })
+        }
+    }
     /// Does the cuboid contain the specified point in space?
     pub fn contains(&self, point: &Coordinate3d<T>) -> bool {
         point.x >= self.top_left_back.x && point.x <= self.bottom_right_front.x &&
@@ -375,7 +375,7 @@ impl<N: Ord+ PartialOrd, T: Ord + PartialOrd> PartialOrd for ScoredItem<N, T> {
 }
 
 
-/// Parses a grid of digits in the form of a string to a HashMap<Coordinate, T>
+/// Parses a grid of digits in the form of a string to a HashMap<Coordinate<T>, V>
 /// 
 /// The Y value represents the line number, so increases down the page.
 /// 

@@ -9,7 +9,7 @@ fn main() -> Result<(), Box<dyn Error>>{
 }
 
 fn score_mirror(grid: &str, find_fn: fn(&[String]) -> Option<usize> ) -> usize {
-    let lines = grid.split('\n').map(|c| c.to_owned()).collect::<Vec<String>>();
+    let lines = grid.split('\n').map(|l| l.to_string()).collect::<Vec<_>>();
     let vertical_reflection = find_fn(&lines).unwrap_or(0);
     let horizontal_reflection = find_fn(&reflect_grid(&lines)).unwrap_or(0);
     vertical_reflection + 100* horizontal_reflection
@@ -26,7 +26,7 @@ fn find_reflection_line(grid: &[String]) -> Option<usize> {
 
 fn find_smudge_line(grid: &[String]) -> Option<usize> {
     let mut symmetry_counts = HashMap::new();
-    for new_symmetries in grid.iter().map(line_reflection_points) {
+    for new_symmetries in grid.iter().map(|line| line_reflection_points(line)) {
         for symmetry in new_symmetries {
             *symmetry_counts.entry(symmetry).or_insert(0) += 1;
         }
@@ -35,7 +35,7 @@ fn find_smudge_line(grid: &[String]) -> Option<usize> {
 }
 
 
-fn line_reflection_points(line: &String) -> HashSet<usize> {
+fn line_reflection_points(line: &str) -> HashSet<usize> {
     let mut result = HashSet::new();
     for i in 1..line.len() {
         let left = line[0..i].chars().rev().collect::<String>();
@@ -51,8 +51,8 @@ fn line_reflection_points(line: &String) -> HashSet<usize> {
     result
 }
 
-fn reflect_grid(grid: &Vec<String>) -> Vec<String> {
-    let mut new_grid = Vec::new();
+fn reflect_grid (grid: &[String]) -> Vec<String> {
+    let mut new_grid: Vec<_> = Vec::new();
     for col in 0..grid[0].len() {
         let mut new_line = "".to_string();
         for row in grid {

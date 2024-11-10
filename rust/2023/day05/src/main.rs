@@ -2,13 +2,13 @@ use std::error::Error;
 use aochelpers::get_daily_input;
 
 
-#[derive(Debug,PartialEq)]
+#[derive(Debug,PartialEq, Copy, Clone)]
 struct Range {
     start: i64,
     end: i64
 }
 
-#[derive(Debug,PartialEq)]
+#[derive(Debug,PartialEq, Copy, Clone)]
 struct AlmanacLine {
     delta: i64,
     source_range: Range,
@@ -16,6 +16,7 @@ struct AlmanacLine {
 
 struct Almanac {
     seed_list: Vec<i64>,
+    seed_ranges: Vec<Range>,
     mappings: Vec<Vec<AlmanacLine>>
 }
 
@@ -33,27 +34,31 @@ fn part1(almanac: &Almanac) -> i64 {
 }
 
 fn part2(almanac: &Almanac) -> i64 {
-    // TODO: Refactor brute force
-    let mut values = almanac.seed_list.iter();
-    let mut result = i64::MAX;
-
-    while let Some(start) = values.next() {
-        let count = values.next().unwrap();
-        result = result.min(grow_seeds(*start, *count, almanac));
+    // For each range of seeds, apply the next transformation
+    let mut working_ranges = almanac.seed_ranges.clone();
+    for mapping_set in almanac.mappings[..].iter() {
+        let mut next_ranges: Vec<_> = Vec::new();
+        while let Some(range) = working_ranges.pop() {
+            let mut unmatched = true;
+            for mapping in mapping_set {
+                let (mut to_reevaluate, mut next_stage_ranges) = split_step_ranges(range, mapping);
+                working_ranges.append(&mut to_reevaluate);
+                if !next_stage_ranges.is_empty() {
+                    unmatched = false;
+                    next_ranges.append(&mut next_stage_ranges);
+                }
+            }
+            if unmatched {
+                next_ranges.push(range)
+            }
+        }
+        working_ranges = next_ranges;
     }
-    result
-}
-
-fn grow_seeds(start:i64, range: i64, almanac: &Almanac) -> i64 {
-    let mut result = i64::MAX;
-    for i in start..start+range {
-        result = result.min(grow_seed(i, almanac))
-    }
-    result
+    working_ranges.iter().map(|x| x.start).min().unwrap_or(0)
 }
 
 fn parse_almanac_entry(entry: &str) -> Vec<AlmanacLine> {
-    let mut lines = entry.split('\n');
+    let mut lines: std::str::Split<'_, char> = entry.split('\n');
     let mut almanac_entry = Vec::new();
     lines.next();
     for line in lines {
@@ -69,8 +74,9 @@ fn parse_almanac_entry(entry: &str) -> Vec<AlmanacLine> {
 fn parse_almanac(almanac: &str) -> Almanac {
     let mut entries = almanac.split("\n\n");
     let seed_list = entries.next().unwrap().split(' ').filter_map(|x| x.parse::<i64>().ok()).collect::<Vec<_>>();
+    let seed_ranges = seed_list.chunks(2).map(|v| Range{start: v[0], end: v[0]+ v[1] -1}).collect();
     let mappings = entries.map(parse_almanac_entry).collect::<Vec<_>>();
-    Almanac{seed_list, mappings}
+    Almanac{seed_list, seed_ranges, mappings}
 }
 
 fn grow_seed(mut id: i64, almanac: &Almanac) -> i64{
@@ -84,39 +90,43 @@ fn grow_seed(mut id: i64, almanac: &Almanac) -> i64{
     }
     id
 }
-/* 
-fn combine_ranges(starting_range: Range, next_steps: Vec<Range>) -> Vec<Range> {
-    let mut combined_ranges = vec![];
-    for next_range in next_steps {
-        if next_range.start > starting_range.end 
-    }
 
+fn split_step_ranges(item_range: Range, transformation: &AlmanacLine) -> (Vec<Range>,Vec<Range>) {
+    let mut new_ranges = Vec::new();
+    let mut to_reevaluate = Vec::new();
+    if item_range.end < transformation.source_range.start || transformation.source_range.end < item_range.start {
+        // do nothing
+    } else if item_range.start >= transformation.source_range.start && item_range.end <=transformation.source_range.end {
+        /*     
+               <- item ->
+            <---- tran ---->
+        */
+        new_ranges.push(Range{start: transformation.delta + item_range.start, end: transformation.delta + item_range.end});
+    } else if item_range.start < transformation.source_range.start && item_range.end > transformation.source_range.end {
+        /*     
+            <---- item ---->
+                <- tran ->
+        */
+        to_reevaluate.push(Range{start: item_range.start, end: transformation.source_range.start -1});
+        new_ranges.push(Range{start: transformation.source_range.start + transformation.delta, end: transformation.source_range.end + transformation.delta});
+        to_reevaluate.push(Range{start: transformation.source_range.end +1, end: item_range.end});
+    } else if item_range.start < transformation.source_range.start && item_range.end <= transformation.source_range.end {
+        /*
+            <---- item ---->
+                    <---- tran ---->
+            */
+        to_reevaluate.push(Range{start: item_range.start, end: transformation.source_range.start -1});
+        new_ranges.push(Range{start: transformation.delta + transformation.source_range.start, end: transformation.delta + item_range.end});
+    } else if item_range.start >= transformation.source_range.start && item_range.end > transformation.source_range.end {
+        /*     
+                <---- item ---->
+            <---- tran ---->
+        */
+        new_ranges.push(Range{start: transformation.delta + item_range.start, end: transformation.delta + transformation.source_range.end});
+        to_reevaluate.push(Range{start: transformation.source_range.end +1, end: item_range.end});
+    } 
 
-    combined_ranges
-}
-*/
-fn split_ranges(old: AlmanacLine, transformation: AlmanacLine) -> Vec<AlmanacLine> {
-
-    if old.source_range.end < transformation.source_range.start || old.source_range.end > transformation.source_range.end {
-        //ranges don't overlap  
-        vec![old]
-    
-    } else if old.source_range.end >= transformation.source_range.start && old.source_range.end <= transformation.source_range.end {
-        // old is entirely within transformation area
-        vec![AlmanacLine{source_range: old.source_range, delta: old.delta + transformation.delta}]
-    } else if old.source_range.start < transformation.source_range.start && old.source_range.end < transformation.source_range.end{
-        // old overlaps transformation area to the left
-        vec![
-            AlmanacLine{source_range: Range{start: old.source_range.start, end: transformation.source_range.start -1 }, delta: old.delta},
-            AlmanacLine{source_range: Range{start: transformation.source_range.start, end: old.source_range.end}, delta: old.delta + transformation.delta}
-            ]
-    } else if old.source_range.start <= 3 {
-        // overlap to the right
-        vec!()
-    } else {
-        vec![]
-    }
-
+    (to_reevaluate, new_ranges)
 }
 
 #[cfg(test)]
@@ -157,11 +167,18 @@ humidity-to-location map:
 56 93 4";
 
 #[test]
-    fn test_parser() {
+    fn test_parse_almanac_entry() {
         assert_eq!(parse_almanac_entry("seed-to-soil map:
 50 98 2
 52 50 48"), vec![AlmanacLine{source_range: Range{start: 98, end: 99},delta: -48 }, 
                 AlmanacLine{source_range: Range{start: 50, end: 97}, delta: 2 }])
+    }
+
+    #[test]
+    fn test_parse_seeds() {
+        let almanac = parse_almanac(DATA);
+        assert_eq!(almanac.seed_list, vec![79,14,55,13]);
+        assert_eq!(almanac.seed_ranges, vec![Range{start: 79, end: 92}, Range{start: 55, end: 67}]);
     }
 
     #[test]

@@ -188,7 +188,7 @@ fn contains_points(){
     };
     for x in -1..=3 {
         for y in -1..=3 {
-            if x >=0 && x <=2 && y>=0 && y <=2 {
+            if (0..=2).contains(&x) && (0..=2).contains(&y) {
                 assert!(r1.contains(&Coordinate { x, y}))
             } else {
                 assert!(! r1.contains(&Coordinate { x, y}))

@@ -41,11 +41,15 @@ fn part2(almanac: &Almanac) -> i64 {
         while let Some(range) = working_ranges.pop() {
             let mut unmatched = true;
             for mapping in mapping_set {
-                let (mut to_reevaluate, mut next_stage_ranges) = split_step_ranges(range, mapping);
-                working_ranges.append(&mut to_reevaluate);
-                if !next_stage_ranges.is_empty() {
+                let (to_reevaluate, next_stage_range) = split_step_ranges(&range, mapping);
+                if let Some(mut reduced_range) = to_reevaluate {
+                    working_ranges.append(&mut reduced_range);
+                }
+                
+                if let Some(transformation) = next_stage_range {
                     unmatched = false;
-                    next_ranges.append(&mut next_stage_ranges);
+                    next_ranges.push(transformation);
+                    break;
                 }
             }
             if unmatched {
@@ -91,42 +95,38 @@ fn grow_seed(mut id: i64, almanac: &Almanac) -> i64{
     id
 }
 
-fn split_step_ranges(item_range: Range, transformation: &AlmanacLine) -> (Vec<Range>,Vec<Range>) {
-    let mut new_ranges = Vec::new();
-    let mut to_reevaluate = Vec::new();
+fn split_step_ranges(item_range: &Range, transformation: &AlmanacLine) -> (Option<Vec<Range>>,Option<Range>) {
     if item_range.end < transformation.source_range.start || transformation.source_range.end < item_range.start {
-        // do nothing
+        (None, None)
     } else if item_range.start >= transformation.source_range.start && item_range.end <=transformation.source_range.end {
         /*     
                <- item ->
             <---- tran ---->
         */
-        new_ranges.push(Range{start: transformation.delta + item_range.start, end: transformation.delta + item_range.end});
+        (None, Some(Range{start: transformation.delta + item_range.start, end: transformation.delta + item_range.end}))
     } else if item_range.start < transformation.source_range.start && item_range.end > transformation.source_range.end {
         /*     
             <---- item ---->
                 <- tran ->
         */
-        to_reevaluate.push(Range{start: item_range.start, end: transformation.source_range.start -1});
-        new_ranges.push(Range{start: transformation.source_range.start + transformation.delta, end: transformation.source_range.end + transformation.delta});
-        to_reevaluate.push(Range{start: transformation.source_range.end +1, end: item_range.end});
+        (Some(vec![Range{start: item_range.start, end: transformation.source_range.start -1},Range{start: item_range.start, end: transformation.source_range.start -1}]), 
+                  Some(Range{start: transformation.source_range.start + transformation.delta, end: transformation.source_range.end + transformation.delta}))
+        
     } else if item_range.start < transformation.source_range.start && item_range.end <= transformation.source_range.end {
         /*
             <---- item ---->
                     <---- tran ---->
-            */
-        to_reevaluate.push(Range{start: item_range.start, end: transformation.source_range.start -1});
-        new_ranges.push(Range{start: transformation.delta + transformation.source_range.start, end: transformation.delta + item_range.end});
+        */
+        (Some(vec![Range{start: item_range.start, end: transformation.source_range.start -1}]), Some(Range{start: transformation.delta + transformation.source_range.start, end: transformation.delta + item_range.end}))
     } else if item_range.start >= transformation.source_range.start && item_range.end > transformation.source_range.end {
         /*     
                 <---- item ---->
             <---- tran ---->
         */
-        new_ranges.push(Range{start: transformation.delta + item_range.start, end: transformation.delta + transformation.source_range.end});
-        to_reevaluate.push(Range{start: transformation.source_range.end +1, end: item_range.end});
-    } 
-
-    (to_reevaluate, new_ranges)
+        (Some(vec![Range{start: transformation.source_range.end +1, end: item_range.end}]), Some(Range{start: transformation.delta + item_range.start, end: transformation.delta + transformation.source_range.end}))
+    } else {
+        unreachable!()
+    }
 }
 
 #[cfg(test)]

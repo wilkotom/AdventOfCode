@@ -1,6 +1,6 @@
 [workspace]
 members = [
-        "2015/day01",
+    "2015/day01",
     "2015/day02",
     "2015/day03",
     "2015/day04",

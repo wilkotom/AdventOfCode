@@ -1,6 +1,10 @@
 use std::{cmp::{max, min, Ordering}, collections::HashMap, env, error::Error, fmt::{self, Debug, Display}, fs::{self, File}, hash::Hash, io::{ErrorKind, Write}, ops::{Add, AddAssign, Sub, SubAssign}, path::PathBuf, str::FromStr};
 use num::Integer;
 use log::warn;
+use serde::Deserialize;
+use serde_json;
+use hex;
+
 
 /// Compass directions
 #[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -587,4 +591,43 @@ impl Display for Label {
         }
         write!(f, "{}", digits.iter().rev().collect::<String>())
     }
+}
+
+/// Takes an Everybody Codes input from the local Downloads folder if unavailable in the cache.
+/// In the future this may be expanded to download inputs directly.
+/// 
+pub fn get_everybodycodes_input(day: i32, year: i32, part: i32) -> Result<String, Box<dyn Error>> {
+    if let Some(mut path) = dirs::home_dir() {
+        let rel_path = [".everybodycodes", &year.to_string()];
+        for element in rel_path {
+            path.push(element);
+            if let Ok(metadata) = fs::metadata(&path) {
+                if !metadata.is_dir(){
+                    return  Err(Box::new(
+                        std::io::Error::new(ErrorKind::Other, format!("Path {} exists, but is not a directory", path.display()))
+                    ));
+                }
+            }
+        }
+        path.push(format!("everybody_codes_e{}_q{:02}_p{}.txt", year, day, part));
+        if let Ok(mut content) = std::fs::read_to_string(&path) {
+            remove_newlines(&mut content);
+            Ok(content)
+        } else {
+        let mut downloads_path = dirs::home_dir().unwrap();
+        downloads_path.push("Downloads");
+        downloads_path.push(format!("everybody_codes_e{}_q{:02}_p{}.txt", year, day, part));
+        if let Ok(mut content) = std::fs::read_to_string(&downloads_path) {
+            remove_newlines(&mut content);
+            let mut file: File = File::create(path)?;
+            file.write_all(content.as_bytes())?;
+            Ok(content)
+        } else {
+            Err(Box::new(std::io::Error::new(ErrorKind::NotFound, format!("Couldn't find input file {:?} in cache or Downloads folder", downloads_path))))
+        }
+        }
+        
+     } else {
+         Err(Box::new(Box::new(std::io::Error::new(ErrorKind::Other,"Couldn't determine home directory"))))
+     }
 }

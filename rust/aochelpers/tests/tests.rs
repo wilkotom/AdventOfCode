@@ -1,5 +1,6 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, usize};
 use aochelpers::*;
+use num_traits::ops::checked::{CheckedAdd, CheckedSub};
 
 #[test]
 fn add_coordinates() {
@@ -15,6 +16,61 @@ fn sub_coordinates() {
     let delta = Coordinate{x:2, y:3};
     let expected = Coordinate{x: -1, y:-2};
     assert_eq!(base - delta, expected);
+}
+
+#[test]
+fn checked_add_coordinates() {
+    let base: Coordinate<usize> =Coordinate{x: 0,y:0};
+    let delta: Coordinate<usize> = Coordinate{x:1,y:0};
+    assert_eq!(base.checked_add(&delta), Some(Coordinate{x:1,y:0}));
+
+    let base: Coordinate<usize> =Coordinate{x: usize::MAX,y:0};
+    let delta: Coordinate<usize> = Coordinate{x:1,y:0};
+    assert_eq!(base.checked_add(&delta), None);
+
+    let base: Coordinate<usize> =Coordinate{x: 0,y:0};
+    let delta: Coordinate<usize> = Coordinate{x:0,y:1};
+    assert_eq!(base.checked_add(&delta), Some(Coordinate{x:0,y:1}));
+
+    let base: Coordinate<usize> =Coordinate{x: 0, y: usize::MAX};
+    let delta: Coordinate<usize> = Coordinate{x:0,y:1};
+    assert_eq!(base.checked_add(&delta), None);
+}
+
+
+
+#[test]
+fn checked_sub_coordinates() {
+    let base: Coordinate<usize> =Coordinate{x:1,y:1};
+    let delta: Coordinate<usize> = Coordinate{x:1,y:0};
+    assert_eq!(base.checked_sub(&delta), Some(Coordinate { x: 0, y:1 }));
+
+    let base: Coordinate<usize> =Coordinate{x:1,y:1};
+    let delta: Coordinate<usize>  = Coordinate{x:0,y:1};
+    assert_eq!(base.checked_sub(&delta), Some(Coordinate{x:1, y:0}));
+
+    let base: Coordinate<usize> =Coordinate{x:0,y:0};
+    let delta: Coordinate<usize> = Coordinate{x:1,y:0};
+    assert_eq!(base.checked_sub(&delta), None);
+
+    let base: Coordinate<usize> =Coordinate{x:0,y:0};
+    let delta: Coordinate<usize>  = Coordinate{x:0,y:1};
+    assert_eq!(base.checked_sub(&delta), None);
+
+}
+
+#[test]
+fn checked_neighbour() {
+    let base: Coordinate<usize> =Coordinate{x:0,y:0};
+    assert_eq!(base.checked_neighbour(Direction::NorthWest), None);
+    assert_eq!(base.checked_neighbour(Direction::North), None);
+    assert_eq!(base.checked_neighbour(Direction::NorthEast), None);
+    assert_eq!(base.checked_neighbour(Direction::East), Some(Coordinate{x:1, y:0}));
+    assert_eq!(base.checked_neighbour(Direction::SouthEast), Some(Coordinate{x:1, y:1}));
+    assert_eq!(base.checked_neighbour(Direction::South), Some(Coordinate{x:0,y:1}));
+    assert_eq!(base.checked_neighbour(Direction::SouthWest), None);
+    assert_eq!(base.checked_neighbour(Direction::West), None);
+    
 }
 
 

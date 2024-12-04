@@ -1,5 +1,5 @@
 use std::{cmp::{max, min, Ordering}, collections::HashMap, env, error::Error, fmt::{self, Debug, Display}, fs::{self, File}, hash::Hash, io::{ErrorKind, Write}, ops::{Add, AddAssign, Sub, SubAssign}, path::PathBuf, str::FromStr};
-use num::{Integer, Signed, ToPrimitive, Unsigned};
+use num::{CheckedAdd, CheckedSub, Integer, Unsigned};
 use log::warn;
 
 /// Compass directions
@@ -48,6 +48,28 @@ impl<T: Add<Output = T>> Add for Coordinate<T>{
         Self {
             x: self.x + other.x,
             y: self.y + other.y
+        }
+    }
+}
+
+impl<T: Unsigned + CheckedAdd<Output = T>> CheckedAdd for Coordinate<T>{
+    fn checked_add(&self, other: &Self) -> Option<Self> {
+        if let(Some(x), Some(y)) = (self.x.checked_add(&other.x), self.y.checked_add(&other.y)) {
+            Some(Self{x, y})
+        }
+        else {
+            None
+        }
+    }
+}
+
+impl<T: Unsigned + CheckedSub<Output = T>> CheckedSub for Coordinate<T>{
+    fn checked_sub(&self, other: &Self) -> Option<Self> {
+        if let(Some(x), Some(y)) = (self.x.checked_sub(&other.x), self.y.checked_sub(&other.y)) {
+            Some(Self{x, y})
+        }
+        else {
+            None
         }
     }
 }
@@ -153,6 +175,22 @@ impl<T: Integer + Copy> Coordinate<T> {
             Direction::West => Coordinate { x: self.x - num::one() , y: self.y },
         }
     }
+}
+impl<T: Integer + Copy + CheckedSub + CheckedAdd + Unsigned> Coordinate<T> {
+
+        /// The neighbouring `Coordinate` in the supplied `Direction`, checked for under / overflow
+        pub fn checked_neighbour(&self, direction: Direction) -> Option<Self> {
+            match direction {
+                Direction::NorthWest =>  self.checked_sub(&Coordinate{x: num::one::<T>(), y: num::one::<T>()}),
+                Direction::North =>  self.checked_sub(&Coordinate{x: num::zero::<T>(), y: num::one::<T>()}),
+                Direction::NorthEast =>  if let Some(loc) = self.checked_neighbour(Direction::North) {loc.checked_neighbour(Direction::East)} else {None},
+                Direction::East =>  self.checked_add(&Coordinate{x: num::one::<T>(), y: num::zero::<T>()}),
+                Direction::SouthEast =>  self.checked_add(&Coordinate{x: num::one::<T>(), y: num::one::<T>()}),
+                Direction::South => self.checked_add(&Coordinate{x: num::zero::<T>(), y: num::one::<T>()}),
+                Direction::SouthWest =>  if let Some(loc) = self.checked_neighbour(Direction::South) {loc.checked_neighbour(Direction::West)} else {None},
+                Direction::West => self.checked_sub(&Coordinate{x: num::one::<T>(), y: num::zero::<T>()}),
+            }
+        }
 
 }
 
@@ -460,8 +498,6 @@ pub fn gcd<T: Integer + Copy >(first: T, second: T) -> T {
 /// Session token is determined by the contents of `$HOME/.aochelpers/token` if it exists;
 /// if it does not, this file will be created from the contents of the `AOCTOKEN` 
 /// environment variable, if any.
-
-
 pub fn get_daily_input(day: i32, year: i32) -> Result<String, Box<dyn Error>> {
     if let Some(mut path) = dirs::home_dir() {
         let rel_path = [".aochelpers", &year.to_string()];
@@ -644,7 +680,7 @@ impl<V: Copy> Grid<V> {
         Grid(Vec::new())
     }
 
-    pub fn insert<T: Unsigned + PartialEq + PartialOrd + Into<usize> + From<usize> + Copy>(&mut self, c: Coordinate<T>, v: V) -> Option<V> {
+    pub fn insert<T: PartialEq + PartialOrd + Into<usize> + From<usize> + Copy>(&mut self, c: Coordinate<T>, v: V) -> Option<V> {
         while c.y >= self.0.len().into() {
             self.0.push(Vec::new());
         }
@@ -656,15 +692,15 @@ impl<V: Copy> Grid<V> {
         old_value
     }
 
-    pub fn get<T: Unsigned + PartialEq + PartialOrd + Into<usize> + From<usize> + Copy>(&self, c: &Coordinate<T>) -> Option<V> {
-        if c.y >= self.0.len().into() || c.x>= self.0[c.y.into()].len().into() {
+    pub fn get<T: PartialEq + PartialOrd + Into<usize> + From<usize> + Copy>(&self, c: &Coordinate<T>) -> Option<V> {
+         if c.y >= self.0.len().into() || c.x>= self.0[c.y.into()].len().into() {
             None
         } else {
             self.0[c.y.into()][c.x.into()]
         }
     }
 
-    pub fn contains_key<T: Unsigned + PartialEq + PartialOrd + Into<usize> + From<usize> + Copy>(&self, c: &Coordinate<T>) -> bool {
+    pub fn contains_key<T: PartialEq + PartialOrd + Into<usize> + From<usize> + Copy>(&self, c: &Coordinate<T>) -> bool {
         if c.y >= self.0.len().into() || c.x>= self.0[c.y.into()].len().into() {
             false
         } else {
@@ -672,14 +708,24 @@ impl<V: Copy> Grid<V> {
         }
     }
 
-    pub fn iter<T: Unsigned + PartialEq + PartialOrd + Into<usize> + From<usize> + Copy>(&self)-> impl Iterator<Item = (Coordinate<T>, V)> + use<'_, T, V> {
+    pub fn iter<T: PartialEq + PartialOrd + Into<usize> + From<usize> + Copy>(&self)-> impl Iterator<Item = (Coordinate<T>, V)> + use<'_, T, V> {
        (0..self.0.len()).flat_map(move |y| 
             (0..self.0[y].len())
             .map(move |x|(Coordinate{x,y}, self.0[y][x])))
         .filter(|(_,v)| v.is_some())
         .map(|(k,v)| (Coordinate{x: k.x.into(), y: k.y.into()}, v.unwrap()))
-
     }
+
+    pub fn keys<T: PartialEq + PartialOrd + Into<usize> + From<usize> + Copy>(&self)-> impl Iterator<Item = Coordinate<T>> + use<'_, T, V> {
+        (0..self.0.len()).flat_map(move |y| 
+             (0..self.0[y].len())
+             .map(move |x|(Coordinate{x,y}, self.0[y][x])))
+         .filter(|(_,v)| v.is_some())
+         .map(|(k,_)| Coordinate::<T>{x: k.x.into(), y: k.y.into()})
+ 
+     }
+ 
+
 }
 
 impl<V: Copy> Default for Grid<V> {

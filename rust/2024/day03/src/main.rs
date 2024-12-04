@@ -8,6 +8,7 @@ fn main() -> Result<(), Box<dyn Error>>{
 
     Ok(())
 }
+
 fn solve(instructions: &str, part2: bool) -> i64 {
     let mut res:i64 = 0;
     let mut left_ptr =0;

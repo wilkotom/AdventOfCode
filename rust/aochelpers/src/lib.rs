@@ -1,7 +1,6 @@
 use std::{cmp::{max, min, Ordering}, collections::HashMap, env, error::Error, fmt::{self, Debug, Display}, fs::{self, File}, hash::Hash, io::{ErrorKind, Write}, ops::{Add, AddAssign, Sub, SubAssign}, path::PathBuf, str::FromStr};
-use num::Integer;
+use num::{Integer, Signed, ToPrimitive, Unsigned};
 use log::warn;
-
 
 /// Compass directions
 #[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -627,4 +626,64 @@ pub fn get_everybodycodes_input(day: i32, year: i32, part: i32) -> Result<String
      } else {
          Err(Box::new(Box::new(std::io::Error::new(ErrorKind::Other,"Couldn't determine home directory"))))
      }
+}
+
+
+/// Representation of a grid of objects which can be accessed by Coordinate<T>
+/// Suited to dense grids of objects such as word search puzzles
+/// Less suited to sparse grids as empoty points are stored
+/// 
+/// Methods are deliberately similar to those presented by `std::collections::HashMap``.
+/// 
+/// TODO: add tests
+pub struct Grid<V>(Vec<Vec<Option<V>>>);
+
+
+impl<V: Copy> Grid<V> {
+    pub fn new() -> Self {
+        Grid(Vec::new())
+    }
+
+    pub fn insert<T: Unsigned + PartialEq + PartialOrd + Into<usize> + From<usize> + Copy>(&mut self, c: Coordinate<T>, v: V) -> Option<V> {
+        while c.y >= self.0.len().into() {
+            self.0.push(Vec::new());
+        }
+        while c.x >= self.0[c.y.into()].len().into() {
+            self.0[c.y.into()].push(None);
+        }
+        let old_value = self.0[c.y.into()][c.x.into()];
+        self.0[c.y.into()][c.x.into()] = Some(v);
+        old_value
+    }
+
+    pub fn get<T: Unsigned + PartialEq + PartialOrd + Into<usize> + From<usize> + Copy>(&self, c: &Coordinate<T>) -> Option<V> {
+        if c.y >= self.0.len().into() || c.x>= self.0[c.y.into()].len().into() {
+            None
+        } else {
+            self.0[c.y.into()][c.x.into()]
+        }
+    }
+
+    pub fn contains_key<T: Unsigned + PartialEq + PartialOrd + Into<usize> + From<usize> + Copy>(&self, c: &Coordinate<T>) -> bool {
+        if c.y >= self.0.len().into() || c.x>= self.0[c.y.into()].len().into() {
+            false
+        } else {
+            self.0[c.y.into()][c.x.into()].is_some()
+        }
+    }
+
+    pub fn iter<T: Unsigned + PartialEq + PartialOrd + Into<usize> + From<usize> + Copy>(&self)-> impl Iterator<Item = (Coordinate<T>, V)> + use<'_, T, V> {
+       (0..self.0.len()).flat_map(move |y| 
+            (0..self.0[y].len())
+            .map(move |x|(Coordinate{x,y}, self.0[y][x])))
+        .filter(|(_,v)| v.is_some())
+        .map(|(k,v)| (Coordinate{x: k.x.into(), y: k.y.into()}, v.unwrap()))
+
+    }
+}
+
+impl<V: Copy> Default for Grid<V> {
+    fn default() -> Self {
+        Grid::new()
+    }
 }

@@ -1,7 +1,7 @@
 use std::error::Error;
 use aochelpers::get_daily_input;
 
-#[derive(Debug,Clone)]
+#[derive(Debug)]
 struct CalibrationState {
     target: i64,
     numbers: Vec<i64>,
@@ -15,12 +15,12 @@ fn main() -> Result<(), Box<dyn Error>>{
     Ok(())
 }
 
-fn solve(states: &Vec<CalibrationState>, part2: bool) -> i64{
+fn solve(states: &[CalibrationState], part2: bool) -> i64{
     let mut answer = 0;
     let mut unprocessed = Vec::new();
     'outer: for state in states {
         unprocessed.clear();
-        unprocessed.push((0,0));
+        unprocessed.push((state.numbers[0],1));
         while let Some((accumulator, pointer)) = unprocessed.pop(){
             if pointer == state.numbers.len() {
                 if accumulator == state.target {
@@ -29,7 +29,7 @@ fn solve(states: &Vec<CalibrationState>, part2: bool) -> i64{
                 }
                 continue;
             }
-            if accumulator >= state.target {
+            if accumulator > state.target {
                 continue;
             }
             unprocessed.push((accumulator + state.numbers[pointer], pointer+1));
@@ -51,7 +51,7 @@ fn parse_data (data: &str) -> Vec<CalibrationState>{
     for line in data.lines() {
         let split = line.chars().position(|c |c ==':').unwrap();
         let target = line[..split].parse().unwrap();
-        let numbers = line[split+1..].split_ascii_whitespace().map(|v| v.parse().unwrap()).collect::<Vec<_>>();
+        let numbers = line[split+1..].split_ascii_whitespace().filter_map(|v| v.parse()).collect::<Vec<_>>();
         results.push(CalibrationState{
             target,
             numbers,

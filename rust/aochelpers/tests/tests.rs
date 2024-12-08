@@ -1,4 +1,4 @@
-use std::{collections::HashMap, usize};
+use std::collections::HashMap;
 use aochelpers::*;
 use num_traits::ops::checked::{CheckedAdd, CheckedSub};
 
@@ -17,6 +17,20 @@ fn sub_coordinates() {
     let expected = Coordinate{x: -1, y:-2};
     assert_eq!(base - delta, expected);
 }
+
+#[test]
+fn mul_coordinates() {
+    let base = Coordinate{x:1, y:2};
+    let delta = 3;
+    let expected = Coordinate{x: 3, y:6};
+    assert_eq!(base * delta, expected);
+
+    let base = Coordinate{x:1, y:2};
+    let delta = -3;
+    let expected = Coordinate{x: -3, y:-6};
+    assert_eq!(base * delta, expected);
+}
+
 
 #[test]
 fn checked_add_coordinates() {
@@ -135,6 +149,19 @@ fn hex_neighbours_2d() {
              Coordinate{x:2, y:2},
              Coordinate{x:0, y:0},
              Coordinate{x:0, y:2}]);
+}
+
+#[test]
+fn mul_coordinates3d() {
+    let base = Coordinate3d{x:1, y:2, z:3};
+    let delta = 3;
+    let expected = Coordinate3d{x: 3, y:6, z:9};
+    assert_eq!(base * delta, expected);
+
+    let base = Coordinate3d{x:1, y:2, z:3};
+    let delta = -3;
+    let expected = Coordinate3d{x: -3, y:-6, z:-9};
+    assert_eq!(base * delta, expected);
 }
 
 #[test]

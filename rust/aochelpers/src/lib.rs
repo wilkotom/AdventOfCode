@@ -1,4 +1,4 @@
-use std::{cmp::{max, min, Ordering}, collections::HashMap, env, error::Error, fmt::{self, Debug, Display}, fs::{self, File}, hash::Hash, io::{ErrorKind, Write}, ops::{Add, AddAssign, Sub, SubAssign}, path::PathBuf, str::FromStr};
+use std::{cmp::{max, min, Ordering}, collections::HashMap, env, error::Error, fmt::{self, Debug, Display}, fs::{self, File}, hash::Hash, io::{ErrorKind, Write}, ops::{Add, AddAssign, Mul, Sub, SubAssign}, path::PathBuf, str::FromStr};
 use num::{CheckedAdd, CheckedSub, Integer, Unsigned};
 use log::warn;
 
@@ -97,6 +97,19 @@ impl<T: SubAssign> SubAssign for Coordinate<T> {
         self.y -= other.y;
     }
 }
+
+impl<T> Mul<T> for Coordinate<T>
+where T: Mul<Output = T> + Copy
+{
+    type Output = Coordinate<T>;
+    fn mul(self, n: T) -> Coordinate<T> {
+        Coordinate {
+            x: self.x * n,
+            y: self.y * n,
+        }
+    }
+}
+
 /// Y values are treated as more significant than X values; this preserves the _reading order_ used in a number of puzzles.
 impl<T: Eq + PartialEq + Ord + Copy> Ord for Coordinate<T> {
     // Reading order: Y then X
@@ -285,6 +298,17 @@ impl<T: SubAssign> SubAssign for Coordinate3d<T> {
         self.x -= other.x;
         self.y -= other.y;
         self.z -= other.z;
+    }
+}
+
+impl<T: std::ops::Mul<Output = T> + Copy> Mul<T> for Coordinate3d<T>{
+    type Output = Coordinate3d<T>;
+    fn mul(self, n: T) -> Coordinate3d<T> {
+        Coordinate3d {
+            x: self.x * n,
+            y: self.y * n,
+            z: self.z * n
+        }
     }
 }
 

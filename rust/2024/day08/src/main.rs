@@ -4,9 +4,8 @@ use aochelpers::{get_daily_input, Coordinate};
 fn main() -> Result<(), Box<dyn Error>>{
     let data = get_daily_input(8,2024)?;
     let (parsed, bounds) = parse_data(&data);
-    println!("Part 1: {}", part1(&parsed, &bounds));
-    println!("Part 2: {}", part2(&parsed, &bounds));
-
+    println!("Part 1: {}", part1(&parsed, &bounds, false));
+    println!("Part 2: {}", part1(&parsed, &bounds, true));
     Ok(())
 }
 
@@ -27,45 +26,35 @@ fn parse_data(data: &str) -> (HashMap<char,Vec<Coordinate<i32>>>, Coordinate<i32
     (parsed, max_boundary)
 }
 
-fn part1(beacons: &HashMap<char,Vec<Coordinate<i32>>>, bounds: &Coordinate<i32>) -> usize {
-    let mut found_beacons = HashSet::new();
+fn part1(beacons: &HashMap<char,Vec<Coordinate<i32>>>, bounds: &Coordinate<i32>, part2: bool) -> usize {
+    let mut antinodes = HashSet::new();
     for beacon_list in beacons.values() {
         for (i,first) in beacon_list.iter().enumerate() {
             for second in beacon_list[i+1..].iter() {
                 let delta = *second - *first;
                 for antinode in [*first - delta, *second + delta] {
                     if (0..=bounds.x).contains(&antinode.x) &&(0..=bounds.y).contains(&antinode.y) {
-                        found_beacons.insert(antinode);
+                        antinodes.insert(antinode);
                     }
                 }
-            }
-        }
-    }
-    found_beacons.len()
-}
-
-fn part2(beacons: &HashMap<char,Vec<Coordinate<i32>>>, bounds: &Coordinate<i32>) -> usize {
-    let mut found_beacons = HashSet::new();
-    for beacon_list in beacons.values() {
-        for (i,first) in beacon_list.iter().enumerate() {
-            for second in beacon_list[i+1..].iter() {
-                let delta = *second - *first;
-                let mut antinode = *first;
-                while (0..=bounds.x).contains(&antinode.x) &&(0..=bounds.y).contains(&antinode.y) {
-                    found_beacons.insert(antinode);
-                    antinode -= delta;
-                }
-                antinode = *first;
-                while (0..=bounds.x).contains(&antinode.x) &&(0..=bounds.y).contains(&antinode.y) {
-                    found_beacons.insert(antinode);
-                    antinode += delta;
+                if part2 {
+                    let mut antinode = *first;
+                    while (0..=bounds.x).contains(&antinode.x) &&(0..=bounds.y).contains(&antinode.y) {
+                        antinodes.insert(antinode);
+                        antinode -= delta;
+                    }
+                    antinode = *second;
+                    while (0..=bounds.x).contains(&antinode.x) &&(0..=bounds.y).contains(&antinode.y) {
+                        antinodes.insert(antinode);
+                        antinode += delta;
+                    }
+    
                 }
             }
         }
     }
-    found_beacons.len()
+    antinodes.len()
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -120,30 +109,30 @@ const P2EX1: &str = "T.........
     #[test]
     fn test_part1_ex1() {
         let (parsed, bounds) = parse_data(P1EX1);
-        assert_eq!(part1(&parsed, &bounds),2);     
+        assert_eq!(part1(&parsed, &bounds, false),2);     
     }
 
     #[test]
     fn test_part1_ex2() {
         let (parsed, bounds) = parse_data(P1EX2);
-        assert_eq!(part1(&parsed, &bounds),4);
+        assert_eq!(part1(&parsed, &bounds, false),4);
     }
 
     #[test]
     fn test_part1_ex3() {
         let (parsed, bounds) = parse_data(P1EX3);
-        assert_eq!(part1(&parsed, &bounds),14);
+        assert_eq!(part1(&parsed, &bounds, false),14);
     }
 
     #[test]
     fn test_part2_ex1() {
         let (parsed, bounds) = parse_data(P2EX1);
-        assert_eq!(part2(&parsed, &bounds),9);
+        assert_eq!(part1(&parsed, &bounds, true),9);
     }
 
     #[test]
     fn test_part2_ex2() {
         let (parsed, bounds) = parse_data(P1EX3);
-        assert_eq!(part2(&parsed, &bounds),34);
+        assert_eq!(part1(&parsed, &bounds, true),34);
     }
 }

@@ -160,19 +160,19 @@ mod tests {
             BlockAllocation { length: 3, block_type: BlockType::Empty, position: 8 }, 
             BlockAllocation { length: 1, block_type: BlockType::Filled(2), position: 11 }, 
             BlockAllocation { length: 3, block_type: BlockType::Empty, position: 12 }, 
-             BlockAllocation { length: 3, block_type: BlockType::Filled(3), position: 15 }, 
-             BlockAllocation { length: 1, block_type: BlockType::Empty, position: 18 }, 
-             BlockAllocation { length: 2, block_type: BlockType::Filled(4), position: 19 }, 
-             BlockAllocation { length: 1, block_type: BlockType::Empty, position: 21 }, 
-             BlockAllocation { length: 4, block_type: BlockType::Filled(5), position: 22 }, 
-             BlockAllocation { length: 1, block_type: BlockType::Empty, position: 26 }, 
-             BlockAllocation { length: 4, block_type: BlockType::Filled(6), position: 27 }, 
-             BlockAllocation { length: 1, block_type: BlockType::Empty, position: 31 }, 
-             BlockAllocation { length: 3, block_type: BlockType::Filled(7), position: 32 }, 
-             BlockAllocation { length: 1, block_type: BlockType::Empty, position: 35 }, 
-             BlockAllocation { length: 4, block_type: BlockType::Filled(8), position: 36 }, 
-             BlockAllocation { length: 0, block_type: BlockType::Empty, position: 40 }, 
-             BlockAllocation { length: 2, block_type: BlockType::Filled(9), position: 40 }];
+            BlockAllocation { length: 3, block_type: BlockType::Filled(3), position: 15 }, 
+            BlockAllocation { length: 1, block_type: BlockType::Empty, position: 18 }, 
+            BlockAllocation { length: 2, block_type: BlockType::Filled(4), position: 19 }, 
+            BlockAllocation { length: 1, block_type: BlockType::Empty, position: 21 }, 
+            BlockAllocation { length: 4, block_type: BlockType::Filled(5), position: 22 }, 
+            BlockAllocation { length: 1, block_type: BlockType::Empty, position: 26 }, 
+            BlockAllocation { length: 4, block_type: BlockType::Filled(6), position: 27 }, 
+            BlockAllocation { length: 1, block_type: BlockType::Empty, position: 31 }, 
+            BlockAllocation { length: 3, block_type: BlockType::Filled(7), position: 32 }, 
+            BlockAllocation { length: 1, block_type: BlockType::Empty, position: 35 }, 
+            BlockAllocation { length: 4, block_type: BlockType::Filled(8), position: 36 }, 
+            BlockAllocation { length: 0, block_type: BlockType::Empty, position: 40 }, 
+            BlockAllocation { length: 2, block_type: BlockType::Filled(9), position: 40 }];
         assert_eq!(parse_data("2333133121414131402"), expected);
 
     }

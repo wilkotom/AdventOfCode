@@ -136,6 +136,7 @@ impl<T: Copy + 'static> Coordinate<T> {
 impl<T: Integer + Copy> Coordinate<T> {
     /// All co-ordinates directly neighbouring the square on a grid, excluding diagonals
     pub fn neighbours(&self) -> Vec<Self> {
+        
         vec![ Coordinate{x: self.x - num::one(), y: self.y},
               Coordinate{x: self.x + num::one(), y: self.y},
               Coordinate{x: self.x, y: self.y - num::one()},
@@ -204,7 +205,25 @@ impl<T: Integer + Copy + CheckedSub + CheckedAdd + Unsigned> Coordinate<T> {
                 Direction::West => self.checked_sub(&Coordinate{x: num::one::<T>(), y: num::zero::<T>()}),
             }
         }
-
+        /// The neighbouring `Coordinates` in the four compass `Direction`s, checked for under / overflow
+        pub fn checked_neighbours(&self) -> impl Iterator<Item = Coordinate<T>> + use<'_, T> {
+        
+            [self.checked_neighbour(Direction::North),
+            self.checked_neighbour(Direction::East),
+            self.checked_neighbour(Direction::South),
+            self.checked_neighbour(Direction::West)].into_iter().flatten()
+        }
+        /// The neighbouring `Coordinates` in the eight `Direction`s, checked for under / overflow
+        pub fn checked_extended_neighbours(&self) -> impl Iterator<Item = Coordinate<T>> + use<'_, T> {
+            [self.checked_neighbour(Direction::North),
+            self.checked_neighbour(Direction::NorthEast),
+            self.checked_neighbour(Direction::East),
+            self.checked_neighbour(Direction::SouthEast),
+            self.checked_neighbour(Direction::South),
+            self.checked_neighbour(Direction::SouthWest),
+            self.checked_neighbour(Direction::West),
+            self.checked_neighbour(Direction::NorthWest)].into_iter().flatten()
+        }
 }
 
 /// Describes a rectangle aligned with the x,y,z axes by way of its top left and bottom right corners

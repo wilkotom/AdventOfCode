@@ -104,17 +104,18 @@ fn part2(computer: &mut NotAnIntCodeComputer) -> u64 {
     let mut potential_matches = Vec::new();
     potential_matches.push((0,0));
     while let Some((match_count, guess) ) = potential_matches.pop() {
-        for i in 0..=7 {
-            computer.a = guess + i;
+        if match_count == computer.program.len() {
+            return guess;
+        }
+        for i in (0..=7).rev() {
+            let next_guess = guess * 8 +i; 
+            computer.a = next_guess;
             computer.b = 0;
             computer.c = 0;
             computer.ptr = 0;
             let output = computer.run_program();
-            if !output.is_empty() && computer.program[computer.program.len() - (match_count+1)] == output[0] {
-                if match_count +1 == computer.program.len() {
-                    return guess +i;
-                }
-                potential_matches.push((match_count +1, (guess+i) *8));
+            if computer.program[computer.program.len() - (match_count+1)] == output[0] {
+                potential_matches.push((match_count +1, next_guess));
             }
         }
     }

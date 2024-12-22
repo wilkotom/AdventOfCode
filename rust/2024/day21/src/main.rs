@@ -1,6 +1,5 @@
 use std::{collections::HashMap, error::Error};
 use aochelpers::{get_daily_input, Coordinate};
-
  
 fn main() -> Result<(), Box<dyn Error>>{
     let data = get_daily_input(21,2024)?;
@@ -201,7 +200,3 @@ mod tests {
     }
 
 }
-/*
-  left: "v<<A>>^AvA^A<vA<AA>>^AAvA<^A>AAvA^A<vA>^AA<A>Av<<A>A>^AAAvA<^A>A"
- right: "v<<A>>^AvA^A<vA<AA>>^AAvA<^A>AAvA^A<vA>^AA<A>A<v<A>A>^AAAvA<^A>A"
-      */

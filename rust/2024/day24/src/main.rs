@@ -1,5 +1,4 @@
 use std::error::Error;
-use aochelpers::get_daily_input;
 
 fn main() -> Result<(), Box<dyn Error>>{
     //let data = get_daily_input(24,2024)?;
@@ -11,7 +10,7 @@ fn main() -> Result<(), Box<dyn Error>>{
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    
 
     #[test]
     fn test_part1() {

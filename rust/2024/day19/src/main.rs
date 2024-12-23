@@ -1,4 +1,4 @@
-use std::{collections::{HashMap, HashSet}, error::Error};
+use std::{collections::HashMap, error::Error};
 use aochelpers::get_daily_input;
 
 fn main() -> Result<(), Box<dyn Error>>{

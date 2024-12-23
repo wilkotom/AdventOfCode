@@ -12,7 +12,7 @@ enum Square {
 fn main() -> Result<(), Box<dyn Error>>{
     let data = get_daily_input(20,2024)?;
     let grid: HashMap<Coordinate<i32>, Square> = parse_data(&data);
-    let squares = get_times(&grid);
+    let squares = get_path(&grid);
     println!("Part 1: {}", solve(&squares, 100, 2));
     println!("Part 2: {}", solve(&squares, 100, 20));
 
@@ -33,7 +33,7 @@ fn solve(squares: &[Coordinate<i32>], target_saving: i32, max_cheat_duration: i3
     result
 }
 
-fn get_times(grid: &HashMap<Coordinate<i32>, Square>) -> Vec<Coordinate<i32>> {
+fn get_path(grid: &HashMap<Coordinate<i32>, Square>) -> Vec<Coordinate<i32>> {
     let mut visited = Vec::new();
     let start = grid.iter().find(|(_,v)| **v == Square::Start).map(|(c,_)|c).expect("No start Found");
     let end = grid.iter().find(|(_,v)| **v == Square::Finish).map(|(c,_)|c).expect("No start Found");
@@ -92,7 +92,7 @@ mod tests {
     #[test]
     fn test_part1() {
         let grid: HashMap<Coordinate<i32>, Square>= parse_data(TESTDATA);
-        let squares = get_times(&grid);
+        let squares = get_path(&grid);
 
         assert_eq!(solve(&squares, 64, 2), 1); // There is cheats that save at least 64 ps
     }
@@ -100,7 +100,7 @@ mod tests {
     #[test]
     fn test_part2() {
         let grid: HashMap<Coordinate<i32>, Square>= parse_data(TESTDATA);
-        let squares = get_times(&grid);
+        let squares = get_path(&grid);
         assert_eq!(solve(&squares, 76, 20), 3); // There are 3 cheats that save at least 76 ps
     }
 }

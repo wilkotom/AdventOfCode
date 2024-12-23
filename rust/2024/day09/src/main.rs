@@ -1,4 +1,3 @@
-use core::alloc;
 use std::{collections::{BinaryHeap, VecDeque}, error::Error};
 use aochelpers::{get_daily_input, ScoredItem};
 

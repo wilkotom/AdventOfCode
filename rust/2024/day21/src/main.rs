@@ -1,5 +1,5 @@
 use std::{collections::HashMap, error::Error};
-use aochelpers::{get_daily_input, Coordinate};
+use aochelpers::get_daily_input;
  
 fn main() -> Result<(), Box<dyn Error>>{
     let data = get_daily_input(21,2024)?;
@@ -94,6 +94,7 @@ fn first_stage(sequence: &str) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use aochelpers::Coordinate;
 
     fn validate_final_instructions(sequence: &str) -> String {
         let keypad = HashMap::from([

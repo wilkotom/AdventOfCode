@@ -1,4 +1,4 @@
-use std::{collections::{HashMap, HashSet, VecDeque}, error::Error};
+use std::{collections::{HashMap, HashSet}, error::Error};
 use aochelpers::get_daily_input;
 
 fn main() -> Result<(), Box<dyn Error>>{
@@ -45,7 +45,6 @@ fn part2<'a>( connections: &HashMap<&'a str, Vec<&'a str>>) -> String {
         if group.len() > biggest.len() {
             biggest = group
         }
-
     }
     biggest.sort();
     biggest.into_iter().map(|c|c.to_string()).collect::<Vec<_>>().join(",")

@@ -12,7 +12,7 @@ fn main() -> Result<(), Box<dyn Error>>{
 fn solve(instructions: &str, part2: bool) -> i64 {
     let mut res:i64 = 0;
     let mut left_ptr =0;
-    let mut right_ptr = 0;
+    let mut right_ptr;
     while left_ptr < instructions.len(){
         while left_ptr < instructions.len() && !instructions[left_ptr..].starts_with("mul(") {
             if instructions[left_ptr..].starts_with("don't()") && part2 {

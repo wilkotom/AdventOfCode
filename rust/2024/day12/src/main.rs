@@ -1,6 +1,6 @@
-use std::{collections::{HashMap, HashSet}, error::Error};
+use std::{collections::HashSet, error::Error};
 use aochelpers::{get_daily_input, Coordinate, Direction, Grid};
-use std::time::{Duration, Instant};
+use std::time::Instant;
 
 fn main() -> Result<(), Box<dyn Error>>{
     let data = get_daily_input(12,2024)?;

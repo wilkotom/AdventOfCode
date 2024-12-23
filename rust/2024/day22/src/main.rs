@@ -1,4 +1,4 @@
-use std::{collections::{HashMap, HashSet}, error::Error, slice::Windows};
+use std::{collections::{HashMap, HashSet}, error::Error};
 use aochelpers::get_daily_input;
 
 fn main() -> Result<(), Box<dyn Error>>{
@@ -61,7 +61,7 @@ mod tests {
     #[test]
     fn test_part1() {
         let secrets = [1,10,100,2024];
-        assert_eq!(part1(&secrets), vec![8685429,4700978,15273692, 8667524]);
+        assert_eq!(part1(&secrets), 37327623);
     }
 
     #[test]

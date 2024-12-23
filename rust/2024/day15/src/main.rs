@@ -58,7 +58,7 @@ fn part2(mut grid: Grid<Square>, directions: &Vec<Direction>) -> usize {
     grid.insert(robot, Square::Empty);
 
     for direction in directions {
-        let mut neighbour = robot.neighbour(*direction);
+        let neighbour = robot.neighbour(*direction);
         match grid.get(&neighbour) {
             Some(Square::Wall) | Some(Square::Robot)=> {},
             Some(Square::Empty) => {
@@ -107,7 +107,7 @@ fn can_move(location: Coordinate<usize>, direction: Direction, grid: &Grid<Squar
                 Some(Square::Empty) => true,
                 Some(Square::Wall) => false,
                 Some(Square::BoxLeft) => can_move(target_location, direction, grid),
-                None | Some(Square::Box)| Some(Square::BoxRight) | Some(Square::Robot) => unimplemented!(),
+                _ => unimplemented!(),
             }
         },
         Direction::South => {
@@ -248,16 +248,11 @@ fn parse_data(data: &str) -> (Grid<Square>, Vec<Direction>) {
         '<' => Direction::West,
         '>' => Direction::East,
         'v' => Direction::South,
-        _=> {
-            println!("Can't understand direction '{}'", c);
-            unimplemented!();
-        }
+        _=> unimplemented!()
     }).collect();
     (grid, directions)
 
 }
-
-
 
 fn parse_data_p2(data: &str) -> (Grid<Square>, Vec<Direction>) {
     let mut sections = data.split("\n\n");

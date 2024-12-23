@@ -47,7 +47,6 @@ impl NotAnIntCodeComputer {
                     //bst
                     self.b = combo % 8;
                     self.ptr +=2;
-
                 }
                 3 => {
                     //jnz

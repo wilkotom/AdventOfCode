@@ -51,7 +51,7 @@ fn parse_data (data: &str) -> Vec<CalibrationState>{
     for line in data.lines() {
         let split = line.chars().position(|c |c ==':').unwrap();
         let target = line[..split].parse().unwrap();
-        let numbers = line[split+1..].split_ascii_whitespace().filter_map(|v| v.parse()).collect::<Vec<_>>();
+        let numbers = line[split+1..].split_ascii_whitespace().flat_map(|v| v.parse()).collect::<Vec<_>>();
         results.push(CalibrationState{
             target,
             numbers,

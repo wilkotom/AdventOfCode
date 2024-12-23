@@ -53,7 +53,7 @@ fn part2(falling: &[Coordinate<usize>], goal: Coordinate<usize>) -> Coordinate<u
     falling[inspection_point]
 }
 
-fn parse_data(data: &str) -> Vec<Coordinate<usize>>{
+fn parse_data(data: &str) -> Vec<Coordinate<usize>> {
     data.lines().map(|l| {let mut s = l.split(",").map(|n| n.parse().unwrap()); Coordinate{x: s.next().unwrap(), y: s.next().unwrap()}}).collect::<Vec<_>>()
 }
 

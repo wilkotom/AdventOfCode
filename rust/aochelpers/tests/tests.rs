@@ -117,7 +117,7 @@ fn directional_neighbour() {
 #[test]
 fn neighbours_2d() {
     assert_eq!( 
-        Coordinate {x:1, y:1}.neighbours(), 
+        Coordinate {x:1, y:1}.neighbours().collect::<Vec<_>>(), 
         vec![Coordinate{x:0, y:1},
              Coordinate{x:2, y:1},
              Coordinate{x:1, y:0},
@@ -128,7 +128,7 @@ fn neighbours_2d() {
 #[test]
 fn extended_neighbours_2d() {
     assert_eq!( 
-        Coordinate {x:1, y:1}.extended_neighbours(), 
+        Coordinate {x:1, y:1}.extended_neighbours().collect::<Vec<_>>(), 
         vec![Coordinate{x:0, y:0},
              Coordinate{x:0, y:1},
              Coordinate{x:0, y:2},
@@ -142,7 +142,7 @@ fn extended_neighbours_2d() {
 #[test]
 fn hex_neighbours_2d() {
     assert_eq!( 
-        Coordinate{x:1, y:1}.hex_neighbours(), 
+        Coordinate{x:1, y:1}.hex_neighbours().collect::<Vec<_>>(), 
         vec![Coordinate{x:-1, y:1},
              Coordinate{x:3, y:1},
              Coordinate{x:2, y:0},
@@ -150,6 +150,14 @@ fn hex_neighbours_2d() {
              Coordinate{x:0, y:0},
              Coordinate{x:0, y:2}]);
 }
+
+#[test]
+fn triangle_neighbours_2d() {
+    assert_eq!(Coordinate { x: 1, y:1}.triangle_neighbours().collect::<Vec<_>>(), vec![ Coordinate { x: 0, y:1 }, Coordinate { x: 2, y: 1}, Coordinate { x: 1, y: 0} ]);
+    assert_eq!(Coordinate { x: 2, y:1}.triangle_neighbours().collect::<Vec<_>>(), vec![  Coordinate { x: 1, y:1}, Coordinate { x: 3, y:1 }, Coordinate { x: 2, y: 2} ]);
+
+}
+
 
 #[test]
 fn mul_coordinates3d() {

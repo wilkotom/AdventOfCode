@@ -135,17 +135,17 @@ impl<T: Copy + 'static> Coordinate<T> {
 
 impl<T: Integer + Copy> Coordinate<T> {
     /// All co-ordinates directly neighbouring the square on a grid, excluding diagonals
-    pub fn neighbours(&self) -> Vec<Self> {
+    pub fn neighbours(&self) ->  impl Iterator<Item = Self> + use<'_, T> {
         
-        vec![ Coordinate{x: self.x - num::one(), y: self.y},
+        [ Coordinate{x: self.x - num::one(), y: self.y},
               Coordinate{x: self.x + num::one(), y: self.y},
               Coordinate{x: self.x, y: self.y - num::one()},
               Coordinate{x: self.x, y: self.y + num::one()},
-        ]
+        ].into_iter()
     }
     /// All co-ordinates directly neighbouring the square on a grid, including diagonals
-    pub fn extended_neighbours(&self) -> Vec<Self> {
-        vec![ 
+    pub fn extended_neighbours(&self) -> impl Iterator<Item = Self> + use<'_, T> {
+        [ 
             Coordinate{x: self.x - num::one(), y: self.y - num::one()},
             Coordinate{x: self.x - num::one(), y: self.y },
             Coordinate{x: self.x - num::one(), y: self.y + num::one()},
@@ -154,7 +154,7 @@ impl<T: Integer + Copy> Coordinate<T> {
             Coordinate{x: self.x + num::one(), y: self.y - num::one()},
             Coordinate{x: self.x + num::one(), y: self.y },
             Coordinate{x: self.x + num::one(), y: self.y + num::one()},
-        ]
+        ].into_iter()
     }
     /// Returns all co-ordinates directly neighbouring the square on an alternating hex grid:
     /// ```text
@@ -162,16 +162,25 @@ impl<T: Integer + Copy> Coordinate<T> {
     ///  3 X 4
     ///   5 6
     /// ```
-    pub fn hex_neighbours(&self) -> Vec<Self> {
-        vec![
+    pub fn hex_neighbours(&self) -> impl Iterator<Item = Self> + use<'_, T> {
+        [
             Coordinate{x: self.x - num::one() - num::one(), y: self.y}, 
             Coordinate{x: self.x + num::one() + num::one(), y: self.y}, 
             Coordinate{x: self.x + num::one(), y: self.y - num::one()}, 
             Coordinate{x: self.x + num::one(), y: self.y + num::one()},
             Coordinate{x: self.x - num::one(), y: self.y - num::one()},
-            Coordinate{x: self.x - num::one(), y: self.y + num::one()}]
+            Coordinate{x: self.x - num::one(), y: self.y + num::one()}
+        ].into_iter()
 
     }
+
+    pub fn triangle_neighbours(&self) -> impl Iterator<Item = Self> + use<'_, T> {
+        self.neighbours()
+        .filter(|c| (c.x >= num::zero() && c.y >= num::zero() && c.y == self.y) ||
+             (c.y < self.y && c.y % (num::one::<T>() + num::one()) != c.x %(num::one::<T>() + num::one())) || 
+             (c.y> self.y && c.x % (num::one::<T>() + num::one()) == c.y%( num::one::<T>() + num::one()) ))
+}
+
     /// Taxicab / manhattan distance: difference between X coordinates plus difference between Y coordinates
     pub fn manhattan_distance(&self, other: &Self) -> T  {
         self.x.max(other.x) - self.x.min(other.x) + self.y.max(other.y) - self.y.min(other.y)

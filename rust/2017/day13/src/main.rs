@@ -4,7 +4,7 @@ fn main() {
     let mut caught = true;
     'outer: while caught {
         caught = false;
-        let mut severity: i32;
+        let mut severity: i32 = 0;
         for line in data.split('\n') {
             let mut info = line.split(": ");
             let pos = info.next().unwrap().parse::<i32>().unwrap();

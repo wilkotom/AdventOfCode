@@ -1,3 +1,4 @@
+
 use std::{error::Error, collections::{HashMap, HashSet, VecDeque}};
 use aochelpers::{get_daily_input, Coordinate, Direction, ScoredItem};
 
@@ -6,13 +7,13 @@ type PipeLookup = HashMap<Coordinate<i32>, (Direction, Direction)>;
 fn part2(circuit: &HashSet<Coordinate<i32>>, arena: &HashMap<Coordinate<i32>, (Direction, Direction)>) -> i32 {
 
     let boundary = Coordinate{
-        x: arena.keys().map(|c: &Coordinate<i32>| c.x).max().unwrap_or(0), 
-        y: arena.keys().map(|c| c.y).max().unwrap_or(0)};
+        x: arena.keys().map(|c: &Coordinate<i32>| c.x+1).max().unwrap_or(0),
+        y: arena.keys().map(|c| c.y+1).max().unwrap_or(0)};
 
     let mut visited: HashSet::<Coordinate<i32>> = HashSet::new();
     let mut next_squares = VecDeque::new();
     // Flood fill the grid starting at (maxX, maxY) - we know this square will be unconnected to the 
-    // circuit as it's part of the padding added at parse time
+    // circuit as it's part of the padding
     next_squares.push_back(boundary);
     while let Some(next_square) = next_squares.pop_front() {
         if visited.contains(&next_square) || circuit.contains(&next_square) {
@@ -26,6 +27,7 @@ fn part2(circuit: &HashSet<Coordinate<i32>>, arena: &HashMap<Coordinate<i32>, (D
             }
         }
     }
+
     // Part 2 answer is the number of even-numbered squares in the arena that weren't
     // visited by either the flood fill or the circuit
     (0..boundary.y).step_by(2).map(|y: i32| (0..boundary.x).step_by(2)

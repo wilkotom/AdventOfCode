@@ -37,7 +37,7 @@ fn part2(mut ranges: Vec<(u64, u64)>) -> u64 {
 fn parse_data(data: &str) -> (Vec<(u64,u64)>, Vec<u64>) {
     let mut sections = data.split("\n\n");
     let ranges = sections.next().unwrap().lines().map(|l| {
-        let split = l.find('-').unwrap(); 
+        let split = l.find('-').unwrap();
         (l[..split].parse().unwrap(), l[split+1..].parse().unwrap())
     } ).collect();
     let ingredients = sections.next().unwrap().lines().map(|l| l.parse().unwrap()).collect();
@@ -72,5 +72,5 @@ mod tests {
         let (ranges, _) = parse_data(TESTDATA);
         assert_eq!(part2(ranges), 14);
     }
-    
+
 }

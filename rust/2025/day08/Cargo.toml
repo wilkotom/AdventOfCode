@@ -1,10 +1,10 @@
 [package]
 name = "Aoc-2025-08"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-aochelpers = ">=0.6.1"
+aochelpers = ">=0.9.0"
 

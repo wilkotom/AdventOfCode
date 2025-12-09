@@ -7,36 +7,31 @@ fn main() -> Result<(), Box<dyn Error>> {
     let data = get_daily_input(9,2025)?;
     let tiles = parse_data(&data);
     let start = Instant::now();
-    println!("Part 1: {}\n   Elapsed: {:?}", part1(&tiles), start.elapsed());
-    let start = Instant::now();
-    println!("Part 2: {}\n   Elapsed: {:?}", part2(&tiles), start.elapsed());
+    let (p1answer, p2answer) = solve(&tiles);
+    println!("Part 1: {}\nPart 2: {}\nElapsed: {:?}", p1answer, p2answer, start.elapsed());
     Ok(())
 }
 
-fn part1(tiles: &[Coordinate<i64>]) -> i64 {
-    tiles.iter().enumerate().map(
-        |(i,t1)| tiles[i+1..].iter().map(
-            |t2| ((t1.x - t2.x).abs() +1 )* ((t1.y - t2.y).abs()+1)).max().unwrap_or_default()
-        ).max().unwrap_or_default()
-}
-
-fn part2(tiles: &[Coordinate<i64>]) -> i64 {
-    let mut answer = 0;
+fn solve(tiles: &[Coordinate<i64>]) -> (i64, i64) {
+    let mut p1answer = 0;
+    let mut p2answer = 0;
     let edges = tiles.iter().circular_tuple_windows()
         .map(|(a,b)| Rectangle::new(*a, *b)).collect::<Vec<_>>();
     for (i, t1) in tiles.iter().enumerate() {
         for t2 in tiles[i+1..].iter() {
+            let area = ((t1.x - t2.x).abs() +1 )* ((t1.y - t2.y).abs()+1);
+            p1answer = p1answer.max( area);
             // This is just to ensure I have top left and bottom right correctly defined.
             let rect = Rectangle::new(*t1, *t2);
             let inner_rect= Rectangle::new(
                     Coordinate{x: rect.top_left.x +1, y: rect.top_left.y+1},
                     Coordinate{x: rect.bottom_right.x - 1, y: rect.bottom_right.y-1});
             if edges.iter().all(|e|inner_rect.intersection(e).is_none()){
-                answer = answer.max( ((t1.x - t2.x).abs() +1 )* ((t1.y - t2.y).abs()+1))
+                p2answer = p2answer.max( area);
             } 
         }
-    }   
-    answer
+    }
+    (p1answer,p2answer)
 }
 
 fn parse_data(data: &str) -> Vec<Coordinate<i64>> {
@@ -63,12 +58,14 @@ mod tests {
     #[test]
     fn test_p1() {
         let tiles = parse_data(TESTDATA);
-        assert_eq!(part1(&tiles), 50);
+        let (p1answer, _) = solve(&tiles);
+        assert_eq!(p1answer, 50);
     }
 
     #[test]
     fn test_p2() {
         let tiles = parse_data(TESTDATA);
-        assert_eq!(part2(&tiles), 24);
+        let (_, p2answer) = solve(&tiles);
+        assert_eq!(p2answer, 24);
     }
 }

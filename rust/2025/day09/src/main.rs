@@ -20,14 +20,14 @@ fn solve(tiles: &[Coordinate<i64>]) -> (i64, i64) {
     for (i, t1) in tiles.iter().enumerate() {
         for t2 in tiles[i+1..].iter() {
             let area = ((t1.x - t2.x).abs() +1 )* ((t1.y - t2.y).abs()+1);
-            p1answer = p1answer.max( area);
+            p1answer = p1answer.max(area);
             // This is just to ensure I have top left and bottom right correctly defined.
             let rect = Rectangle::new(*t1, *t2);
             let inner_rect= Rectangle::new(
                     Coordinate{x: rect.top_left.x +1, y: rect.top_left.y+1},
                     Coordinate{x: rect.bottom_right.x - 1, y: rect.bottom_right.y-1});
             if edges.iter().all(|e|inner_rect.intersection(e).is_none()){
-                p2answer = p2answer.max( area);
+                p2answer = p2answer.max(area);
             } 
         }
     }

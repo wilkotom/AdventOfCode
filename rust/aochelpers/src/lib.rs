@@ -174,6 +174,12 @@ impl<T: Integer + Copy> Coordinate<T> {
 
     }
 
+    /// Returns neighbours from the given coordinate assuming each cell is triangluar and has
+    /// only three edges:
+    ///    0 1 2 3 4
+    ///  0\ / \ / \ /
+    ///  1  \ / \ /
+    ///  2.   \ /
     pub fn triangle_neighbours(&self) -> impl Iterator<Item = Self> + use<'_, T> {
         self.neighbours()
         .filter(|c| (c.x >= num::zero() && c.y >= num::zero() && c.y == self.y) ||

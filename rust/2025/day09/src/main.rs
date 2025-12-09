@@ -1,13 +1,15 @@
 use aochelpers::{get_daily_input, Coordinate, Rectangle};
 use itertools::Itertools;
-use std::error::Error;
+use std::{error::Error,time::Instant};
 
 
 fn main() -> Result<(), Box<dyn Error>> {
     let data = get_daily_input(9,2025)?;
     let tiles = parse_data(&data);
-    println!("Part 1: {}", part1(&tiles));
-    println!("Part 2: {}", part2(&tiles));
+    let start = Instant::now();
+    println!("Part 1: {}\n   Elapsed: {:?}", part1(&tiles), start.elapsed());
+    let start = Instant::now();
+    println!("Part 2: {}\n   Elapsed: {:?}", part2(&tiles), start.elapsed());
     Ok(())
 }
 
@@ -20,7 +22,7 @@ fn part1(tiles: &[Coordinate<i64>]) -> i64 {
 
 fn part2(tiles: &[Coordinate<i64>]) -> i64 {
     let mut answer = 0;
-    let edges = tiles.into_iter().circular_tuple_windows()
+    let edges = tiles.iter().circular_tuple_windows()
         .map(|(a,b)| Rectangle::new(*a, *b)).collect::<Vec<_>>();
     for (i, t1) in tiles.iter().enumerate() {
         for t2 in tiles[i+1..].iter() {

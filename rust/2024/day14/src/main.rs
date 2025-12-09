@@ -47,7 +47,7 @@ fn part2(robots: &Vec<Robot>,  arena_dimensions: Coordinate<i32>) -> i32 {
             });
         }
 
-        let connected_count = occupied.iter().filter(|c| c.neighbours().iter().any(|n| occupied.contains(n))).count();
+        let connected_count = occupied.iter().filter(|c| c.neighbours().any(|n| occupied.contains(&n))).count();
         if connected_count >= robots.len() / 2 {
             print_robots(occupied, arena_dimensions);
             return seconds;

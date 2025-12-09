@@ -38,15 +38,15 @@ fn parse_engine_schematic(data: &str)-> (i32, i32) {
                     running_total *= 10;
                     running_total += n;
                     if !neighbour_detected {
-                        for coord in (Coordinate{x,y}).extended_neighbours().iter() {
-                            match grid.get(coord) {
+                        for coord in (Coordinate{x,y}).extended_neighbours() {
+                            match grid.get(&coord) {
                             Some(Square::Symbol) => {
                                 neighbour_detected = true;
                                 break;
                             }
                             Some(Square::Gear(_)) => {
                                 neighbour_detected = true;
-                                gear = Some(*coord);
+                                gear = Some(coord);
                                 break;
                             }
                             _ => {},

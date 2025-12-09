@@ -27,20 +27,20 @@ fn main() -> Result<(), Box<dyn Error>>{
 fn part2(instructions: VecDeque<Operation>) -> String {
     let mut bad_destinations = HashSet::new();
     for instr in instructions.iter() {
-        if instr.destination.starts_with('z') && instr.operator != Operator::Xor && instr.destination != "z45".to_string(){
-            bad_destinations.insert(instr.destination.clone());
+        if instr.destination.starts_with('z') && instr.operator != Operator::Xor && instr.destination != *"z45"{
+            bad_destinations.insert(&instr.destination);
         } 
         if !(instr.destination.starts_with('z') || instr.left.starts_with('x') && instr.right.starts_with('y') || instr.left.starts_with('y') && instr.right.starts_with('x')) && instr.operator == Operator::Xor {
-            bad_destinations.insert(instr.destination.clone());
+            bad_destinations.insert(&instr.destination);
         }
         if instr.operator == Operator::Xor && ((instr.left.starts_with('x') && instr.right.starts_with('y') )|| (instr.left.starts_with('y') && instr.right.starts_with('x')) ) && instr.destination != "z00" && !instructions.iter().any(|next_stage| next_stage.operator == Operator::Xor && (next_stage.left == instr.destination || next_stage.right == instr.destination)) {
-            bad_destinations.insert(instr.destination.clone());
+            bad_destinations.insert(&instr.destination);
         }
         if instr.operator == Operator::And && instr.left != "y00" && !instructions.iter().any(|next_stage| next_stage.operator == Operator::Or && (next_stage.left == instr.destination || next_stage.right == instr.destination)) {
-            bad_destinations.insert(instr.destination.clone());
+            bad_destinations.insert(&instr.destination);
         }
     }
-    let mut dests = bad_destinations.iter().map(|s| s.to_string()).collect::<Vec<_>>();
+    let mut dests = bad_destinations.iter().collect::<Vec<_>>();
     dests.sort();
     dests[..].iter().map(|c| c.to_string()).collect::<Vec<_>>().join(",")
 }
@@ -83,7 +83,7 @@ fn parse_data(data: &str) -> (HashMap<String, bool>, VecDeque<Operation>) {
             Some("AND") => Operator::And,
             Some("OR") => Operator::Or,
             Some("XOR") => Operator::Xor,
-            v => unimplemented!()
+            _ => unimplemented!()
         };
         let right = tokens.next().expect("No right-hand argument").to_string();
         tokens.next();

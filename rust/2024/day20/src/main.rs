@@ -40,7 +40,7 @@ fn get_path(grid: &HashMap<Coordinate<i32>, Square>) -> Vec<Coordinate<i32>> {
     let mut current_loc = *start;
     visited.push(*start);
     while current_loc != *end {
-        for neighbour in current_loc.neighbours() {
+        for neighbour in current_loc.clone().neighbours() {
             if grid.get(&neighbour) != Some(&Square::Wall) && !visited.contains(&neighbour) {
                 current_loc = neighbour;
                 visited.push(current_loc);

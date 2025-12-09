@@ -17,7 +17,7 @@ fn main() -> Result<(), Box<dyn Error>>{
     let arena: HashMap<Coordinate<usize>, SquareType> = parse_data(&data);
 
     println!("{:?}", solution(&arena, true));
-    println!("{:?}", solution(&arena, false ));
+    println!("{:?}", solution(&arena, false));
 
     Ok(())
 }
@@ -90,7 +90,7 @@ HashMap<Coordinate<usize>, usize>> {
         match squaretype {
             SquareType::Start | SquareType::Goal => {junctions.insert(*square, HashMap::new());},
             SquareType::Empty => {
-                if square.neighbours().iter().filter(|n| arena.contains_key(n)).count() > 2 {
+                if square.neighbours().filter(|n| arena.contains_key(n)).count() > 2 {
                     junctions.insert(*square, HashMap::new());
                 }
             }
@@ -117,7 +117,7 @@ HashMap<Coordinate<usize>, usize>> {
                             continue;
                         }
                         visited.insert(square);
-                        square.neighbours().iter().for_each(|s| next_squares.push_back((distance+1, *s)))
+                        square.neighbours().for_each(|s| next_squares.push_back((distance+1, s)))
                     },
                     Some(SquareType::OneWay(direction)) => {
                         if part1 {
@@ -127,7 +127,7 @@ HashMap<Coordinate<usize>, usize>> {
                                 continue;
                             }
                             visited.insert(square);
-                            square.neighbours().iter().for_each(|s| next_squares.push_back((distance+1, *s)))
+                            square.neighbours().for_each(|s| next_squares.push_back((distance+1, s)))
     
                         }
                     }

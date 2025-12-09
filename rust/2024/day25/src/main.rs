@@ -1,4 +1,4 @@
-use std::{collections::HashSet, error::Error, result};
+use std::error::Error;
 
 use aochelpers::get_daily_input;
 

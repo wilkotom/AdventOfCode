@@ -31,7 +31,7 @@ fn part2(circuit: &HashSet<Coordinate<i32>>, arena: &HashMap<Coordinate<i32>, (D
     // Part 2 answer is the number of even-numbered squares in the arena that weren't
     // visited by either the flood fill or the circuit
     (0..boundary.y).step_by(2).map(|y: i32| (0..boundary.x).step_by(2)
-        .filter(|x| !visited.contains(&Coordinate {x: *x, y}) && !circuit.contains(&Coordinate {x: *x, y}))
+        .filter(|&x| !visited.contains(&Coordinate {x, y}) && !circuit.contains(&Coordinate {x, y}))
         .count() as i32).sum()
 
 }

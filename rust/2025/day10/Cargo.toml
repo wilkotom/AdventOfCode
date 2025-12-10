@@ -6,5 +6,5 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-aochelpers = ">=0.6.1"
-
+aochelpers = "0.9.2"
+good_lp = { version = "1.14.2", features = ["highs"], default-features = false }
